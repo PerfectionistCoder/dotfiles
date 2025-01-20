@@ -1,0 +1,82 @@
+'$schema' = 'https://starship.rs/config-schema.json'
+
+format = '''
+  $username$hostname$directory$fill$git_branch$git_state$git_status$nix_shell
+  $character
+'''
+
+palette = 'catppuccin_macchiato'
+[palettes.catppuccin_macchiato]
+rosewater = "#f4dbd6"
+flamingo = "#f0c6c6"
+pink = "#f5bde6"
+mauve = "#c6a0f6"
+red = "#ed8796"
+maroon = "#ee99a0"
+peach = "#f5a97f"
+yellow = "#eed49f"
+green = "#a6da95"
+teal = "#8bd5ca"
+sky = "#91d7e3"
+sapphire = "#7dc4e4"
+blue = "#8aadf4"
+lavender = "#b7bdf8"
+text = "#cad3f5"
+subtext1 = "#b8c0e0"
+subtext0 = "#a5adcb"
+overlay2 = "#939ab7"
+overlay1 = "#8087a2"
+overlay0 = "#6e738d"
+surface2 = "#5b6078"
+surface1 = "#494d64"
+surface0 = "#363a4f"
+base = "#24273a"
+mantle = "#1e2030"
+crust = "#181926"
+
+[username]
+style_user = 'text bold'
+format = '[$user]($style)'
+
+[hostname]
+style = 'text bold'
+ssh_symbol = '󰖟 '
+format = '[@[$ssh_symbol](blue)$hostname ]($style)'
+
+[directory]
+style = 'teal bold'
+read_only_style = 'yellow bold'
+format = '[[$read_only]($read_only_style) $path]($style) '
+read_only = ''
+truncation_symbol = '…/'
+
+[fill]
+symbol = ' '
+
+[git_branch]
+style = "text bold"
+format = '[ $branch]($style)'
+
+[git_state]
+style = "blue bold"
+format = '[$state\($progress_current/[$progress_total](subtext0 none)\)]($style) '
+
+[git_status]
+# all_status
+conflicted = '[=$count](yellow bold) '
+untracked = '[?$count](overlay2 bold) ' 
+stashed = '[\$$count](mauve bold) '
+modified = '[!$count](peach bold) '
+staged = '[+$count](green bold) '
+renamed = '[$count](pink bold) '
+deleted = '[-$count](red bold) '
+# ahead_behind
+ahead = '[$count](teal bold) '
+behind = '[$count](maroon bold) '
+diverged = '[$ahead_count](teal bold)[$behind_count](maroon bold) '
+up_to_date = '[✓](green bold) '
+format = ' $all_status$ahead_behind'
+
+[nix_shell]
+style = 'blue bold'
+format = '[\(󰜗 $name\)]($style) '
