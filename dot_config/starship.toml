@@ -40,8 +40,8 @@ format = '[$user]($style)'
 
 [hostname]
 style = 'text bold'
-ssh_symbol = '󰖟 '
-format = '[@[$ssh_symbol](blue)$hostname ]($style)'
+ssh_symbol = '[󰖟](blue) '
+format = '[@$ssh_symbol$hostname]($style) '
 
 [directory]
 style = 'teal bold'
@@ -62,19 +62,19 @@ style = "blue bold"
 format = '[$state\($progress_current/[$progress_total](subtext0 none)\)]($style) '
 
 [git_status]
-# all_status
+# $all_status
 conflicted = '[=$count](yellow bold) '
 untracked = '[?$count](overlay2 bold) ' 
 stashed = '[\$$count](mauve bold) '
 modified = '[!$count](peach bold) '
 staged = '[+$count](green bold) '
-renamed = '[$count](pink bold) '
+renamed = '[$count](blue bold) '
 deleted = '[-$count](red bold) '
-# ahead_behind
-ahead = '[$count](teal bold) '
-behind = '[$count](maroon bold) '
-diverged = '[$ahead_count](teal bold)[$behind_count](maroon bold) '
-up_to_date = '[✓](green bold) '
+# $ahead_behind
+ahead = '\([$count](green bold)\) '
+behind = '\([$count](red bold)\) '
+diverged = '\([$ahead_count](green bold)[$behind_count](red bold)\) '
+up_to_date = '\([✓](green bold)\) '
 format = ' $all_status$ahead_behind'
 
 [nix_shell]
