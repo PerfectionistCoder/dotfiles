@@ -41,11 +41,28 @@ const scheme = {
   highlight: default_reverse
 }
 
+
+def getColorForValue [name] {
+  const palette = [$theme.teal $theme.sky $theme.sapphire $theme.blue $theme.lavender $theme.mauve $theme.pink]
+  const scale = {
+    time: [1day 1wk 4wk 12wk 24wk 52wk]
+    size: [1kb 10kb 100kb 10mb 100mb 1gb]
+  }
+  let values = $scale | get $name
+  {||
+    mut i = 0
+    while $i < ($values | length) and ($values | get $i) < $in {
+      $i += 1
+    }
+    $palette | get ([$i ($palette | length)] | math min)
+  }
+}
+
 $env.config.highlight_resolved_externals = true
 $env.config.color_config = {
   shape_string: $scheme.string
   shape_string_interpolation: $scheme.string
-  shape_raw_string: $scheme.string
+  shape_raw_string: { fg: $scheme.string attr: i }
   shape_record: $scheme.punctuation
   shape_list: $scheme.punctuation
   shape_table: $scheme.punctuation
@@ -88,11 +105,11 @@ $env.config.color_config = {
   binary: $scheme.constant
   custom: $scheme.custom
   # nothing: 
-  date: $theme.blue
-  filesize: $theme.mauve
+  date: {|| (date now) - $in | do (getColorForValue time)}
+  filesize: (getColorForValue size)
   # list: 
   # record: 
-  duration: $theme.blue
+  duration: (getColorForValue time)
   range: $scheme.operator
   cell-path: $scheme.punctuation
   # closure: 
