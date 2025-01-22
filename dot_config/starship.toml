@@ -1,11 +1,60 @@
 '$schema' = 'https://starship.rs/config-schema.json'
 
 format = '''
-  $username$hostname$directory$fill$git_branch$git_state$git_status$nix_shell
+  $username$hostname$directory$fill$git_branch$git_status$git_state$nix_shell
   $character
 '''
+continuation_prompt = '  [:](surface2 bold) '
 
 palette = 'catppuccin_macchiato'
+
+[username]
+style_user = 'text bold'
+format = '[$user]($style)'
+
+[hostname]
+style = 'text bold'
+ssh_symbol = '[󰖟](blue) '
+format = '[@$ssh_symbol$hostname]($style) '
+
+[directory]
+style = 'teal bold'
+read_only_style = 'yellow bold'
+format = '[[$read_only]($read_only_style) $path]($style) '
+read_only = ''
+truncation_symbol = '…/'
+
+[fill]
+symbol = ' '
+
+[git_branch]
+style = "text bold"
+format = '[ $branch]($style)'
+
+[git_state]
+style = "text bold"
+format = '[\($state( $progress_current/$progress_total)\)]($style) '
+
+[git_status]
+# $all_status
+conflicted = '[◪$count](yellow bold) '
+untracked = '[?$count](overlay2 bold) ' 
+stashed = '[≡$count](mauve bold) '
+modified = '[!$count](peach bold) '
+staged = '[+$count](green bold) '
+renamed = '[$count](blue bold) '
+deleted = '[✕$count](red bold) '
+# $ahead_behind
+ahead = '[$count](green bold)'
+behind = '[$count](red bold)'
+diverged = '[$ahead_count](green bold)[$behind_count](red bold)'
+up_to_date = '[✓](green bold)'
+format = '(\[$ahead_behind\]) $all_status'
+
+[nix_shell]
+style = 'blue bold'
+format = '[\(󰜗 $name\)]($style) '
+
 [palettes.catppuccin_macchiato]
 rosewater = "#f4dbd6"
 flamingo = "#f0c6c6"
@@ -33,50 +82,3 @@ surface0 = "#363a4f"
 base = "#24273a"
 mantle = "#1e2030"
 crust = "#181926"
-
-[username]
-style_user = 'text bold'
-format = '[$user]($style)'
-
-[hostname]
-style = 'text bold'
-ssh_symbol = '[󰖟](blue) '
-format = '[@$ssh_symbol$hostname]($style) '
-
-[directory]
-style = 'teal bold'
-read_only_style = 'yellow bold'
-format = '[[$read_only]($read_only_style) $path]($style) '
-read_only = ''
-truncation_symbol = '…/'
-
-[fill]
-symbol = ' '
-
-[git_branch]
-style = "text bold"
-format = '[ $branch]($style)'
-
-[git_state]
-style = "blue bold"
-format = '[$state\($progress_current/[$progress_total](subtext0 none)\)]($style) '
-
-[git_status]
-# $all_status
-conflicted = '[=$count](yellow bold) '
-untracked = '[?$count](overlay2 bold) ' 
-stashed = '[\$$count](mauve bold) '
-modified = '[!$count](peach bold) '
-staged = '[+$count](green bold) '
-renamed = '[$count](blue bold) '
-deleted = '[-$count](red bold) '
-# $ahead_behind
-ahead = '\([$count](green bold)\) '
-behind = '\([$count](red bold)\) '
-diverged = '\([$ahead_count](green bold)[$behind_count](red bold)\) '
-up_to_date = '\([✓](green bold)\) '
-format = ' $all_status$ahead_behind'
-
-[nix_shell]
-style = 'blue bold'
-format = '[\(󰜗 $name\)]($style) '
