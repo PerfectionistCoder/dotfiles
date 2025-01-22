@@ -6,9 +6,6 @@ bright_foreground = "#cad3f5"
 
 [colors.cursor]
 text = "#24273a"
-
-[colors.vi_mode_cursor]
-text = "#24273a"
 cursor = "#f4dbd6"
 
 [colors.search.matches]
