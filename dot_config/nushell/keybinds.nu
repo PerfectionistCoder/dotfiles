@@ -819,6 +819,7 @@ let keybinds = [
     "event": {
       until: [
         { send: MenuRight }
+        { send: HistoryHintWordComplete }
         { send: Right }
       ]
     }
@@ -965,11 +966,6 @@ let keybinds = [
   {
     "keycode": "Esc"
     "event": { send: Esc }
-  }
-  {
-    "modifier": "control"
-    "keycode": "Char_k"
-    "event": { send: CtrlC }
   }
   {
     "modifier": "control"
