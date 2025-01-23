@@ -1,3 +1,5 @@
+$env.PATH = $env.PATH | prepend ($env.HOME | path join Scripts)
+
 $env.SHELL = "nu"
 
 $env.CARAPACE_BRIDGES = "bash"
