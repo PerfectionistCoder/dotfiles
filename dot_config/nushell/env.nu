@@ -1,4 +1,4 @@
-$env.PATH = $env.PATH | prepend ($env.HOME | path join Scripts)
+$env.PATH = $env.PATH | prepend ($env.HOME | path join scripts)
 
 $env.SHELL = "nu"
 
