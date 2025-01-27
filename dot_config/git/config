@@ -1,0 +1,9 @@
+[init]
+defaultBranch = main
+
+[pull]
+rebase = false
+
+[alias]
+ssh = !git-set-ssh-command
+user = !git-set-user

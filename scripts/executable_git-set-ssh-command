@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+file=$1
+
+if [[ ! "$file" =~ [~./].* ]]; then
+  file="~/.ssh/$file"
+fi
+
+git config core.sshCommand "ssh -i $file"
