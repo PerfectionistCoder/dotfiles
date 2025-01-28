@@ -1,0 +1,6 @@
+source /home/user/.nix-profile/etc/profile.d/hm-session-vars.sh
+PATH="$HOME/scripts:$PATH"
+
+if [[ $(tty) == /dev/tty1 ]]; then
+  Hyprland
+fi
