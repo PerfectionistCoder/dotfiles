@@ -4,7 +4,7 @@ format = '''
   $username$hostname$directory$fill$git_branch$git_status$git_state$nix_shell
   $character
 '''
-continuation_prompt = '  [:](surface2 bold) '
+continuation_prompt = '  [∙](surface2 bold) '
 
 palette = 'catppuccin_macchiato'
 
@@ -18,11 +18,11 @@ ssh_symbol = '[󰖟](blue) '
 format = '[@$ssh_symbol$hostname]($style) '
 
 [directory]
-style = 'teal bold'
-read_only_style = 'yellow bold'
-format = '[[$read_only]($read_only_style) $path]($style) '
-read_only = ''
-truncation_symbol = '…/'
+style = 'sky bold'
+format = '[$read_only$path]($style) '
+read_only = '󱞊 '
+truncation_length = 8
+truncation_symbol = '󰉓  /'
 
 [fill]
 symbol = ' '
@@ -37,23 +37,23 @@ format = '[\($state( $progress_current/$progress_total)\)]($style) '
 
 [git_status]
 # $all_status
-conflicted = '[󰉁$count](yellow bold) '
-untracked = '[$count](overlay2 bold) ' 
+conflicted = '[$count](yellow bold) '
+untracked = '[-$count](overlay2 bold) ' 
 stashed = '[≡$count](mauve bold) '
-modified = '[$count](peach bold) '
-staged = '[$count](green bold) '
-renamed = '[$count](blue bold) '
-deleted = '[$count](red bold) '
+modified = '[󱈸$count](peach bold) '
+staged = '[+$count](green bold) '
+renamed = '[↻$count](blue bold) '
+deleted = '[x$count](red bold) '
 # $ahead_behind
-ahead = '[$count](green bold)'
-behind = '[$count](red bold)'
-diverged = '[$ahead_count](green bold)[$behind_count](red bold)'
-up_to_date = '[✓](green bold)'
+ahead = '[⇡$count](green bold)'
+behind = '[⇣$count](red bold)'
+diverged = '[⇡$ahead_count](green bold)[⇣$behind_count](red bold)'
+up_to_date = ''
 format = '(\[$ahead_behind\]) $all_status'
 
 [nix_shell]
 style = 'blue bold'
-format = '[\(󰜗 $name\)]($style) '
+format = '[\(󱄅 $name\)]($style) '
 
 [palettes.catppuccin_macchiato]
 rosewater = "#f4dbd6"
