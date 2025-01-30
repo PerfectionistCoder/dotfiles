@@ -38,12 +38,12 @@ format = '[\($state( $progress_current/$progress_total)\)]($style) '
 [git_status]
 # $all_status
 conflicted = '[$count](yellow bold) '
-untracked = '[-$count](overlay2 bold) ' 
+untracked = '[?$count](overlay2 bold) ' 
 stashed = '[≡$count](mauve bold) '
 modified = '[󱈸$count](peach bold) '
 staged = '[+$count](green bold) '
-renamed = '[↻$count](blue bold) '
-deleted = '[x$count](red bold) '
+renamed = '[\$$count](blue bold) '
+deleted = '[-$count](red bold) '
 # $ahead_behind
 ahead = '[⇡$count](green bold)'
 behind = '[⇣$count](red bold)'
