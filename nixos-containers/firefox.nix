@@ -22,11 +22,11 @@ in
               mountPath = "/etc/firefox/policies";
               fileName = "policies.json";
             };
-            # firefox = {
-            #   hostPath = "${firefoxDir}/firefox";
-            #   mountPoint = "${env.homeDir.local}/.mozilla/firefox";
-            #   isReadOnly = false;
-            # };
+            firefox = {
+              hostPath = "${firefoxDir}/firefox";
+              mountPoint = "${env.homeDir.local}/.mozilla/firefox";
+              isReadOnly = false;
+            };
           };
 
         config =
