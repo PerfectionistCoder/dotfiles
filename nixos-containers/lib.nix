@@ -9,4 +9,14 @@ with builtins;
       in
       if typeOf attr == "lambda" then (attr args) else attr
     ) list;
+  bindMountFile =
+    {
+      hostPath,
+      mountPath,
+      fileName,
+    }:
+    {
+      hostPath = "${hostPath}/${fileName}";
+      mountPoint = "${mountPath}/${fileName}";
+    };
 }
