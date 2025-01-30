@@ -1,7 +1,7 @@
 { lib, ... }@args:
 let
   myLib = import ./lib.nix;
-  env = import ./tmpl-env.nix;
+  env = import ./env.nix;
 in
 {
   containers.firefox = lib.mkMerge (
