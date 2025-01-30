@@ -8,7 +8,7 @@
           password = "";
           extraGroups = [ "wheel" ];
           isNormalUser = true;
-          home = env.homeDir.local or "/home";
+          home = env.homeDir.local;
         };
       };
     };
