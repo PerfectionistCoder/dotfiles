@@ -13,15 +13,15 @@ in
       {
         bindMounts =
           let
-            firefoxDir = "${env.chezmoiDir}/firefox";
+            firefoxDir = "${env.homeDir.host}/.local/share/firefox";
           in
           with myLib;
           {
-            # policies = bindMountFile {
-            #   hostPath = firefoxDir;
-            #   mountPath = "/etc/firefox/policies";
-            #   fileName = "policies.json";
-            # };
+            policies = bindMountFile {
+              hostPath = firefoxDir;
+              mountPath = "/etc/firefox/policies";
+              fileName = "policies.json";
+            };
             # firefox = {
             #   hostPath = "${firefoxDir}/firefox";
             #   mountPoint = "${env.homeDir.local}/.mozilla/firefox";
