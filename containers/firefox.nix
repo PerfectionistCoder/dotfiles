@@ -11,6 +11,17 @@ in
       ./traits/pulseaudio.nix
       ./traits/cursor.nix
       {
+        bindMounts =
+          let
+            firefoxCfg = "${env.homeDir.host}/containers/firefox";
+          in
+          {
+            policies = {
+              hostPath = "${firefoxCfg}/policies.json";
+              mountPoint = "/etc/firefox/policies/policies.json";
+            };
+          };
+
         config =
           { pkgs, ... }:
           {

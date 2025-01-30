@@ -1,0 +1,188 @@
+{
+  "policies": {
+    "3rdparty": {
+      "Extensions": {
+        "uBlock0@raymondhill.net": {
+          "adminSettings": {
+            "dynamicFilteringString": "behind-the-scene * * noop\nbehind-the-scene * inline-script noop\nbehind-the-scene * 1p-script noop\nbehind-the-scene * 3p-script noop\nbehind-the-scene * 3p-frame noop\nbehind-the-scene * image noop\nbehind-the-scene * 3p noop\n* * 3p-frame block",
+            "hostnameSwitchesString": "no-large-media: behind-the-scene false\nno-csp-reports: * true",
+            "selectedFilterLists": [
+              "user-filters",
+              "ublock-filters",
+              "ublock-badware",
+              "ublock-privacy",
+              "ublock-quick-fixes",
+              "ublock-unbreak",
+              "easylist",
+              "easyprivacy",
+              "urlhaus-1",
+              "curben-phishing",
+              "plowe-0",
+              "fanboy-cookiemonster",
+              "ublock-cookies-easylist",
+              "fanboy-social",
+              "easylist-chat",
+              "easylist-newsletters",
+              "easylist-notifications",
+              "easylist-annoyances",
+              "ublock-annoyances"
+            ]
+          }
+        }
+      }
+    },
+    "AutofillAddressEnabled": false,
+    "AutofillCreditCardEnabled": false,
+    "Cookies": {
+      "Behavior": "reject"
+    },
+    "DNSOverHTTPS": {
+      "Enabled": true,
+      "Fallback": true,
+      "Locked": true,
+      "ProviderURL": "https://cloudflare-dns.com/dns-query"
+    },
+    "DisableBuiltinPDFViewer": true,
+    "DisableEncryptedClientHello": false,
+    "DisableFeedbackCommands": true,
+    "DisableFirefoxAccounts": true,
+    "DisableFirefoxScreenshots": true,
+    "DisableFirefoxStudies": true,
+    "DisableForgetButton": true,
+    "DisableFormHistory": true,
+    "DisablePocket": true,
+    "DisableProfileImport": true,
+    "DisableSafeMode": false,
+    "DisableSecurityBypass": {
+      "InvalidCertificate": true,
+      "SafeBrowsing": true
+    },
+    "DisableSetDesktopBackground": true,
+    "DisableSystemAddonUpdate": true,
+    "DisableTelemetry": true,
+    "DisplayBookmarksToolbar": "never",
+    "DisplayMenuBar": "never",
+    "DontCheckDefaultBrowser": true,
+    "EnableTrackingProtection": {
+      "Cryptomining": true,
+      "Fingerprinting": true,
+      "Locked": true,
+      "Value": true
+    },
+    "EncryptedMediaExtensions": {
+      "Enabled": false
+    },
+    "ExtensionUpdate": false,
+    "FirefoxHome": {
+      "Highlights": false,
+      "Pocket": false,
+      "Search": false,
+      "Snippets": false,
+      "SponsoredPocket": false,
+      "SponsoredTopSites": false,
+      "TopSites": false
+    },
+    "GoToIntranetSiteForSingleWordEntryInAddressBar": false,
+    "HardwareAcceleration": true,
+    "Homepage": {
+      "StartPage": "none"
+    },
+    "HttpsOnlyMode": "force_enabled",
+    "InstallAddonsPermission": {
+      "Default": true
+    },
+    "LegacySameSiteCookieBehaviorEnabled": false,
+    "ManagedBookmarks": [
+      {
+        "toplevel_name": "Managed bookmarks"
+      },
+      {
+        "name": "Firefox releases",
+        "url": "https://www.mozilla.org/en-US/firefox/releases/"
+      },
+      {
+        "name": "Nix",
+        "children": [
+          {
+            "name": "NixOS Search",
+            "url": "https://search.nixos.org/packages"
+          },
+          {
+            "name": "Home Manager Options",
+            "url": "https://home-manager-options.extranix.com"
+          },
+          {
+            "name": "Noogle",
+            "url": "https://noogle.dev/"
+          }
+        ]
+      },
+      {
+        "name": "Youtube",
+        "children": [
+          {
+            "name": "Youtube Music",
+            "url": "https://music.youtube.com/"
+          },
+          {
+            "name": "Youtube",
+            "url": "https://www.youtube.com"
+          }
+        ]
+      },
+      {
+        "name": "White board",
+        "url": "https://excalidraw.com/"
+      }
+    ],
+    "ManualAppUpdateOnly": true,
+    "NetworkPrediction": false,
+    "NoDefaultBookmarks": false,
+    "OfferToSaveLogins": false,
+    "OverrideFirstRunPage": "",
+    "OverridePostUpdatePage": "",
+    "PDFjs": {
+      "Enabled": false
+    },
+    "PasswordManagerEnabled": false,
+    "Permissions": {
+      "Autoplay": {
+        "Default": "block-audio-video"
+      },
+      "Camera": {
+        "BlockNewRequests": true
+      },
+      "Location": {
+        "BlockNewRequests": true
+      },
+      "Microphone": {
+        "BlockNewRequests": true
+      },
+      "Notifications": {
+        "BlockNewRequests": true
+      }
+    },
+    "PictureInPicture": {
+      "Enabled": false
+    },
+    "PopupBlocking": {
+      "Default": false
+    },
+    "PostQuantumKeyAgreementEnabled": true,
+    "PrintingEnabled": false,
+    "PromptForDownloadLocation": false,
+    "RequestedLocales": "",
+    "SearchBar": "unified",
+    "SearchSuggestEnabled": false,
+    "ShowHomeButton": false,
+    "TranslateEnabled": false,
+    "UserMessaging": {
+      "ExtensionRecommendations": false,
+      "FeatureRecommendations": false,
+      "FirefoxLabs": false,
+      "MoreFromMozilla": false,
+      "SkipOnboarding": true,
+      "UrlbarInterventions": false
+    }
+  }
+}
