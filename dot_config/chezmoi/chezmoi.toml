@@ -1,0 +1,3 @@
+[data.firefox]
+profileName = "default"
+mountPath = "/run/firefox"

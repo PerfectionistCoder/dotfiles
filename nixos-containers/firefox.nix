@@ -13,18 +13,36 @@ in
       {
         bindMounts =
           let
-            firefoxDir = "${env.homeDir.host}/.local/share/firefox";
+            firefoxDir = {
+              host = "${env.homeDir.host}/.local/share/firefox";
+              local = "${env.homeDir.local}/.mozilla/firefox";
+            };
           in
           with myLib;
           {
             policies = bindMountFile {
-              hostPath = firefoxDir;
+              hostPath = firefoxDir.host;
               mountPath = "/etc/firefox/policies";
               fileName = "policies.json";
             };
+            userjs = bindMountFile {
+              hostPath = firefoxDir.host;
+              mountPath = "${firefoxDir.local}/${env.firefox.profileName}";
+              fileName = "user.js";
+            };
+            profiles = bindMountFile {
+              hostPath = firefoxDir.host;
+              mountPath = "${firefoxDir.local}";
+              fileName = "profiles.ini";
+            };
+            extensions = {
+              hostPath = "${firefoxDir.host}/extensions";
+              mountPoint = "${firefoxDir.local}/${env.firefox.profileName}/extensions";
+              isReadOnly = false;
+            };
             firefox = {
-              hostPath = "${firefoxDir}/firefox";
-              mountPoint = "${env.homeDir.local}/.mozilla/firefox";
+              hostPath = "${env.firefox.mountPath}/${env.firefox.profileName}";
+              mountPoint = "${firefoxDir.local}/${env.firefox.profileName}";
               isReadOnly = false;
             };
           };
