@@ -27,7 +27,7 @@ in
             };
             userjs = bindMountFile {
               hostPath = firefoxDir.host;
-              mountPath = "${firefoxDir.local}/${env.firefox.profileName}";
+              mountPath = "${firefoxDir.local}/${env.firefoxProfileName}";
               fileName = "user.js";
             };
             profiles = bindMountFile {
@@ -37,12 +37,12 @@ in
             };
             extensions = {
               hostPath = "${firefoxDir.host}/extensions";
-              mountPoint = "${firefoxDir.local}/${env.firefox.profileName}/extensions";
+              mountPoint = "${firefoxDir.local}/${env.firefoxProfileName}/extensions";
               isReadOnly = false;
             };
             firefox = {
-              hostPath = "${env.firefox.mountPath}/${env.firefox.profileName}";
-              mountPoint = "${firefoxDir.local}/${env.firefox.profileName}";
+              hostPath = "${env.runtimeDir}/firefox";
+              mountPoint = "${firefoxDir.local}/${env.firefoxProfileName}";
               isReadOnly = false;
             };
           };
