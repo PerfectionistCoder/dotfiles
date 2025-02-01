@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+set -e
+
+full_path=/run/current-system/sw/bin/
+name=$1
+runtime_dir=$(chezmoi execute-template '{{.nixosContainer.runtimeDir}}')
+
+create_cuntime_dir() {
+  if [[ ! -d "$runtime_dir" ]]; then
+    mkdir -p "$runtime_dir/$name"
+  fi
+}
+
+if [[ $(nixos-container list | grep -E "^$name$") == "" ]]; then
+  create_cuntime_dir
+  sudo ${full_path}extra-container create -s ~/nixos-containers/"$name".nix
+else
+  if [[ "down" == $(nixos-container status "$name") ]]; then
+    create_cuntime_dir
+    sudo ${full_path}nixos-container start "$name"
+  fi
+fi
+
+if [[ -n $2 ]]; then
+  sudo ${full_path}machinectl shell container@"$name" /usr/bin/env bash --login -c "$2"
+fi
