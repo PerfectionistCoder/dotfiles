@@ -78,11 +78,9 @@
       "Locked": false
     },
     "DefaultDownloadDirectory": "${home}/Downloads",
-    "DisableBuiltinPDFViewer": true,
     "DisableEncryptedClientHello": false,
     "DisableFeedbackCommands": true,
     "DisableFirefoxAccounts": true,
-    "DisableFirefoxScreenshots": true,
     "DisableFirefoxStudies": true,
     "DisableForgetButton": true,
     "DisableFormHistory": true,
@@ -179,7 +177,6 @@
         "Status": "locked"
       }
     },
-    "PrintingEnabled": false,
     "PromptForDownloadLocation": false,
     "RequestedLocales": "",
     "SearchBar": "unified",

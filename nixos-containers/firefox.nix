@@ -13,36 +13,35 @@ in
       {
         bindMounts =
           let
-            firefoxDir = {
-              host = "${env.homeDir.host}/.local/share/firefox";
-              local = "${env.homeDir.local}/.mozilla/firefox";
-            };
+            firefoxConfig = "${env.homeDir.host}/.config/firefox";
+            firefoxData = "${env.homeDir.host}/.local/share/firefox";
+            firefoxDir = "${env.homeDir.local}/.mozilla/firefox";
           in
           with myLib;
           {
             policies = bindMountFile {
-              hostPath = firefoxDir.host;
+              hostPath = firefoxConfig;
               mountPath = "/etc/firefox/policies";
               fileName = "policies.json";
             };
             userjs = bindMountFile {
-              hostPath = firefoxDir.host;
-              mountPath = "${firefoxDir.local}/${env.firefoxProfileName}";
+              hostPath = firefoxConfig;
+              mountPath = "${firefoxDir}/${env.firefoxProfileName}";
               fileName = "user.js";
             };
             profiles = bindMountFile {
-              hostPath = firefoxDir.host;
-              mountPath = "${firefoxDir.local}";
+              hostPath = firefoxConfig;
+              mountPath = "${firefoxDir}";
               fileName = "profiles.ini";
             };
             extensions = {
-              hostPath = "${firefoxDir.host}/extensions";
-              mountPoint = "${firefoxDir.local}/${env.firefoxProfileName}/extensions";
+              hostPath = "${firefoxData}/extensions";
+              mountPoint = "${firefoxDir}/${env.firefoxProfileName}/extensions";
               isReadOnly = false;
             };
             firefox = {
               hostPath = "${env.runtimeDir}/firefox";
-              mountPoint = "${firefoxDir.local}/${env.firefoxProfileName}";
+              mountPoint = "${firefoxDir}/${env.firefoxProfileName}";
               isReadOnly = false;
             };
           };
