@@ -14,7 +14,7 @@ create_cuntime_dir() {
 
 if [[ $(nixos-container list | grep -E "^$name$") == "" ]]; then
   create_cuntime_dir
-  sudo ${full_path}extra-container create -s ~/nixos-containers/"$name".nix
+  sudo ${full_path}extra-container create -s ~/.nixos-containers/"$name".nix
 else
   if [[ "down" == $(nixos-container status "$name") ]]; then
     create_cuntime_dir
