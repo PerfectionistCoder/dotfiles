@@ -1,5 +1,3 @@
-$env.SHELL = "nu"
-
 $env.CARAPACE_BRIDGES = "bash"
 $env.CARAPACE_ENV = 1
 $env.CARAPACE_HIDDEN = 0
