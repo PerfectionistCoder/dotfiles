@@ -4,7 +4,7 @@ set -e
 
 full_path=/run/current-system/sw/bin/
 name=$1
-runtime_dir=$(chezmoi execute-template '{{.nixosContainer.runtimeDir}}')
+runtime_dir="{{.env.dirs.containerSession}}"
 
 create_cuntime_dir() {
   if [[ ! -d "$runtime_dir" ]]; then
@@ -14,7 +14,7 @@ create_cuntime_dir() {
 
 if [[ $(nixos-container list | grep -E "^$name$") == "" ]]; then
   create_cuntime_dir
-  sudo ${full_path}extra-container create -s $HOME/.nixos-containers/"$name".nix
+  sudo ${full_path}extra-container create -s "{{.env.dirs.nixosContainerConfig}}/$name".nix
 else
   if [[ "down" == $(nixos-container status "$name") ]]; then
     create_cuntime_dir
