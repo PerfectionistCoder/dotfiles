@@ -819,7 +819,6 @@ let keybinds = [
     "event": {
       until: [
         { send: MenuRight }
-        { send: HistoryHintWordComplete }
         { send: Right }
       ]
     }
@@ -915,6 +914,11 @@ let keybinds = [
     "modifier": "control"
     "keycode": "Delete"
     "event": { edit: DeleteWord }
+  }
+  {
+    "modifier": "control_shift"
+    "keycode": "Char_k"
+    "event": { edit: Clear }
   }
 
   # undo & redo

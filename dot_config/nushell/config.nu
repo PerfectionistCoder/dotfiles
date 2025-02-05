@@ -18,7 +18,7 @@ $env.config.cursor_shape.vi_insert = "block"
 $env.config.cursor_shape.vi_normal = "underscore"
 
 # completions 
-$env.config.completions.algorithm = "prefix"
+$env.config.completions.algorithm = "fuzzy"
 $env.config.completions.sort = "smart"
 $env.config.completions.case_sensitive = false
 $env.config.completions.quick = true
