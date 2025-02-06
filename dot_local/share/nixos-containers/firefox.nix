@@ -40,7 +40,7 @@ in
               isReadOnly = false;
             };
             firefox = {
-              hostPath = "${env.runtimeDir}/firefox";
+              hostPath = "${env.sessionDir}/firefox";
               mountPoint = "${firefoxDir}/${env.firefoxProfileName}";
               isReadOnly = false;
             };
