@@ -1,6 +1,6 @@
 [data.env.dirs]
 scripts = "$HOME/.scripts"
-containerSession = "/tmp/nixos-containers"
+containerSession = "/run/nixos-containers"
 nixosContainerConfig = "$HOME/.nixos-containers"
 
 [data.firefox]

@@ -4,11 +4,12 @@ set -e
 
 full_path=/run/current-system/sw/bin/
 name=$1
-runtime_dir="{{.env.dirs.containerSession}}"
+session_dir="{{.env.dirs.containerSession}}/$name"
 
 create_cuntime_dir() {
-  if [[ ! -d "$runtime_dir" ]]; then
-    mkdir -p "$runtime_dir/$name"
+  if [[ ! -d "$session_dir" ]]; then
+    sudo mkdir -p "$session_dir"
+    sudo chown $USER "$session_dir"
   fi
 }
 
