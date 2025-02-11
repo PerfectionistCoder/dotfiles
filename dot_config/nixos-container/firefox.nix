@@ -11,31 +11,35 @@ in
       ./traits/pulseaudio.nix
       ./traits/cursor.nix
       {
+        privateNetwork = true;
+        hostAddress = "192.168.100.10";
+        localAddress = "192.168.100.11";
+
         bindMounts =
           let
-            firefoxConfig = "${env.homeDir.host}/.config/firefox";
-            firefoxData = "${env.homeDir.host}/.local/share/firefox";
+            firefoxConfigDir = "${env.homeDir.host}/.config/firefox";
+            firefoxStateDir = "${env.homeDir.host}/.local/state/firefox";
             firefoxDir = "${env.homeDir.local}/.mozilla/firefox";
           in
           with myLib;
           {
             policies = bindMountFile {
-              hostPath = firefoxConfig;
+              hostPath = firefoxConfigDir;
               mountPath = "/etc/firefox/policies";
               fileName = "policies.json";
             };
             userjs = bindMountFile {
-              hostPath = firefoxConfig;
+              hostPath = firefoxConfigDir;
               mountPath = "${firefoxDir}/${env.firefoxProfileName}";
               fileName = "user.js";
             };
             profiles = bindMountFile {
-              hostPath = firefoxConfig;
+              hostPath = firefoxConfigDir;
               mountPath = "${firefoxDir}";
               fileName = "profiles.ini";
             };
             extensions = {
-              hostPath = "${firefoxData}/extensions";
+              hostPath = "${firefoxStateDir}/extensions";
               mountPoint = "${firefoxDir}/${env.firefoxProfileName}/extensions";
               isReadOnly = false;
             };

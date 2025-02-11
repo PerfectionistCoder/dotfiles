@@ -9,13 +9,13 @@ session_dir="{{.env.dirs.containerSession}}/$name"
 create_cuntime_dir() {
   if [[ ! -d "$session_dir" ]]; then
     sudo mkdir -p "$session_dir"
-    sudo chown $USER "$session_dir"
+    sudo chown {{.chezmoi.username}} "$session_dir"
   fi
 }
 
 if [[ $(nixos-container list | grep -E "^$name$") == "" ]]; then
   create_cuntime_dir
-  sudo ${full_path}extra-container create -s "{{.env.dirs.nixosContainerConfig}}/$name".nix
+  sudo ${full_path}extra-container create -s "$HOME/.config/nixos-container/$name".nix
 else
   if [[ "down" == $(nixos-container status "$name") ]]; then
     create_cuntime_dir
