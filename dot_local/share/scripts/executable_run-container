@@ -4,12 +4,13 @@ set -e
 
 full_path=/run/current-system/sw/bin/
 name=$1
-session_dir="{{.env.dirs.containerSession}}/$name"
+session_dir="/run/nixos-containers/$name"
+user=$USER
 
 create_cuntime_dir() {
   if [[ ! -d "$session_dir" ]]; then
     sudo mkdir -p "$session_dir"
-    sudo chown {{.chezmoi.username}} "$session_dir"
+    sudo chown $user "$session_dir"
   fi
 }
 
