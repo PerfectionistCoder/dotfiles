@@ -41,44 +41,33 @@
       },
       {
         "Title": "NixOS Search",
-        "URL": "https://search.nixos.org/packages",
-        "Folder": "Nix"
+        "URL": "https://search.nixos.org/packages"
       },
       {
         "Title": "Home Manager Options",
-        "URL": "https://home-manager-options.extranix.com",
-        "Folder": "Nix"
+        "URL": "https://home-manager-options.extranix.com"
       },
       {
         "Title": "Noogle",
-        "URL": "https://noogle.dev/",
-        "Folder": "Nix"
+        "URL": "https://noogle.dev/"
+      },
+      {
+        "Title": "nixpkgs",
+        "URL": "https://github.com/NixOS/nixpkgs"
       },
       {
         "Title": "Youtube Music",
-        "URL": "https://music.youtube.com/",
-        "Folder": "Youtube"
+        "URL": "https://music.youtube.com/"
       },
       {
         "Title": "Youtube",
-        "URL": "https://www.youtube.com",
-        "Folder": "Youtube"
+        "URL": "https://www.youtube.com"
       },
       {
         "Title": "White board",
         "URL": "https://excalidraw.com/"
       }
     ],
-    "Cookies": {
-      "Behavior": "reject"
-    },
-    "DNSOverHTTPS": {
-      "Enabled": false,
-      "ProviderURL": "",
-      "Locked": false
-    },
-    "DefaultDownloadDirectory": "${home}/Downloads",
-    "DisableEncryptedClientHello": false,
     "DisableFeedbackCommands": true,
     "DisableFirefoxAccounts": true,
     "DisableFirefoxStudies": true,
@@ -86,34 +75,32 @@
     "DisableFormHistory": true,
     "DisablePocket": true,
     "DisableProfileImport": true,
-    "DisableSafeMode": false,
     "DisableSecurityBypass": {
       "InvalidCertificate": true,
       "SafeBrowsing": true
     },
     "DisableSetDesktopBackground": true,
-    "DisableSystemAddonUpdate": true,
     "DisableTelemetry": true,
     "DisplayBookmarksToolbar": "never",
     "DisplayMenuBar": "never",
     "DontCheckDefaultBrowser": true,
     "EnableTrackingProtection": {
       "Cryptomining": true,
+      "EmailTracking": true,
       "Fingerprinting": true,
       "Locked": true,
       "Value": true
     },
-    "EncryptedMediaExtensions": {
-      "Enabled": false
-    },
     "ExtensionSettings": {
+      "*": {
+        "installation_mode": "blocked"
+      },
       "uBlock0@raymondhill.net": {
         "installation_mode": "force_installed",
         "install_url": "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi",
         "default_area": "menupanel"
       }
     },
-    "ExtensionUpdate": false,
     "FirefoxHome": {
       "Highlights": false,
       "Pocket": false,
@@ -121,53 +108,55 @@
       "Snippets": false,
       "SponsoredPocket": false,
       "SponsoredTopSites": false,
-      "TopSites": false
+      "TopSites": false,
+      "Locked": true
     },
-    "GoToIntranetSiteForSingleWordEntryInAddressBar": false,
+    "GoToIntranetSiteForSingleWordEntryInAddressBar": true,
     "HardwareAcceleration": true,
-    "Homepage": {
-      "StartPage": "none"
-    },
     "HttpsOnlyMode": "force_enabled",
-    "InstallAddonsPermission": {
-      "Default": true
-    },
     "LegacySameSiteCookieBehaviorEnabled": false,
-    "ManualAppUpdateOnly": true,
     "NetworkPrediction": false,
     "NoDefaultBookmarks": true,
     "OfferToSaveLogins": false,
     "OverrideFirstRunPage": "",
     "OverridePostUpdatePage": "",
-    "PDFjs": {
-      "Enabled": false
-    },
     "PasswordManagerEnabled": false,
     "Permissions": {
       "Autoplay": {
-        "Default": "block-audio-video"
+        "Default": "block-audio-video",
+        "Locked": true
       },
       "Camera": {
-        "BlockNewRequests": true
+        "BlockNewRequests": true,
+        "Locked": true
       },
       "Location": {
-        "BlockNewRequests": true
+        "BlockNewRequests": true,
+        "Locked": true
       },
       "Microphone": {
-        "BlockNewRequests": true
+        "BlockNewRequests": true,
+        "Locked": true
       },
       "Notifications": {
-        "BlockNewRequests": true
+        "BlockNewRequests": true,
+        "Locked": true
       }
     },
     "PictureInPicture": {
-      "Enabled": false
+      "Enabled": false,
+      "Locked": true
     },
     "PopupBlocking": {
-      "Default": false
+      "Default": true,
+      "Locked": true
     },
     "PostQuantumKeyAgreementEnabled": true,
     "Preferences": {
+      "extensions.autoDisableScopes": {
+        "Value": 0,
+        "Status": "locked"
+      },
       "browser.theme.content-theme": {
         "Value": 0,
         "Status": "locked"
@@ -181,7 +170,7 @@
     "RequestedLocales": "",
     "SearchBar": "unified",
     "SearchEngines": {
-      "PreventInstalls": false,
+      "PreventInstalls": true,
       "Remove": [
         "Bing",
         "DuckDuckGo",
@@ -200,8 +189,8 @@
         }
       ]
     },
-    "SearchSuggestEnabled": false,
-    "ShowHomeButton": false,
+    "SSLVersionMin": "tls1.3",
+    "StartDownloadsInTempDirectory": true,
     "TranslateEnabled": false,
     "UserMessaging": {
       "ExtensionRecommendations": false,
@@ -209,7 +198,8 @@
       "FirefoxLabs": false,
       "MoreFromMozilla": false,
       "SkipOnboarding": true,
-      "UrlbarInterventions": false
+      "UrlbarInterventions": false,
+      "Locked": true
     }
   }
 }
