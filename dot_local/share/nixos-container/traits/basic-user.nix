@@ -1,4 +1,4 @@
-{ env, ... }:
+{ variables, ... }:
 {
   config = {
     users = {
@@ -8,7 +8,7 @@
           password = "";
           extraGroups = [ "wheel" ];
           isNormalUser = true;
-          home = env.homeDir.local;
+          home = variables.homeDir.local;
         };
       };
     };
