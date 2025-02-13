@@ -6,11 +6,10 @@ let
   inherit (lib) mkMerge foldl;
   inherit (myLib) pathToImportAttr bindMountFile;
 
-  configDir = "${variables.homeDir.host}/.config/firefox";
   firefoxDir = "${variables.homeDir.local}/.mozilla/firefox";
 in
 {
-  containers.firefox = mkMerge (
+  containers.firefox-0 = mkMerge (
     pathToImportAttr [
       ./traits/basic-user.nix
       ./traits/wayland.nix
@@ -22,19 +21,9 @@ in
         localAddress = "192.168.100.11";
 
         bindMounts = {
-          policies = bindMountFile {
-            hostPath = configDir;
-            mountPath = "/etc/firefox/policies";
-            fileName = "policies.json";
-          };
-          profiles = bindMountFile {
-            hostPath = configDir;
-            mountPath = firefoxDir;
-            fileName = "profiles.ini";
-          };
           test = {
-            hostPath = variables.persistSession;
-            mountPoint = "${firefoxDir}/private";
+            hostPath = "${variables.persistSession}/0";
+            mountPoint = firefoxDir;
             isReadOnly = false;
           };
         };
@@ -48,6 +37,9 @@ in
             programs.firefox = {
               enable = true;
               package = pkgs.firefox-esr;
+              policies =
+                (builtins.fromJSON (builtins.readFile ./firefox-policies/base.json))
+                // (builtins.fromJSON (builtins.readFile ./firefox-policies/private.json));
             };
           };
       }
