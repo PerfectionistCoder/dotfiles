@@ -1,4 +1,8 @@
-with builtins;
+{ lib, ... }:
+let
+  inherit (builtins) typeOf readDir;
+  inherit (lib) mapAttrs' removeSuffix;
+in
 {
   pathToImportAttr =
     list: args:
@@ -19,4 +23,9 @@ with builtins;
       hostPath = "${hostPath}/${fileName}";
       mountPoint = "${mountPath}/${fileName}";
     };
+  traits = mapAttrs' (name: _: {
+    name = removeSuffix ".nix" name;
+    value = import ./traits/${name};
+  }) (readDir ./traits);
+  variables = import ./variables.nix;
 }
