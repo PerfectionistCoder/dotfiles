@@ -4,6 +4,12 @@ set -e
 
 bin_dir=/run/current-system/sw/bin/
 name=$1
+command=$2
+container_dir="{{.dirs.nixosContainer}}/$name"
+
+if [[ ! -d $container_dir ]]; then
+  mkdir -p $container_dir
+fi
 
 if [[ $(nixos-container list | grep -E "^$name$") == "" ]]; then
   sudo ${bin_dir}extra-container create -s "$HOME/.local/share/nixos-container/$name".nix
@@ -13,6 +19,6 @@ else
   fi
 fi
 
-if [[ -n $2 ]]; then
-  sudo ${bin_dir}machinectl shell container@"$name" /usr/bin/env bash --login -c "$2"
+if [[ -n $command ]]; then
+  sudo ${bin_dir}machinectl shell container@"$name" /usr/bin/env bash --login -c "$command"
 fi

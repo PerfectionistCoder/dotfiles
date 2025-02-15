@@ -76,34 +76,8 @@
   OverrideFirstRunPage = "";
   OverridePostUpdatePage = "";
   PasswordManagerEnabled = false;
-  Permissions = {
-    Autoplay = {
-      Default = "block-audio-video";
-      Locked = true;
-    };
-    Camera = {
-      BlockNewRequests = true;
-      Locked = true;
-    };
-    Location = {
-      BlockNewRequests = true;
-      Locked = true;
-    };
-    Microphone = {
-      BlockNewRequests = true;
-      Locked = true;
-    };
-    Notifications = {
-      BlockNewRequests = true;
-      Locked = true;
-    };
-  };
   PictureInPicture = {
     Enabled = false;
-    Locked = true;
-  };
-  PopupBlocking = {
-    Default = true;
     Locked = true;
   };
   PostQuantumKeyAgreementEnabled = true;
