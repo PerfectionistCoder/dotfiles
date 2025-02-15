@@ -2,12 +2,21 @@
 let
   myLib = import ../lib { inherit lib; };
 
-  inherit (lib) mkMerge foldl;
+  inherit (builtins) elemAt;
+  inherit (lib)
+    mkMerge
+    foldl
+    mkIf
+    splitString
+    removePrefix
+    ;
   inherit (myLib) pathToImportAttr variables;
 in
 {
   name,
   policies ? [ ],
+  bookmarks ? [ ],
+  visitBookmarksOnly ? false,
   extraConfig,
   ...
 }:
@@ -38,7 +47,19 @@ in
             programs.firefox = {
               enable = true;
               package = pkgs.firefox-esr;
-              policies = foldl (attr: name: attr // (import ./policies/${name}.nix)) { } policies;
+              policies = foldl (attr: name: attr // (import ./policies/${name}.nix)) {
+                Bookmarks = bookmarks;
+                WebsiteFilter = mkIf visitBookmarksOnly {
+                  Block = [ "<all_urls>" ];
+                  Exceptions = map (
+                    bookmark:
+                    let
+                      url = bookmark.URL;
+                    in
+                    "https://" + (elemAt (splitString "/" (removePrefix "https://" url)) 0) + "/*"
+                  ) bookmarks;
+                };
+              } ([ "common" ] ++ policies);
             };
           };
       }

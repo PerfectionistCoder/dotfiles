@@ -31,6 +31,7 @@
       };
     };
   };
+  CaptivePortal = false;
   Cookies = {
     Behavior = "reject-foreign";
     Locked = true;
