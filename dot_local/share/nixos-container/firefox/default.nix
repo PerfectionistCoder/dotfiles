@@ -1,6 +1,6 @@
 { lib, ... }@args:
 let
-  myLib = import ../lib { inherit lib; };
+  utils = import ../utils { inherit lib; };
 
   inherit (builtins) elemAt;
   inherit (lib)
@@ -10,9 +10,13 @@ let
     splitString
     removePrefix
     ;
-  inherit (myLib) pathToImportAttr bindMountFile variables;
+  inherit (utils)
+    traits
+    pathToImportAttr
+    bindMountFile
+    variables
+    ;
 
-  configData = "${variables.homeDir.host}/${variables.firefoxData}";
   profileDir = "${variables.homeDir.local}/.mozilla/firefox";
 in
 {
@@ -26,26 +30,26 @@ in
 {
   containers.${name} = mkMerge (
     pathToImportAttr [
-      myLib.traits.user
-      myLib.traits.wayland
-      myLib.traits.pulseaudio
-      myLib.traits.cursor
+      traits.user
+      traits.wayland
+      traits.pulseaudio
+      traits.cursor
       {
         privateNetwork = true;
 
         bindMounts = {
           profile = bindMountFile {
-            hostPath = configData;
+            hostPath = variables.firefoxData;
             mountPath = profileDir;
             fileName = "profiles.ini";
           };
           userjs = bindMountFile {
-            hostPath = configData;
+            hostPath = variables.firefoxData;
             mountPath = "${profileDir}/default";
             fileName = "user.js";
           };
           root = {
-            hostPath = "${variables.homeDir.host}/${variables.containerState}/${name}";
+            hostPath = "${variables.containerVolume}/${name}";
             mountPoint = "${profileDir}/default";
             isReadOnly = false;
           };

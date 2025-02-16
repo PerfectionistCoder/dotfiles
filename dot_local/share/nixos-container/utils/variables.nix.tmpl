@@ -1,10 +1,10 @@
-{
+rec {
   homeDir = {
     host = "{{env "HOME"}}";
     local = "/home";
   };
   xdgRuntimeDir = "{{env "XDG_RUNTIME_DIR"}}";
   waylandDisplay = "{{env "WAYLAND_DISPLAY"}}";
-  containerState = "{{.dirs.nixosContainerState}}";
-  firefoxData = "{{.dirs.firefoxData}}";
+  containerVolume = "${homeDir.host}/{{.dirs.nixosContainerVolume}}";
+  firefoxData = "${homeDir.host}/{{.dirs.firefoxData}}";
 }
