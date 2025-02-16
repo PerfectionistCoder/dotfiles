@@ -10,7 +10,10 @@ let
     splitString
     removePrefix
     ;
-  inherit (myLib) pathToImportAttr variables;
+  inherit (myLib) pathToImportAttr bindMountFile variables;
+
+  configData = "${variables.homeDir.host}/${variables.firefoxData}";
+  profileDir = "${variables.homeDir.local}/.mozilla/firefox";
 in
 {
   name,
@@ -31,9 +34,19 @@ in
         privateNetwork = true;
 
         bindMounts = {
-          dir = {
-            hostPath = "${variables.persistSession}/${name}";
-            mountPoint = "${variables.homeDir.local}/.mozilla/firefox";
+          profile = bindMountFile {
+            hostPath = configData;
+            mountPath = profileDir;
+            fileName = "profiles.ini";
+          };
+          userjs = bindMountFile {
+            hostPath = configData;
+            mountPath = "${profileDir}/default";
+            fileName = "user.js";
+          };
+          root = {
+            hostPath = "${variables.homeDir.host}/${variables.containerState}/${name}";
+            mountPoint = "${profileDir}/default";
             isReadOnly = false;
           };
         };

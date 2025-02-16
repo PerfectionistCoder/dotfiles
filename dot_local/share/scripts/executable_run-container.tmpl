@@ -5,7 +5,7 @@ set -e
 bin_dir=/run/current-system/sw/bin/
 name=$1
 command=$2
-container_dir="{{.dirs.nixosContainer}}/$name"
+container_dir="$HOME/{{.dirs.nixosContainerState}}/$name"
 
 if [[ ! -d $container_dir ]]; then
   mkdir -p $container_dir

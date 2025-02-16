@@ -1,0 +1,3 @@
+[data.dirs]
+nixosContainerState = ".local/state/nixos-container"
+firefoxData = ".local/share/firefox"
