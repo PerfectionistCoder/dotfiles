@@ -1,1 +1,6 @@
+set cursorpreviewfmt ""
 set hidden
+set promptfmt "%d%f"
+set ratios 1:1
+
+map <space> toggle
