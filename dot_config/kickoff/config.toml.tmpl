@@ -1,0 +1,26 @@
+prompt = '>'
+
+padding = 160
+
+fonts = ['CaskaydiaMono NF', 'Noto Sans Mono']
+font_size = 32.0
+
+[history]
+decrease_interval = 48
+
+[colors]
+background = '{{.colors.base}}df'
+prompt = '{{.colors.activeSearch}}'
+text = '{{.colors.text}}'
+text_query = '{{.colors.activeSearch}}'
+text_selected = '{{.colors.search}}'
+
+[keybindings]
+paste = ["ctrl+v"]
+execute = ["Return"]
+delete = ["BackSpace"]
+delete_word = ["ctrl+BackSpace"]
+complete = ["Tab"]
+nav_up = ["Up"]
+nav_down = ["Down"]
+exit = ["Escape"]

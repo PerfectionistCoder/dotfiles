@@ -1,3 +1,0 @@
-[data.dirs]
-nixosContainerVolume = ".local/state/nixos-container"
-firefoxData = ".local/share/firefox"
