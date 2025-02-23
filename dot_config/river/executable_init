@@ -1,0 +1,25 @@
+#! /usr/bin/env bash
+
+riverctl spawn "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP NIXOS_OZONE_WL XCURSOR_THEME XCURSOR_SIZE"
+
+riverctl default-attach-mode bottom
+riverctl background-color 0x181926
+riverctl border-color-focused 0xb7bdf8
+riverctl border-color-unfocused 0x6e738d
+riverctl border-color-urgent 0xeed49f
+riverctl border-width 2
+riverctl focus-follows-cursor normal
+riverctl hide-cursor when-typing enabled
+riverctl set-cursor-warp on-focus-change
+riverctl set-repeat 30 400
+
+source "$HOME/.config/river/keybinds"
+
+riverctl rule-add ssd
+
+riverctl default-layout rivertile
+rivertile \
+    -view-padding 0 -outer-padding 0 \
+    -main-location left \
+    -main-count 1 \
+    -main-ratio 0.5 &
