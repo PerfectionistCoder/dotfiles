@@ -1,5 +1,7 @@
 [dirs]
 nixos_container_volume = ".local/state/nixos-container"
+nixos_container_config = ".local/share/nixos-container"
+script = ".local/share/scripts"
 firefox_data = ".local/share/firefox"
 
 [colors]
