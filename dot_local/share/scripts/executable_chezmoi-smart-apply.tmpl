@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -e
+
+cd {{.chezmoi.sourceDir}}
+chezmoi apply --source-path dot_config/chezmoi/chezmoi.toml*
+chezmoi apply
