@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-riverctl spawn "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP NIXOS_OZONE_WL XCURSOR_THEME XCURSOR_SIZE"
+riverctl spawn "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XCURSOR_THEME XCURSOR_SIZE XDG_CURRENT_DESKTOP=river"
 
 riverctl default-attach-mode bottom
 riverctl background-color 0x{{trimPrefix "#" .colors.crust}}

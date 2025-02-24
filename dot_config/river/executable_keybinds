@@ -1,10 +1,6 @@
 #! /usr/bin/env bash
 
 readonly mod="Super"
-readonly move_mod="Super+Shift"
-readonly size_mod="Super+Control"
-readonly mode_mod="Super+Alt"
-
 readonly term="alacritty"
 readonly menu="kickoff"
 readonly fm="lf"
@@ -19,20 +15,21 @@ riverctl map normal $mod F toggle-fullscreen
 
 riverctl map normal $mod J focus-view previous
 riverctl map normal $mod K focus-view next
+riverctl map normal $mod H swap previous
+riverctl map normal $mod L swap next
 
-riverctl map normal $move_mod J swap previous
-riverctl map normal $move_mod K swap next
+readonly layout_mod="$mod+Shift"
+riverctl map normal $layout_mod J send-layout-cmd rivertile "main-count +1"
+riverctl map normal $layout_mod K send-layout-cmd rivertile "main-count -1"
+riverctl map normal $layout_mod H send-layout-cmd rivertile "main-ratio -0.025"
+riverctl map normal $layout_mod L send-layout-cmd rivertile "main-ratio +0.025"
 
-riverctl map normal $size_mod H send-layout-cmd rivertile "main-ratio -0.025"
-riverctl map normal $size_mod L send-layout-cmd rivertile "main-ratio +0.025"
-riverctl map normal $move_mod H send-layout-cmd rivertile "main-count -1"
-riverctl map normal $move_mod L send-layout-cmd rivertile "main-count +1"
-
-riverctl map normal $mod Up    send-layout-cmd rivertile "main-location top"
+riverctl map normal $mod Up send-layout-cmd rivertile "main-location top"
 riverctl map normal $mod Right send-layout-cmd rivertile "main-location right"
-riverctl map normal $mod Down  send-layout-cmd rivertile "main-location bottom"
-riverctl map normal $mod Left  send-layout-cmd rivertile "main-location left"
+riverctl map normal $mod Down send-layout-cmd rivertile "main-location bottom"
+riverctl map normal $mod Left send-layout-cmd rivertile "main-location left"
 
+readonly mode_mod="$mod+Alt"
 declare -A modes=(power P)
 for mode in ${!modes[*]}; do
     key=${modes[$mode]}
@@ -52,5 +49,6 @@ riverctl map-pointer normal $mod BTN_RIGHT resize-view
 for i in $(seq 1 9); do
     tags=$((1 << ($i - 1)))
     riverctl map normal $mod $i set-focused-tags $tags
-    riverctl map normal $move_mod $i set-view-tags $tags
+    riverctl map normal $mod+Control $i set-view-tags $tags
+    riverctl map normal $mod+Shift $i spawn "riverctl set-view-tags $tags && riverctl set-focused-tags $tags"
 done
