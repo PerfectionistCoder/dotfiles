@@ -40,17 +40,17 @@ mkContainer {
   config = {
     bindMounts = {
       profile = bindMountFile {
-        hostPath = variables.firefox_data;
+        hostPath = "${variables.containerConfigDir}/firefox";
         mountPath = profileDir;
         fileName = "profiles.ini";
       };
       userjs = bindMountFile {
-        hostPath = variables.firefox_data;
+        hostPath = "${variables.containerConfigDir}/firefox";
         mountPath = "${profileDir}/default";
         fileName = "user.js";
       };
       root = {
-        hostPath = "${variables.containerVolume}/${name}";
+        hostPath = "${variables.containerVolumeDir}/${name}";
         mountPoint = "${profileDir}/default";
         isReadOnly = false;
       };
