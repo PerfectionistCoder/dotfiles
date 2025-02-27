@@ -5,7 +5,9 @@ in
 mkContainer {
   name = baseNameOf ./.;
   policies = [
+    "dns"
     "private"
+    "search-engine"
     "ublock-origin"
   ];
   bookmarks = [
