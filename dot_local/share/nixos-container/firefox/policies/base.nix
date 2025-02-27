@@ -8,10 +8,6 @@
   DisableFormHistory = true;
   DisablePocket = true;
   DisableProfileImport = true;
-  DisableSecurityBypass = {
-    InvalidCertificate = true;
-    SafeBrowsing = true;
-  };
   DisableSetDesktopBackground = true;
   DisableTelemetry = true;
   DisplayBookmarksToolbar = "never";
@@ -35,21 +31,15 @@
     TopSites = false;
   };
   HardwareAcceleration = true;
-  HttpsOnlyMode = "force_enabled";
   NetworkPrediction = false;
   NoDefaultBookmarks = true;
   OfferToSaveLogins = false;
   OverrideFirstRunPage = "";
   OverridePostUpdatePage = "";
   PasswordManagerEnabled = false;
-  PictureInPicture = {
-    Enabled = false;
-    Locked = true;
-  };
   PostQuantumKeyAgreementEnabled = true;
   PromptForDownloadLocation = false;
   RequestedLocales = "";
-  SSLVersionMin = "tls1.3";
   SearchBar = "unified";
   SearchEngines = {
     Add = [

@@ -34,7 +34,7 @@ mkContainer {
     "user"
     "wayland"
     "pulseaudio"
-    "cursor"
+    # "cursor"
   ];
   config = {
     bindMounts = {
@@ -66,9 +66,6 @@ mkContainer {
           package = pkgs.firefox-esr;
           policies = foldl (attr: name: attr // (import ./policies/${name}.nix)) {
             Bookmarks = bookmarks;
-            Preferences = {
-              "browser.profile.name" = name;
-            };
             WebsiteFilter = mkIf visitBookmarksOnly {
               Block = [ "<all_urls>" ];
               Exceptions = map (
@@ -79,7 +76,7 @@ mkContainer {
                 "https://" + (elemAt (splitString "/" (removePrefix "https://" url)) 0) + "/*"
               ) bookmarks;
             };
-          } ([ "common" ] ++ policies);
+          } ([ "base" ] ++ policies);
         };
       };
   } // extraConfig;

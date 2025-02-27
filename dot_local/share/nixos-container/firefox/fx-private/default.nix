@@ -6,6 +6,7 @@ mkContainer {
   name = builtins.baseNameOf ./.;
   policies = [
     "private"
+    "ublock-origin"
   ];
   bookmarks = import ./bookmarks.nix;
   extraConfig = {
