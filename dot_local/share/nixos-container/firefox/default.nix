@@ -6,7 +6,7 @@ let
   inherit (lib)
     mkMerge
     foldl
-    mkIf
+    optionalAttrs
     splitString
     removePrefix
     ;
@@ -71,7 +71,7 @@ mkContainer {
             package = pkgs.firefox-esr;
             policies = foldl (attr: name: attr // (import ./policies/${name}.nix)) {
               Bookmarks = bookmarkList;
-              WebsiteFilter = mkIf visitBookmarksOnly {
+              WebsiteFilter = optionalAttrs visitBookmarksOnly {
                 Block = [ "<all_urls>" ];
                 Exceptions = map (
                   bookmark:
@@ -82,6 +82,10 @@ mkContainer {
                 ) bookmarkList;
               };
             } ([ "base" ] ++ policies);
+            preferences = {
+              "browser.theme.content-theme" = 0;
+              "browser.theme.toolbar-theme" = 0;
+            };
           };
       };
   } // extraConfig;
