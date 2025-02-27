@@ -35,6 +35,7 @@ mkContainer {
     "wayland"
     "pulseaudio"
     # "cursor"
+    "fonts"
   ];
   config = {
     bindMounts = {

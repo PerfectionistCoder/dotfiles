@@ -45,6 +45,8 @@ in
                 { modulesPath, ... }:
                 {
                   imports = [ "${modulesPath}/profiles/minimal.nix" ];
+
+                  nixpkgs.overlays = import <nixpkgs-overlays>;
                 };
             }
           ]
