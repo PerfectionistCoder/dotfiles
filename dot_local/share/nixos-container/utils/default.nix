@@ -27,34 +27,6 @@ in
         name = removeSuffix ".nix" name;
         value = import ./traits/${name};
       }) (readDir ./traits);
-      minimalConfig = {
-        documentation = {
-          enable = mkDefault false;
-          doc.enable = mkDefault false;
-          info.enable = mkDefault false;
-          man.enable = mkDefault false;
-          nixos.enable = mkDefault false;
-        };
-        environment = {
-          defaultPackages = mkDefault [ ];
-          stub-ld.enable = mkDefault false;
-        };
-        programs = {
-          less.lessopen = mkDefault null;
-          command-not-found.enable = mkDefault false;
-        };
-        boot.enableContainers = mkDefault false;
-        services = {
-          logrotate.enable = mkDefault false;
-          udisks2.enable = mkDefault false;
-        };
-        xdg = {
-          autostart.enable = mkDefault false;
-          icons.enable = mkDefault false;
-          mime.enable = mkDefault false;
-          sounds.enable = mkDefault false;
-        };
-      };
     in
     {
       name,
@@ -68,7 +40,13 @@ in
           (map (trait: importTraits.${trait}) traits)
           ++ [
             config
-            { config = minimalConfig; }
+            {
+              config =
+                { modulesPath, ... }:
+                {
+                  imports = [ "${modulesPath}/profiles/minimal.nix" ];
+                };
+            }
           ]
         ) args
       );
