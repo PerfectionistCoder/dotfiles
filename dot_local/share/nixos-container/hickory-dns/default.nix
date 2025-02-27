@@ -2,7 +2,6 @@
 let
   utils = import ../utils { inherit lib; };
 
-  inherit (builtins) baseNameOf;
   name = baseNameOf ./.;
 in
 utils.mkContainer {

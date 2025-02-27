@@ -61,23 +61,27 @@ mkContainer {
         environment.sessionVariables = {
           MOZ_ENABLE_WAYLAND = "1";
         };
-        programs.firefox = {
-          enable = true;
-          package = pkgs.firefox-esr;
-          policies = foldl (attr: name: attr // (import ./policies/${name}.nix)) {
-            Bookmarks = bookmarks;
-            WebsiteFilter = mkIf visitBookmarksOnly {
-              Block = [ "<all_urls>" ];
-              Exceptions = map (
-                bookmark:
-                let
-                  url = bookmark.URL;
-                in
-                "https://" + (elemAt (splitString "/" (removePrefix "https://" url)) 0) + "/*"
-              ) bookmarks;
-            };
-          } ([ "base" ] ++ policies);
-        };
+        programs.firefox =
+          let
+            bookmarkList = foldl (list: name: list ++ (import ./bookmarks/${name}.nix)) [ ] bookmarks;
+          in
+          {
+            enable = true;
+            package = pkgs.firefox-esr;
+            policies = foldl (attr: name: attr // (import ./policies/${name}.nix)) {
+              Bookmarks = bookmarkList;
+              WebsiteFilter = mkIf visitBookmarksOnly {
+                Block = [ "<all_urls>" ];
+                Exceptions = map (
+                  bookmark:
+                  let
+                    url = bookmark.URL;
+                  in
+                  "https://" + (elemAt (splitString "/" (removePrefix "https://" url)) 0) + "/*"
+                ) bookmarkList;
+              };
+            } ([ "base" ] ++ policies);
+          };
       };
   } // extraConfig;
 }
