@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-nix flake update $1 --flake $NIXOS_CONFIG_HOME
