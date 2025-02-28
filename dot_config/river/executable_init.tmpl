@@ -3,10 +3,10 @@
 riverctl spawn "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XCURSOR_THEME XCURSOR_SIZE XDG_CURRENT_DESKTOP=river"
 
 riverctl default-attach-mode bottom
-riverctl background-color 0x{{trimPrefix "#" .colors.crust}}
-riverctl border-color-unfocused 0x{{trimPrefix "#" .colors.border}}
-riverctl border-color-focused 0x{{trimPrefix "#" .colors.activeBorder}}
-riverctl border-color-urgent 0x{{trimPrefix "#" .colors.maroon}}
+riverctl background-color 0x{{.colors.crust}}
+riverctl border-color-unfocused 0x{{.colors.border}}
+riverctl border-color-focused 0x{{.colors.activeBorder}}
+riverctl border-color-urgent 0x{{.colors.maroon}}
 riverctl border-width 2
 riverctl focus-follows-cursor normal
 riverctl hide-cursor when-typing enabled

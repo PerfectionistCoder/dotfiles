@@ -19,10 +19,10 @@ format = '[@$ssh_symbol$hostname]($style) '
 
 [directory]
 style = 'sky bold'
-format = '[$read_only$path]($style) '
-read_only = '󱞊 '
+format = '[$path( $read_only)]($style) '
+read_only = '!'
 truncation_length = 8
-truncation_symbol = '󰉓  /'
+truncation_symbol = '../'
 
 [fill]
 symbol = ' '
@@ -57,5 +57,5 @@ format = '[\(󱄅 $name\)]($style) '
 
 [palettes.catppuccin_macchiato]
 {{range $key, $value := .colors}}
-{{$key}} = "{{$value}}"
+{{$key}} = "#{{$value}}"
 {{end}}
