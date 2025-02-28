@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-run-container firefox/fx-private firefox-esr

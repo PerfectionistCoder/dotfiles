@@ -2,34 +2,20 @@
 let
   utils = import ../utils { inherit lib; };
 
-  inherit (builtins) elemAt;
-  inherit (lib)
-    mkMerge
-    foldl
-    optionalAttrs
-    splitString
-    removePrefix
-    ;
   inherit (utils)
     traits
-    pathToImportAttr
     bindMountFile
     variables
     mkContainer
     ;
 
+  name = baseNameOf ./.;
   profileDir = "${variables.homeDir.local}/.mozilla/firefox";
+  containerDir = "${variables.containerConfigDir}/firefox";
 in
-{
-  name,
-  policies ? [ ],
-  bookmarks ? [ ],
-  visitBookmarksOnly ? false,
-  extraConfig,
-  ...
-}:
 mkContainer {
   inherit name args;
+
   traits = [
     "user"
     "wayland"
@@ -38,14 +24,21 @@ mkContainer {
     "fonts"
   ];
   config = {
+    extra.addressPrefix = "192.168.0";
+
     bindMounts = {
+      policies = bindMountFile {
+        hostPath = containerDir;
+        mountPath = "/etc/firefox/policies";
+        fileName = "policies.json";
+      };
       profile = bindMountFile {
-        hostPath = "${variables.containerConfigDir}/firefox";
+        hostPath = containerDir;
         mountPath = profileDir;
         fileName = "profiles.ini";
       };
       userjs = bindMountFile {
-        hostPath = "${variables.containerConfigDir}/firefox";
+        hostPath = containerDir;
         mountPath = "${profileDir}/default";
         fileName = "user.js";
       };
@@ -54,39 +47,23 @@ mkContainer {
         mountPoint = "${profileDir}/default";
         isReadOnly = false;
       };
+      downloads = {
+        hostPath = "${variables.homeDir.host}/Downloads";
+        mountPoint = "${variables.homeDir.local}/Downloads";
+        isReadOnly = false;
+      };
     };
 
     config =
       { pkgs, ... }:
       {
-        environment.sessionVariables = {
-          MOZ_ENABLE_WAYLAND = "1";
-        };
-        programs.firefox =
-          let
-            bookmarkList = foldl (list: name: list ++ (import ./bookmarks/${name}.nix)) [ ] bookmarks;
-          in
-          {
-            enable = true;
-            package = pkgs.firefox-esr;
-            policies = foldl (attr: name: attr // (import ./policies/${name}.nix)) {
-              Bookmarks = bookmarkList;
-              WebsiteFilter = optionalAttrs visitBookmarksOnly {
-                Block = [ "<all_urls>" ];
-                Exceptions = map (
-                  bookmark:
-                  let
-                    url = bookmark.URL;
-                  in
-                  "https://" + (elemAt (splitString "/" (removePrefix "https://" url)) 0) + "/*"
-                ) bookmarkList;
-              };
-            } ([ "base" ] ++ policies);
-            preferences = {
-              "browser.theme.content-theme" = 0;
-              "browser.theme.toolbar-theme" = 0;
-            };
+        environment = {
+          sessionVariables = {
+            MOZ_CRASHREPORTER_DISABLE = "1";
+            MOZ_ENABLE_WAYLAND = "1";
           };
+          systemPackages = [ pkgs.firefox-esr ];
+        };
       };
-  } // extraConfig;
+  };
 }
