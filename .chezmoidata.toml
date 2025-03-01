@@ -3,7 +3,17 @@ nixos_container_volume = ".local/state/nixos-container"
 nixos_container_config = ".local/share/nixos-container"
 script = ".local/share/scripts"
 
-[colors]
+[colors.desktop]
+"text" = "e9ecef"
+"subtext2" = "dee2e6"
+"subtext1" = "ced4da"
+"subtext0" = "adb5bd"
+"surface2" = "6c757d"
+"surface1" = "495057"
+"surface0" = "343a40"
+"base" = "212529"
+
+[colors.terminal]
 rosewater = "f4dbd6"
 flamingo = "f0c6c6"
 pink = "f5bde6"

@@ -56,6 +56,6 @@ style = 'blue bold'
 format = '[\(󱄅 $name\)]($style) '
 
 [palettes.catppuccin_macchiato]
-{{range $key, $value := .colors}}
+{{range $key, $value := .colors.terminal}}
 {{$key}} = "#{{$value}}"
 {{end}}

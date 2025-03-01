@@ -1,5 +1,5 @@
 const theme = {
-  {{range $key, $value := .colors}}
+  {{range $key, $value := .colors.terminal}}
   {{$key}}: "#{{$value}}"
   {{end}}
 }

@@ -2,9 +2,10 @@ font-text: &font-text "Monospace:pixelsize=12:weight=bold"
 font-icon1: &font-icon1 "Monospace:pixelsize=14"
 font-icon2: &font-icon2 "Monospace:pixelsize=16"
 
-color-base: &color-base "{{.colors.base}}ff"
-color-text: &color-text "{{.colors.text}}ff"
-color-inactive: &color-inactive "{{.colors.overlay1}}ff"
+color-base: &color-base "{{.colors.desktop.base}}ff"
+color-text: &color-text "{{.colors.desktop.text}}ff"
+color-active: &color-active "{{.colors.desktop.text}}ff"
+color-inactive: &color-inactive "{{.colors.desktop.subtext0}}ff"
 
 margin: &margin 8
 
@@ -31,7 +32,7 @@ bar:
                     focused:
                       string:
                         foreground: *color-base
-                        deco: { background: { color: "{{.colors.blue}}ff" } }
+                        deco: { background: { color: *color-active } }
                         <<: *tag
                     occupied:
                       string: { <<: *tag }
