@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
 sudo /run/current-system/sw/bin/nix-collect-garbage -d
-nix-store --optimise
+[[ $1 ]] && nix-store --optimise
 sudo /run/current-system/bin/switch-to-configuration boot

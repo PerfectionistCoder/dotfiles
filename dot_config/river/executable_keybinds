@@ -1,34 +1,33 @@
 #! /usr/bin/env bash
 
-readonly mod="Super"
 readonly term="alacritty"
 readonly menu="kickoff"
 readonly fm="lf"
 
+readonly mod="Super"
+readonly move_mod="$mod+Shift"
+
+# apps
 riverctl map normal $mod Return spawn $term
 riverctl map normal $mod S spawn $menu
 riverctl map normal $mod E spawn "$term -e $fm"
 
+# window
 riverctl map normal $mod Q close
 riverctl map normal $mod Space toggle-float
 riverctl map normal $mod F toggle-fullscreen
 
-riverctl map normal $mod J focus-view previous
-riverctl map normal $mod K focus-view next
-riverctl map normal $mod H swap previous
-riverctl map normal $mod L swap next
+riverctl map normal $mod J focus-view up
+riverctl map normal $mod K focus-view down
+riverctl map normal $mod H focus-view left
+riverctl map normal $mod L focus-view right
 
-readonly layout_mod="$mod+Shift"
-riverctl map normal $layout_mod J send-layout-cmd rivertile "main-count +1"
-riverctl map normal $layout_mod K send-layout-cmd rivertile "main-count -1"
-riverctl map normal $layout_mod H send-layout-cmd rivertile "main-ratio -0.025"
-riverctl map normal $layout_mod L send-layout-cmd rivertile "main-ratio +0.025"
+riverctl map normal $move_mod J swap up
+riverctl map normal $move_mod K swap down
+riverctl map normal $move_mod H swap left
+riverctl map normal $move_mod L swap right
 
-riverctl map normal $mod Up send-layout-cmd rivertile "main-location top"
-riverctl map normal $mod Right send-layout-cmd rivertile "main-location right"
-riverctl map normal $mod Down send-layout-cmd rivertile "main-location bottom"
-riverctl map normal $mod Left send-layout-cmd rivertile "main-location left"
-
+# modes
 readonly mode_mod="$mod+Alt"
 declare -A modes=(power P)
 for mode in ${!modes[*]}; do
@@ -43,9 +42,19 @@ riverctl map power None R spawn reboot
 riverctl map power None S spawn "riverctl enter-mode normal && systemctl suspend"
 riverctl map power None Q exit
 
+# universal
+readonly volume_step=0.02
+for mode in normal ${!modes[*]}; do
+    riverctl map $mode None XF86AudioMute spawn "wpctl set-mute @DEFAULT_SINK@ toggle"
+    riverctl map $mode None XF86AudioLowerVolume spawn "wpctl set-volume @DEFAULT_SINK@ $volume_step-"
+    riverctl map $mode None XF86AudioRaiseVolume spawn "wpctl set-volume @DEFAULT_SINK@ $volume_step+"
+done
+
+# mouse
 riverctl map-pointer normal $mod BTN_LEFT move-view
 riverctl map-pointer normal $mod BTN_RIGHT resize-view
 
+# tags
 for i in $(seq 1 9); do
     tags=$((1 << ($i - 1)))
     riverctl map normal $mod $i set-focused-tags $tags
