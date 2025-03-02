@@ -3,10 +3,10 @@
   config = {
     users = {
       mutableUsers = false;
+      allowNoPasswordLogin = true;
       users = {
-        "container" = {
-          password = "";
-          extraGroups = [ "wheel" ];
+        root.hashedPassword = "!";
+        container = {
           isNormalUser = true;
           home = variables.homeDir.local;
         };

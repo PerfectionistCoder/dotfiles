@@ -2,8 +2,6 @@
 
 set -e
 
-bin_dir=/run/current-system/sw/bin/
-
 file_name=$1
 container_name=$(basename $file_name)
 container_dir="$HOME/{{.dirs.nixos_container_volume}}/$container_name"
@@ -14,14 +12,10 @@ if [[ ! -d $container_dir ]]; then
   mkdir -p $container_dir
 fi
 
-if [[ $(nixos-container list | grep -E "^$container_name$") == "" ]]; then
-  "$HOME/{{.dirs.script}}/create-container" $file_name -s
-else
-  if [[ "down" == $(nixos-container status "$container_name") ]]; then
-    pkexec ${bin_dir}nixos-container start "$container_name"
-  fi
+if [[ "down" == $(nixos-container status "$container_name") ]]; then
+  nixos-container start "$container_name"
 fi
 
 if [[ -n $command ]]; then
-  pkexec ${bin_dir}machinectl shell container@"$container_name" /usr/bin/env bash --login -c "$command"
+  machinectl shell container@"$container_name" /usr/bin/env bash --login -c "$command"
 fi

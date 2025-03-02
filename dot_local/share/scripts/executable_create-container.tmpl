@@ -3,4 +3,4 @@
 name=$1
 shift
 
-pkexec ${bin_dir}extra-container create $HOME/{{.dirs.nixos_container_config}}/"$name" $*
+extra-container create $HOME/{{.dirs.nixos_container_config}}/"$name" $*
