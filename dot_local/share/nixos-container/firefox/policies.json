@@ -70,7 +70,8 @@
       "Locked": true
     },
     "DNSOverHTTPS": {
-      "Enabled": false,
+      "Enabled": true,
+      "ProviderURL": "https://dns.mullvad.net/dns-query",
       "Locked": true
     },
     "DisableFeedbackCommands": true,

@@ -25,6 +25,7 @@ mkContainer {
   ];
   config = {
     extra.addressPrefix = "192.168.0";
+    extraFlags = [ "--resolv-conf=bind-uplink" ];
 
     bindMounts = {
       policies = bindMountFile {
