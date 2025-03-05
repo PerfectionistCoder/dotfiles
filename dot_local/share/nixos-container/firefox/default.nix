@@ -21,11 +21,8 @@ mkContainer {
     "wayland"
     "pulseaudio"
     # "cursor"
-    "fonts"
   ];
   config = {
-    extra.addressPrefix = "192.168.0";
-    extraFlags = [ "--resolv-conf=bind-uplink" ];
 
     bindMounts = {
       policies = bindMountFile {
@@ -55,15 +52,40 @@ mkContainer {
       };
     };
 
+    extra.addressPrefix = "192.168.0";
     config =
       { pkgs, ... }:
       {
+        networking.useHostResolvConf = false;
+        services.resolved = {
+          enable = true;
+          domains = [ "~." ];
+        };
+
         environment = {
           sessionVariables = {
             MOZ_CRASHREPORTER_DISABLE = "1";
             MOZ_ENABLE_WAYLAND = "1";
           };
           systemPackages = [ pkgs.firefox-esr ];
+        };
+
+        fonts = {
+          packages = with pkgs; [
+            noto-fonts-cjk-sans
+            fira
+          ];
+          fontconfig.defaultFonts = {
+            serif = [
+              "Fira Sans"
+              "Noto Sans CJK HK"
+            ];
+            sansSerif = [
+              "Fira Sans"
+              "Noto Sans CJK HK"
+            ];
+            monospace = [ "Fira Mono" ];
+          };
         };
       };
   };
