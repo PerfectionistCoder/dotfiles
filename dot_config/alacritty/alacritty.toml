@@ -17,7 +17,6 @@ semantic_escape_chars = "-.,│`|:\"' ()[]{}<>\t"
 unfocused_hollow = false
 
 [terminal]
-shell = "nu"
 osc52 = "Disabled"
 
 [mouse]
