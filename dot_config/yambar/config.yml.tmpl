@@ -1,5 +1,4 @@
-font-text1: &font-text1 "Monospace:pixelsize=12:weight=bold"
-font-text2: &font-text2 "Monospace:pixelsize=14:weight=bold"
+font-text: &font-text "Monospace:pixelsize=12:weight=bold"
 font-icon1: &font-icon1 "Monospace:pixelsize=14"
 font-icon2: &font-icon2 "Monospace:pixelsize=16"
 
@@ -14,7 +13,7 @@ bar:
   height: 20
   location: top
   background: *color-base
-  font: *font-text1
+  font: *font-text
   foreground: *color-text
 
   left:
@@ -41,7 +40,7 @@ bar:
   center:
     - clock:
         content:
-          string: { text: "{date} {time}", font: *font-text2 }
+          string: { text: "{date} {time}", font: Monospace:pixelsize=14:weight=bold }
         time-format: "%H:%M"
         date-format: "%A%e %b"
 
@@ -65,26 +64,24 @@ bar:
                       - string: { text: "󰕾 ", font: *font-icon2 }
                       - string: { text: "{cubic_volume}%" }
     - network:
-        anchors:
-          0: &icon { font: *font-icon1 }
         poll-interval: 3000
         content:
           map:
             margin: *margin
             conditions:
-              name == "wlp4s0":
+              name == "wlan0":
                 map:
+                  default:
+                    - string: { text: "󰤮 ", font: *font-icon1 }
+                    - string: { text: "Disconnected" }
                   conditions:
-                    state == "down":
-                      - string: { text: "󰤮 ", <<: *icon }
-                      - string: { text: "Disconnected" }
                     quality > 0:
                       - ramp:
                           tag: quality
                           items:
-                            - string: { text: "󰤯 ", <<: *icon }
-                            - string: { text: "󰤟 ", <<: *icon }
-                            - string: { text: "󰤢 ", <<: *icon }
-                            - string: { text: "󰤥 ", <<: *icon }
-                            - string: { text: "󰤨 ", <<: *icon }
+                            - string: { text: "󰤯 ", font: *font-icon1 }
+                            - string: { text: "󰤟 ", font: *font-icon1 }
+                            - string: { text: "󰤢 ", font: *font-icon1 }
+                            - string: { text: "󰤥 ", font: *font-icon1 }
+                            - string: { text: "󰤨 ", font: *font-icon1 }
                       - string: { text: "{ssid}" }
