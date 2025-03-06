@@ -5,5 +5,11 @@ defaultBranch = main
 rebase = false
 
 [alias]
+co = checkout
+cm = "!f() { git commit -m \"$*\"; }; f"
+cm-rename = "!f() { git commit --amend -m \"$*\"; }; f"
+cm-add = commit --amend --no-edit
+undo = reset HEAD~1 --mixed
+
 ssh = !git-set-ssh-command
 user = !git-set-user
