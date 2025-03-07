@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 readonly term="alacritty"
-readonly menu="kickoff"
+readonly menu="kickoff --from-file $HOME/.config/kickoff/app-menu"
 readonly fm="lf"
 
 readonly mod="Super"
@@ -9,7 +9,7 @@ readonly move_mod="$mod+Shift"
 
 # apps
 riverctl map normal $mod Return spawn $term
-riverctl map normal $mod S spawn $menu
+riverctl map normal $mod S spawn "$menu"
 riverctl map normal $mod E spawn "$term -e $fm"
 
 # window
