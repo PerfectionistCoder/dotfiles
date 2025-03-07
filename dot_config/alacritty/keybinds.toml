@@ -2,8 +2,9 @@
 bindings = [
   { key = "C", mods = "Control|Shift", action = "Copy" },
   { key = "V", mods = "Control|Shift", action = "Paste" },
-  { key = "PageUp", mode="~Alt", action = "ScrollPageUp" },
-  { key = "PageDown", mode="~Alt", action = "ScrollPageDown" },
+  { key = "L", mods = "Control", chars = "\u000c" },
+  { key = "PageUp", mode = "~Alt", action = "ScrollPageUp" },
+  { key = "PageDown", mode = "~Alt", action = "ScrollPageDown" },
   { key = "=", mods = "Control", action = "IncreaseFontSize" },
   { key = "-", mods = "Control", action = "DecreaseFontSize" },
   { key = "0", mods = "Control", action = "ResetFontSize" },
