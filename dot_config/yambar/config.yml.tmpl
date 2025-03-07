@@ -75,7 +75,7 @@ bar:
                     - string: { text: "󰤮 ", font: *font-icon1 }
                     - string: { text: "Disconnected" }
                   conditions:
-                    quality > 0:
+                    quality > 0 && ssid != "":
                       - ramp:
                           tag: quality
                           items:
