@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
 
-sudo /run/current-system/sw/bin/nix-collect-garbage -d
-sudo /run/current-system/bin/switch-to-configuration boot
+if [[ "$EUID" -ne 0 ]]; then
+  /run/current-system/sw/bin/nix-collect-garbage ${*:--d}
+else
+  /run/current-system/sw/bin/nix-collect-garbage ${*:--d}
+  /run/current-system/bin/switch-to-configuration boot
+fi
