@@ -3,7 +3,6 @@ let
   utils = import ../utils { inherit lib; };
 
   inherit (utils)
-    traits
     bindMountFile
     variables
     mkContainer
@@ -23,7 +22,6 @@ mkContainer {
     # "cursor"
   ];
   config = {
-
     bindMounts = {
       policies = bindMountFile {
         hostPath = containerDir;
