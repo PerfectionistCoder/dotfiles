@@ -19,6 +19,7 @@ mkContainer {
     { lib, variables, ... }:
     let
       inherit (lib) bindMountSuffix bindMountClone;
+      configDir = "${variables.homeDir.local}/.config/chromium";
       containerDir = "${variables.containerConfigDir}/chromium";
     in
     {
@@ -33,6 +34,10 @@ mkContainer {
           mountPath = "/etc/chromium";
           suffix = "initial_preferences";
         };
+        ${configDir} = {
+          hostPath = "${variables.containerVolumeDir}/${name}";
+          isReadOnly = false;
+        };
       };
 
       config =
@@ -44,7 +49,7 @@ mkContainer {
             };
             systemPackages = [
               (pkgs.ungoogled-chromium.override {
-                commandLineArgs = "--ozone-platform=wayland --enable-features=AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder";
+                commandLineArgs = "--ozone-platform=wayland --enable-features=AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder --force-dark-mode";
               })
             ];
           };
