@@ -2,11 +2,10 @@
 let
   utils = import ../utils { inherit lib; };
 
-  inherit (utils)
-    mkContainer
-    ;
+  inherit (utils) mkContainer bindMountFile variables;
 
   name = baseNameOf ./.;
+  containerDir = "${variables.containerConfigDir}/chromium";
 in
 mkContainer {
   inherit name args;
@@ -19,6 +18,34 @@ mkContainer {
   ];
 
   config = {
+    bindMounts = {
+      policies = bindMountFile {
+        hostPath = containerDir;
+        mountPath = "/etc/chromium/policies/managed";
+        fileName = "extra.json";
+      };
+      preferences = bindMountFile {
+        hostPath = containerDir;
+        mountPath = "/etc/chromium";
+        fileName = "initial_preferences";
+      };
+      dri = rec {
+        hostPath = "/dev/dri";
+        mountPoint = hostPath;
+      };
+      opengl = rec {
+        hostPath = "/run/opengl-driver";
+        mountPoint = hostPath;
+      };
+    };
+
+    allowedDevices = [
+      {
+        modifier = "rw";
+        node = "/dev/dri/renderD128";
+      }
+    ];
+
     config =
       { pkgs, ... }:
       {
@@ -28,7 +55,7 @@ mkContainer {
           };
           systemPackages = [
             (pkgs.ungoogled-chromium.override {
-              commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
+              commandLineArgs = "--ozone-platform=wayland --enable-features=AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder";
             })
           ];
         };

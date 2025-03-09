@@ -1,0 +1,16 @@
+{
+  "bookmark_bar": {
+    "show_on_all_tabs": false,
+    "show_tab_groups": false
+  },
+  "browser": {
+    "custom_chrome_frame": false
+  },
+  "force_dark_mode_enabled": true,
+  "webkit": {
+    "webprefs": {
+      "default_fixed_font_size": 17,
+      "default_font_size": 20
+    }
+  }
+}
