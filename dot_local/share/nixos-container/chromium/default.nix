@@ -1,11 +1,8 @@
-{ lib, ... }@args:
+{ ... }@args:
 let
-  utils = import ../utils { inherit lib; };
-
-  inherit (utils) mkContainer bindMountFile variables;
+  mkContainer = import ../utils args;
 
   name = baseNameOf ./.;
-  containerDir = "${variables.containerConfigDir}/chromium";
 in
 mkContainer {
   inherit name args;
@@ -14,51 +11,43 @@ mkContainer {
     "user"
     "wayland"
     "pulseaudio"
+    "graphics"
     # "cursor"
   ];
 
-  config = {
-    bindMounts = {
-      policies = bindMountFile {
-        hostPath = containerDir;
-        mountPath = "/etc/chromium/policies/managed";
-        fileName = "extra.json";
-      };
-      preferences = bindMountFile {
-        hostPath = containerDir;
-        mountPath = "/etc/chromium";
-        fileName = "initial_preferences";
-      };
-      dri = rec {
-        hostPath = "/dev/dri";
-        mountPoint = hostPath;
-      };
-      opengl = rec {
-        hostPath = "/run/opengl-driver";
-        mountPoint = hostPath;
-      };
-    };
-
-    allowedDevices = [
-      {
-        modifier = "rw";
-        node = "/dev/dri/renderD128";
-      }
-    ];
-
-    config =
-      { pkgs, ... }:
-      {
-        environment = {
-          sessionVariables = {
-            NIXOS_OZONE_WL = "1";
-          };
-          systemPackages = [
-            (pkgs.ungoogled-chromium.override {
-              commandLineArgs = "--ozone-platform=wayland --enable-features=AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder";
-            })
-          ];
+  config =
+    { lib, variables, ... }:
+    let
+      inherit (lib) bindMountSuffix bindMountClone;
+      containerDir = "${variables.containerConfigDir}/chromium";
+    in
+    {
+      bindMounts = {
+        policies = bindMountSuffix {
+          hostPath = containerDir;
+          mountPath = "/etc/chromium/policies/managed";
+          suffix = "extra.json";
+        };
+        preferences = bindMountSuffix {
+          hostPath = containerDir;
+          mountPath = "/etc/chromium";
+          suffix = "initial_preferences";
         };
       };
-  };
+
+      config =
+        { pkgs, ... }:
+        {
+          environment = {
+            sessionVariables = {
+              NIXOS_OZONE_WL = "1";
+            };
+            systemPackages = [
+              (pkgs.ungoogled-chromium.override {
+                commandLineArgs = "--ozone-platform=wayland --enable-features=AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder";
+              })
+            ];
+          };
+        };
+    };
 }

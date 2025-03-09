@@ -1,16 +1,8 @@
-{ lib, ... }@args:
+{ ... }@args:
 let
-  utils = import ../utils { inherit lib; };
-
-  inherit (utils)
-    bindMountFile
-    variables
-    mkContainer
-    ;
+  mkContainer = import ../utils args;
 
   name = baseNameOf ./.;
-  profileDir = "${variables.homeDir.local}/.mozilla/firefox";
-  containerDir = "${variables.containerConfigDir}/firefox";
 in
 mkContainer {
   inherit name args;
@@ -21,70 +13,78 @@ mkContainer {
     "pulseaudio"
     # "cursor"
   ];
-  config = {
-    bindMounts = {
-      policies = bindMountFile {
-        hostPath = containerDir;
-        mountPath = "/etc/firefox/policies";
-        fileName = "policies.json";
+  config =
+    { lib, variables, ... }:
+    let
+      inherit (lib) bindMountSuffix bindMountClone;
+
+      profileDir = "${variables.homeDir.local}/.mozilla/firefox";
+      containerDir = "${variables.containerConfigDir}/firefox";
+    in
+    {
+      bindMounts = {
+        policies = bindMountSuffix {
+          hostPath = containerDir;
+          mountPath = "/etc/firefox/policies";
+          suffix = "policies.json";
+        };
+        profile = bindMountSuffix {
+          hostPath = containerDir;
+          mountPath = profileDir;
+          suffix = "profiles.ini";
+        };
+        userjs = bindMountSuffix {
+          hostPath = containerDir;
+          mountPath = "${profileDir}/default";
+          suffix = "user.js";
+        };
+        "${profileDir}/default" = {
+          hostPath = "${variables.containerVolumeDir}/${name}";
+          isReadOnly = false;
+        };
+        downloads = bindMountSuffix {
+          hostPath = "${variables.homeDir.host}";
+          mountPath = "${variables.homeDir.local}";
+          suffix = "Downloads";
+          isReadOnly = false;
+        };
       };
-      profile = bindMountFile {
-        hostPath = containerDir;
-        mountPath = profileDir;
-        fileName = "profiles.ini";
-      };
-      userjs = bindMountFile {
-        hostPath = containerDir;
-        mountPath = "${profileDir}/default";
-        fileName = "user.js";
-      };
-      root = {
-        hostPath = "${variables.containerVolumeDir}/${name}";
-        mountPoint = "${profileDir}/default";
-        isReadOnly = false;
-      };
-      downloads = {
-        hostPath = "${variables.homeDir.host}/Downloads";
-        mountPoint = "${variables.homeDir.local}/Downloads";
-        isReadOnly = false;
-      };
+
+      extra.addressPrefix = "192.168.0";
+      config =
+        { pkgs, ... }:
+        {
+          networking.useHostResolvConf = false;
+          services.resolved = {
+            enable = true;
+            domains = [ "~." ];
+          };
+
+          environment = {
+            sessionVariables = {
+              MOZ_CRASHREPORTER_DISABLE = "1";
+              MOZ_ENABLE_WAYLAND = "1";
+            };
+            systemPackages = [ pkgs.firefox-esr ];
+          };
+
+          fonts = {
+            packages = with pkgs; [
+              noto-fonts-cjk-sans
+              fira
+            ];
+            fontconfig.defaultFonts = {
+              serif = [
+                "Fira Sans"
+                "Noto Sans CJK HK"
+              ];
+              sansSerif = [
+                "Fira Sans"
+                "Noto Sans CJK HK"
+              ];
+              monospace = [ "Fira Mono" ];
+            };
+          };
+        };
     };
-
-    extra.addressPrefix = "192.168.0";
-    config =
-      { pkgs, ... }:
-      {
-        networking.useHostResolvConf = false;
-        services.resolved = {
-          enable = true;
-          domains = [ "~." ];
-        };
-
-        environment = {
-          sessionVariables = {
-            MOZ_CRASHREPORTER_DISABLE = "1";
-            MOZ_ENABLE_WAYLAND = "1";
-          };
-          systemPackages = [ pkgs.firefox-esr ];
-        };
-
-        fonts = {
-          packages = with pkgs; [
-            noto-fonts-cjk-sans
-            fira
-          ];
-          fontconfig.defaultFonts = {
-            serif = [
-              "Fira Sans"
-              "Noto Sans CJK HK"
-            ];
-            sansSerif = [
-              "Fira Sans"
-              "Noto Sans CJK HK"
-            ];
-            monospace = [ "Fira Mono" ];
-          };
-        };
-      };
-  };
 }

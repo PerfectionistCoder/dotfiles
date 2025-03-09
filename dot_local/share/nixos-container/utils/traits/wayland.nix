@@ -5,7 +5,7 @@ in
 {
   bindMounts = {
     wayland = {
-      hostPath = "${variables.xdgRuntimeDir}/wayland-1";
+      hostPath = "${variables.xdgRuntimeDir}/${variables.waylandDisplay}";
       mountPoint = socket;
     };
   };

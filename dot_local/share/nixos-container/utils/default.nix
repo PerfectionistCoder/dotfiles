@@ -1,5 +1,7 @@
-{ lib, ... }:
+{ ... }@args:
 let
+  lib = args.lib.extend (import ./lib);
+
   inherit (builtins) typeOf readDir;
   inherit (lib)
     mapAttrs'
@@ -7,60 +9,55 @@ let
     mkMerge
     mkDefault
     ;
+
+  concatConfig =
+    list: args:
+    map (
+      config:
+      let
+        attr = if typeOf config == "path" then (import config) else config;
+      in
+      if typeOf attr == "lambda" then
+        (attr (
+          args
+          // {
+            inherit variables lib;
+          }
+        ))
+      else
+        attr
+    ) list;
+  importTraits = mapAttrs' (name: _: {
+    name = removeSuffix ".nix" name;
+    value = import ./traits/${name};
+  }) (readDir ./traits);
+
   variables = import ./variables.nix;
 in
 {
-  inherit variables;
-
-  mkContainer =
-    let
-      concatConfig =
-        list: args:
-        map (
-          x:
-          let
-            attr = if typeOf x == "path" then (import x) else x;
-          in
-          if typeOf attr == "lambda" then (attr ({ inherit variables; } // args)) else attr
-        ) list;
-      importTraits = mapAttrs' (name: _: {
-        name = removeSuffix ".nix" name;
-        value = import ./traits/${name};
-      }) (readDir ./traits);
-    in
-    {
-      name,
-      traits ? [ ],
-      config ? { },
-      args,
-    }:
-    {
-      containers.${name} = mkMerge (
-        concatConfig (
-          (map (trait: importTraits.${trait}) traits)
-          ++ [
-            config
+  name,
+  traits ? [ ],
+  config ? { },
+  args,
+}:
+{
+  containers.${name} = mkMerge (
+    concatConfig (
+      (map (trait: importTraits.${trait}) traits)
+      ++ [
+        config
+        {
+          config =
+            { modulesPath, ... }:
             {
-              config =
-                { modulesPath, ... }:
-                {
-                  imports = [ "${modulesPath}/profiles/minimal.nix" ];
+              imports = [ "${modulesPath}/profiles/minimal.nix" ];
 
-                  nixpkgs.overlays = import <nixpkgs-overlays>;
-                };
-            }
-          ]
-        ) args
-      );
-    };
-  bindMountFile =
-    {
-      hostPath,
-      mountPath,
-      fileName,
-    }:
-    {
-      hostPath = "${hostPath}/${fileName}";
-      mountPoint = "${mountPath}/${fileName}";
-    };
+              nixpkgs.overlays = import <nixpkgs-overlays>;
+
+              console.enable = true;
+            };
+        }
+      ]
+    ) args
+  );
 }
