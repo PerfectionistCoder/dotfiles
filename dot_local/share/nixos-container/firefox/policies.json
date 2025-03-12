@@ -33,8 +33,6 @@
         }
       }
     },
-    "AutofillAddressEnabled": false,
-    "AutofillCreditCardEnabled": false,
     "Bookmarks": [
       {
         "Title": "NixOS Search",
@@ -66,24 +64,9 @@
       }
     ],
     "DisableFeedbackCommands": true,
-    "DisableFirefoxAccounts": true,
-    "DisableFirefoxStudies": true,
-    "DisableForgetButton": true,
-    "DisableFormHistory": true,
-    "DisablePocket": true,
-    "DisableProfileImport": true,
     "DisableSetDesktopBackground": true,
-    "DisableTelemetry": true,
     "DisplayBookmarksToolbar": "never",
     "DisplayMenuBar": "never",
-    "DontCheckDefaultBrowser": true,
-    "EnableTrackingProtection": {
-      "Cryptomining": true,
-      "EmailTracking": true,
-      "Fingerprinting": true,
-      "Locked": true,
-      "Value": true
-    },
     "ExtensionSettings": {
       "uBlock0@raymondhill.net": {
         "default_area": "menupanel",
@@ -92,56 +75,8 @@
         "private_browsing": true
       }
     },
-    "FirefoxHome": {
-      "Highlights": false,
-      "Locked": true,
-      "Pocket": false,
-      "Search": false,
-      "Snippets": false,
-      "SponsoredPocket": false,
-      "SponsoredTopSites": false,
-      "TopSites": false
-    },
-    "HttpsOnlyMode": "force_enabled",
-    "NetworkPrediction": false,
     "NoDefaultBookmarks": true,
-    "OfferToSaveLogins": false,
-    "OverrideFirstRunPage": "",
-    "OverridePostUpdatePage": "",
-    "PasswordManagerEnabled": false,
-    "Permissions": {
-      "Autoplay": {
-        "Default": "block-audio-video",
-        "Locked": true
-      },
-      "Camera": {
-        "BlockNewRequests": true,
-        "Locked": true
-      },
-      "Location": {
-        "BlockNewRequests": true,
-        "Locked": true
-      },
-      "Microphone": {
-        "BlockNewRequests": true,
-        "Locked": true
-      },
-      "Notifications": {
-        "BlockNewRequests": true,
-        "Locked": true
-      }
-    },
-    "PopupBlocking": {
-      "Default": true,
-      "Locked": true
-    },
-    "SanitizeOnShutdown": true,
     "SearchBar": "unified",
-    "Homepage": {
-      "URL": "https://search.rhscz.eu/preferences?preferences=eJx1WMuO6zgO_ZrJxuigp-9gGrPIaoDe9gDTe0O2GJvXsuirRxLX1zfpR0yV6y7KFR9JFEmRh5Rbk6CjgBBvHXgIxl2c8V02HdzAXxy1xi2_TE7U0jg5SHC73M0DW_J1gEjuAeF2wZGX1FOg13z7K2S4jJB6srf__fn_vy7R3CGCCW1_-_WSehjhFlFkXVhAdinWLMvDs06muf1hXISLJTykk-HXK4Xusi6rY5pZLdHp0oJPEGrjsPMj_153N_ZhfAu23rZdhf7IEOYafZ0w8fplJvo7ekwssw3k3Aquq0SrdnXQzIIctJv0ntIAc7xZuBtW_5KDq-8URpMS-u42BUhpvliMpnGsA_gOPXv4279_3QTXm7P_8dt_32D1QAsU63r9z0P_6UxX15FaNK4awaJh0LT37NUkdk0DVeTTGep6OYVP6Cr36xWVyRZ5bMwRWxly8DLeBjRaReMm1r9y6POrmkw7yCa8WZIx702sRH98QF3f0a37T0M1YggUNMZHV_FT9g56sjccTNZsIj2-KFZPHHDfIw5aHRmZxBsabNCh_Ck7G0xNbgdIm5hmaooVyWLXHVosDr62bXu1oKSwYWwhVRyebDNx9AaFrg4_4_tZvnFH2d6dCWBQK9FOHCx3CMDBuqnJYRgjg3zyLQq-Yk_7QM4QtXaG6dPrW513HAi4ai5PkcSxilCokINsP2vMAnxwUr3jwkJMJqEyyNqu4vCX1EHyUS8WYWzvOdSBrUB7yJCDtCYV52j5xOSvo7MxauyUK2qssFfhTzCy8bH_GpCjmXg6P0XDkb7vsbXP4pSGufDYP19KqbsNJEbtYcQusak3aWSW09MCcM7RPT05BiqLgclEaGU983tAP6Bp9YJ5Vq7qAD965jCFMIWZZo8ZstBA6LZXHgMOZRr3dyLLkWf1cqKOjZ-cmSUl42GAHhmJg067mSkOgtCR0L8-m940wchj27JnmoCwHsUKwOsd4CwkXoV3lnccbXMohmOXgxLM-aT2R88_kXL8Gtvjlc8wcGTOWs4PnDU7fMfY07Ets0cwYa7klCMqd8gApGB8dKy2DgPmw-5RBK-jJia4ht1mroGmnYzfX-mjL7J_fI6N04Cf9iPzszGHEmTnCJqVaAK_qXzYICBvCVRCASZSBq0EjnGnRSagc6q-wXMWHkN7En61rEjCKTdMqo9twx9P45NeFcBaTKdKF7DrU2UNFXMpJa7yxIFImnjXbcc5YnlIkTrKJ-Bs1QqfaGWFn9ByRh-cgrHNMV6nmVuc_XBbY-0sOTfmLfIW5-IvPTk44au6kraVPN7oyK7BtootrzJBlwAm4JAmabKUMYmGmRJxJA8SZfsRJzGKZZjCco1ulqQi9WbTE5WVtpk_V96GaIifwR-ZSrcLGCmH9oxO0C6c8hP4sFhg7v7i4rVy9oPmT554krsHM3Kr0pf1BNv0Qb6YO85Mzky-1TutbUHv3779_jqcabMFrwPtw5uxEEffAYYzcg6yDS9yY6HYCR2lYw9vHlKnVNTnZu5g3HllAggpN5oQlqTh5YN0CU9o1NBsyuIu72fdQmYu0hIdOz8yWWjsSS8cyHMyV3H25GepcYdnYAilcSt0TrYFPicbn0dbMEN8dMJeaumDi-3SiG6ukGgYuQspDMzj6OaC2w9OXqOyz-mojQWDDd21o52tLuDLFn7htrUR1g1q4KTV3Xd44UOHcsNNdWvG6ahQDRePsn_13dlRC1p4dEFOnhOal1TRHUfbw30gofV3zwYPZH5hbXVTRVKoqz7vvcTRMRW9W5pH4pLj1YHfHbaDrtU8HXUZ7oSp9zLPTcmxydpk6A22tuPkgg0vnLBhJzds-Bfs2W_7LZsPrLaJusbDOM7VztErDZW1aJ2RI4SfjXGNTT8bE8nsivPwxy_vIq77DWlE6M7LPId_LBjE8N3Jkv-JKu_h3sSe-f6LGfbdjeBruZUcx8XFZ0DYOziJKcN9qnToEVJBzfsYF3aOAbNdAcpxzmaAxH313lxPVhjrmDTxNVrK5zaKco-HqGNzkl5cne_yfl3UPbSeUPrJxigfTsTZFrlxt9J07uG6KltZ7h3Qr4F2XFyPPXMzyqZKz3lC3bqUsbhCp7Bd4VOEBsOdatXwRSjq-1XkCmD2Lkw1H5lpozwjbgPagTjX746ex_04N9mnvFNc5vY3x_dJvluHT-T8hr_ohhxavp-ENWp3v2Yf-VoQe33BlJ6hlDtT_lSc3sj7PmnQMZ9I3KhpDxyLDxXCsIVkBmRJ0fTKJMkvjsDryQ49eDoLPfjpO4geWow_fPCkYD0O6n5IlOTSJ-7-lGxP41zPtdxrlVIKV1QNBaf7o2DCBTjbssInK1a4rBHpX_t3jeMj1OQyl7B4e5e0HRCq2F7EmrBc3Gr5pBW4S-JIu3CXyel8-xviB5tk",
-      "Locked": true,
-      "StartPage": "homepage-locked"
-    },
     "SearchEngines": {
       "Add": [
         {
@@ -163,16 +98,6 @@
         "Amazon.com",
         "eBay"
       ]
-    },
-    "TranslateEnabled": false,
-    "UserMessaging": {
-      "ExtensionRecommendations": false,
-      "FeatureRecommendations": false,
-      "FirefoxLabs": false,
-      "Locked": true,
-      "MoreFromMozilla": false,
-      "SkipOnboarding": true,
-      "UrlbarInterventions": false
     },
     "Preferences": {
       "browser.theme.content-theme": {

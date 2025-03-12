@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-places="$HOME/{{.dirs.nixos_container_volume}}/firefox/places.sqlite"
-[[ -f $places ]] && rm $places
-
-cd "$HOME/{{.dirs.nixos_container_config}}/firefox/userjs"
-cat *.js >../user.js
