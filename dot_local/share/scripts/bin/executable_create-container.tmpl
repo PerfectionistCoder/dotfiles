@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+name=$1
+shift
+
+extra-container create $HOME/{{.dirs.container_config}}/"$name" $*
