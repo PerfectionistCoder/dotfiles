@@ -8,6 +8,7 @@ mkContainer {
   inherit name args;
 
   traits = [
+    "font"
     "user"
     "wayland"
     "pulseaudio"
@@ -66,24 +67,6 @@ mkContainer {
               MOZ_ENABLE_WAYLAND = "1";
             };
             systemPackages = [ pkgs.firefox-esr ];
-          };
-
-          fonts = {
-            packages = with pkgs; [
-              noto-fonts-cjk-sans
-              fira
-            ];
-            fontconfig.defaultFonts = {
-              serif = [
-                "Fira Sans"
-                "Noto Sans CJK HK"
-              ];
-              sansSerif = [
-                "Fira Sans"
-                "Noto Sans CJK HK"
-              ];
-              monospace = [ "Fira Mono" ];
-            };
           };
         };
     };
