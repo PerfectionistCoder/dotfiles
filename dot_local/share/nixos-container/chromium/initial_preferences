@@ -4,12 +4,25 @@
     "show_tab_groups": false
   },
   "browser": {
-    "custom_chrome_frame": false
-  },
-  "webkit": {
-    "webprefs": {
-      "default_fixed_font_size": 18,
-      "default_font_size": 20
+    "clear_data": {
+      "clear_on_exit": [
+        "browsing_history",
+        "download_history",
+        "cached_images_and_files",
+        "password_signin",
+        "autofill",
+        "site_settings",
+        "hosted_app_data"
+      ]
+    },
+    "custom_chrome_frame": false,
+    "theme": {
+      "color_scheme": 2
     }
+  },
+  "default_content_setting_values": {
+    "cookies": 4,
+    "geolocation": 2,
+    "notifications": 2
   }
 }

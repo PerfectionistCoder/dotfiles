@@ -8,10 +8,11 @@ mkContainer {
   inherit name args;
 
   traits = [
+    "font"
+    "graphics"
+    "pulseaudio"
     "user"
     "wayland"
-    "pulseaudio"
-    "graphics"
     # "cursor"
   ];
 
@@ -49,7 +50,7 @@ mkContainer {
             };
             systemPackages = [
               (pkgs.ungoogled-chromium.override {
-                commandLineArgs = "--ozone-platform=wayland --enable-features=AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder --force-dark-mode";
+                commandLineArgs = "--ozone-platform=wayland --enable-features=AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder";
               })
             ];
           };
