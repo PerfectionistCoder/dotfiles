@@ -1,4 +1,7 @@
 { ... }:
 {
-  programs.river.enable = true;
+  programs.river = {
+    enable = true;
+    extraPackages = [ ];
+  };
 }
