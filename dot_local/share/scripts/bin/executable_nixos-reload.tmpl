@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+subcommand=${1:-test}
+shift
+
+sudo /run/current-system/sw/bin/nixos-rebuild $subcommand --flake $HOME/{{.dirs.nixos_config}}/#desktop --impure $*
