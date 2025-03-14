@@ -3,4 +3,4 @@
 name=$1
 shift
 
-extra-container create $HOME/{{.dirs.container_config}}/"$name" $*
+/run/current-system/sw/bin/extra-container create $HOME/{{.dirs.container_config}}/"$name" $*

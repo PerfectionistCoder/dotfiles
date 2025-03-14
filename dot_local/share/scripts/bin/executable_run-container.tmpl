@@ -2,8 +2,10 @@
 
 set -e
 
+bin=/run/current-system/sw/bin/
+
 file_name=$1
-container_name=$(basename $file_name)
+container_name=$(${bin}basename $file_name)
 container_dir="$HOME/{{.dirs.container_mount}}/$container_name"
 
 command=$2
@@ -12,10 +14,10 @@ if [[ ! -d $container_dir ]]; then
   mkdir -p $container_dir
 fi
 
-if [[ "down" == $(nixos-container status "$container_name") ]]; then
-  nixos-container start "$container_name"
+if [[ "down" == $(${bin}nixos-container status "$container_name") ]]; then
+  ${bin}nixos-container start "$container_name"
 fi
 
 if [[ -n $command ]]; then
-  machinectl shell container@"$container_name" /usr/bin/env bash --login -c "$command"
+  ${bin}machinectl shell container@"$container_name" /usr/bin/env bash --login -c "$command"
 fi
