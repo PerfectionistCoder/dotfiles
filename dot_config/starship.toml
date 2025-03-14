@@ -4,21 +4,19 @@ format = '''
   $username$hostname$directory$fill$git_branch$git_status$git_state$nix_shell
   $character
 '''
-continuation_prompt = '  [∙](surface2 bold) '
-
-palette = 'catppuccin_macchiato'
+continuation_prompt = '  [∙](black bold) '
 
 [username]
-style_user = 'text bold'
+style_user = 'bold'
 format = '[$user]($style)'
 
 [hostname]
-style = 'text bold'
+style = 'bold'
 ssh_symbol = '[󰖟](blue) '
 format = '[@$ssh_symbol$hostname]($style) '
 
 [directory]
-style = 'sky bold'
+style = 'cyan bold'
 format = '[$path( $read_only)]($style) '
 read_only = '!'
 truncation_length = 8
@@ -29,21 +27,21 @@ truncation_symbol = '../'
 symbol = ' '
 
 [git_branch]
-style = "text bold"
+style = "bold"
 format = '[ $branch]($style)'
 
 [git_state]
-style = "text bold"
+style = "bold"
 format = '[\($state( $progress_current/$progress_total)\)]($style) '
 
 [git_status]
 # $all_status
 conflicted = '[$count](yellow bold) '
-untracked = '[?$count](overlay2 bold) ' 
-stashed = '[≡$count](mauve bold) '
-modified = '[󱈸$count](peach bold) '
+untracked = '[?$count](bright-black bold) ' 
+stashed = '[≡$count](bold) '
+modified = '[󱈸$count](bold) '
 staged = '[+$count](green bold) '
-renamed = '[\$$count](blue bold) '
+renamed = '[»$count](blue bold) '
 deleted = '[-$count](red bold) '
 # $ahead_behind
 ahead = '[⇡$count](green bold)'
@@ -55,8 +53,3 @@ format = '(\[$ahead_behind\]) $all_status'
 [nix_shell]
 style = 'blue bold'
 format = '[\(󰜗 $name\)]($style) '
-
-[palettes.catppuccin_macchiato]
-{{range $key, $value := .colors.terminal}}
-{{$key}} = "#{{$value}}"
-{{end}}

@@ -9,11 +9,11 @@ font_size = 32.0
 decrease_interval = 48
 
 [colors]
-background = "#{{.colors.desktop.base}}e0"
-prompt = "#{{.colors.desktop.text}}"
-text = "#{{.colors.desktop.subtext0}}"
-text_query = "#{{.colors.desktop.text}}"
-text_selected = "#{{.colors.desktop.text}}"
+background = "#000"
+prompt = "#fff"
+text = "#ffffffa0"
+text_query = "#fff"
+text_selected = "#fff"
 
 [keybindings]
 paste = ["ctrl+v"]

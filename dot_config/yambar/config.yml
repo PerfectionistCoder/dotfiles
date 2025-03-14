@@ -2,10 +2,10 @@ font-text: &font-text "Monospace:pixelsize=12:weight=bold"
 font-icon1: &font-icon1 "Monospace:pixelsize=14"
 font-icon2: &font-icon2 "Monospace:pixelsize=16"
 
-color-base: &color-base "{{.colors.desktop.base}}ff"
-color-text: &color-text "{{.colors.desktop.text}}ff"
-color-active: &color-active "{{.colors.desktop.text}}ff"
-color-inactive: &color-inactive "{{.colors.desktop.subtext0}}ff"
+color-base: &color-base "000000ff"
+color-text: &color-text "ffffffff"
+color-active: &color-active "ffffffff"
+color-inactive: &color-inactive "ffffffa0"
 
 margin: &margin 8
 
