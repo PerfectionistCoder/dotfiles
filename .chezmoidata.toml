@@ -1,6 +1,7 @@
 [dirs]
 container_mount = ".local/state/nixos-container"
-container_config = ".nixos/container"
+container_config = ".config/nixos/container"
+nixos_config = ".config/nixos/config"
 script = ".local/share/scripts"
 
 [colors.desktop]
