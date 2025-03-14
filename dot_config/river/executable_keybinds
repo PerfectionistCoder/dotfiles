@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-readonly term="alacritty"
+readonly term="wezterm"
 readonly menu="kickoff --from-file $HOME/.config/kickoff/app-menu"
 readonly explorer="$term -e yazi"
 
@@ -17,15 +17,17 @@ riverctl map normal $mod Q close
 riverctl map normal $mod Space toggle-float
 riverctl map normal $mod F toggle-fullscreen
 
-riverctl map normal $mod J focus-view up
-riverctl map normal $mod K focus-view down
-riverctl map normal $mod H focus-view left
-riverctl map normal $mod L focus-view right
+riverctl map normal $mod J focus-view next
+riverctl map normal $mod K focus-view previous
+riverctl map normal $mod H send-layout-cmd rivertile "main-ratio -0.05"
+riverctl map normal $mod L send-layout-cmd rivertile "main-ratio +0.05"
 
-riverctl map normal $move_mod J swap up
-riverctl map normal $move_mod K swap down
-riverctl map normal $move_mod H swap left
-riverctl map normal $move_mod L swap right
+riverctl map normal $move_mod J swap next
+riverctl map normal $move_mod K swap previous
+riverctl map normal $move_mod H send-layout-cmd rivertile "main-count -1"
+riverctl map normal $move_mod L send-layout-cmd rivertile "main-count +1"
+
+riverctl map normal $mod M zoom
 
 # modes
 readonly mode_mod="$mod+Alt"
