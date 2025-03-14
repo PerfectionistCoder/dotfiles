@@ -30,11 +30,6 @@ mkContainer {
           mountPath = "/etc/chromium/policies/managed";
           suffix = "extra.json";
         };
-        preferences = bindMountSuffix {
-          hostPath = containerDir;
-          mountPath = "/etc/chromium";
-          suffix = "initial_preferences";
-        };
         ${configDir} = {
           hostPath = "${variables.containerVolumeDir}/${name}";
           isReadOnly = false;
@@ -50,7 +45,7 @@ mkContainer {
             };
             systemPackages = [
               (pkgs.ungoogled-chromium.override {
-                commandLineArgs = "--ozone-platform=wayland --enable-features=AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder";
+                commandLineArgs = "--ozone-platform=wayland --enable-features=AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder --force-dark-mode";
               })
             ];
           };

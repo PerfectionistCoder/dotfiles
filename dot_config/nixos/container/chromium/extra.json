@@ -4,5 +4,17 @@
   "DefaultSearchProviderSearchURL": "https://www.startpage.com/sp/search?q={searchTerms}",
   "DnsOverHttpsMode": "secure",
   "DnsOverHttpsTemplates": "https://base.dns.mullvad.net/dns-query",
-  "HttpsOnlyMode": "force_enabled"
+  "HttpsOnlyMode": "force_enabled",
+  "DefaultNotificationsSetting": 2,
+  "DefaultGeolocationSetting": 2,
+  "DefaultCookiesSetting": 4,
+  "ClearBrowsingDataOnExitList": [
+    "browsing_history",
+    "download_history",
+    "cached_images_and_files",
+    "password_signin",
+    "autofill",
+    "site_settings",
+    "hosted_app_data"
+  ]
 }
