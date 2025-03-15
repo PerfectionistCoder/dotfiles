@@ -1,5 +1,5 @@
 [dirs]
+nixos_config = ".config/nixos"
 container_mount = ".local/state/nixos-container"
-container_config = ".config/nixos/container"
-nixos_config = ".config/nixos/config"
+container_config = ".config/nixos-container"
 script = ".local/share/scripts"
