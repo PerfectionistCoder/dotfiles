@@ -2,16 +2,18 @@ final: prev:
 let
   inherit (builtins) attrNames readDir;
   inherit (final)
+    entryFullNames
+    entryPaths
     mkIf
     mkOption
-    entryNames
-    entryPaths
     wrapMkOption
+    removeSuffix
     ;
 in
 {
-  entryNames = path: attrNames (readDir path);
-  entryPaths = path: map (name: path + "/${name}") (entryNames path);
+  entryNames = path: map (name: removeSuffix ".nix" name) (entryFullNames path);
+  entryFullNames = path: attrNames (readDir path);
+  entryPaths = path: map (name: path + "/${name}") (entryFullNames path);
   wrapMkOption =
     {
       config,

@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
+bin=/run/current-system/sw/bin/
+
 subcommand=${1:-test}
 shift
 
-sudo /run/current-system/sw/bin/nixos-rebuild $subcommand --flake $HOME/{{.dirs.nixos_config}}/#desktop --impure $*
+host_name=$(${bin}uname -n)
+sudo ${bin}nixos-rebuild $subcommand --flake $HOME/{{.dirs.nixos_config}}/#$host_name --impure $*

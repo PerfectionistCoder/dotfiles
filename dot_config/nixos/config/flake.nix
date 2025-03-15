@@ -13,7 +13,7 @@
     let
       lib = nixpkgs.lib.extend (import ./lib);
       inherit (builtins) listToAttrs;
-      inherit (lib) genAttrs entryNames;
+      inherit (lib) genAttrs entryFullNames;
 
       eachSystem = genAttrs [ "x86_64-linux" ];
 
@@ -34,24 +34,30 @@
         }
       );
       nixosConfigurations = listToAttrs (
-        map (name: {
-          inherit name;
-          value = nixpkgs.lib.nixosSystem {
-            inherit lib;
-            specialArgs = {
-              inputs = inputs // {
-                nixpkgs-overlays = ./overlays/default.nix;
+        map (
+          name:
+          let
+            hostName = "nixos-${name}";
+          in
+          {
+            name = hostName;
+            value = nixpkgs.lib.nixosSystem {
+              inherit lib;
+              specialArgs = {
+                inputs = inputs // {
+                  nixpkgs-overlays = ./overlays/default.nix;
+                };
               };
+              modules = [
+                {
+                  networking = { inherit hostName; };
+                }
+                nixosModules
+                "${hostsDir}/${name}/config.nix"
+              ];
             };
-            modules = [
-              {
-                networking.hostName = "nixos-${name}";
-              }
-              nixosModules
-              "${hostsDir}/${name}/config.nix"
-            ];
-          };
-        }) (entryNames hostsDir)
+          }
+        ) (entryFullNames hostsDir)
       );
     };
 }
