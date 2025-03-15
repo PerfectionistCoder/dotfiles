@@ -7,7 +7,7 @@ pkgs: with pkgs; [
   shfmt
   starship
   vscodium
+  wezterm
   yambar
   yazi
-  wezterm
 ]

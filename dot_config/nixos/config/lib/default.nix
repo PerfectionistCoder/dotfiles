@@ -8,10 +8,15 @@ let
     mkOption
     wrapMkOption
     removeSuffix
+    filterAttrs
     ;
 in
 {
-  entryNames = path: map (name: removeSuffix ".nix" name) (entryFullNames path);
+  fileNames =
+    path:
+    map (name: removeSuffix ".nix" name) (
+      attrNames (filterAttrs (_: value: value == "regular") (readDir path))
+    );
   entryFullNames = path: attrNames (readDir path);
   entryPaths = path: map (name: path + "/${name}") (entryFullNames path);
   wrapMkOption =

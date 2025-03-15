@@ -13,12 +13,13 @@
     let
       lib = nixpkgs.lib.extend (import ./lib);
       inherit (builtins) listToAttrs;
-      inherit (lib) genAttrs entryFullNames;
+      inherit (lib) genAttrs entryFullNames fileNames;
 
       eachSystem = genAttrs [ "x86_64-linux" ];
 
-      nixosModules = ./nixos-modules;
       hostsDir = ./hosts;
+      nixosModules = ./nixos-modules;
+      packagesDir = ./packages;
     in
     {
       packages = eachSystem (
@@ -26,12 +27,15 @@
         let
           pkgs = nixpkgs.legacyPackages.${system};
         in
-        {
-          default = pkgs.buildEnv {
-            name = "nix-packages";
-            paths = import ./packages pkgs;
-          };
-        }
+        listToAttrs (
+          map (name: {
+            inherit name;
+            value = pkgs.buildEnv {
+              name = "package-bundle";
+              paths = import "${packagesDir}/${name}.nix" pkgs;
+            };
+          }) (fileNames packagesDir)
+        )
       );
       nixosConfigurations = listToAttrs (
         map (
