@@ -5,6 +5,6 @@ rec {
   };
   xdgRuntimeDir = "{{env "XDG_RUNTIME_DIR"}}";
   waylandDisplay = "{{env "WAYLAND_DISPLAY"}}";
-  containerVolumeDir = "${homeDir.host}/{{.dirs.container_mount}}";
+  containerMountDir = "${homeDir.host}/{{.dirs.container_mount}}";
   containerConfigDir = "${homeDir.host}/{{.dirs.container_config}}";
 }

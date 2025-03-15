@@ -40,7 +40,7 @@ mkContainer {
           suffix = "user.js";
         };
         "${profileDir}/default" = {
-          hostPath = "${variables.containerVolumeDir}/${name}";
+          hostPath = "${variables.containerMountDir}/${name}";
           isReadOnly = false;
         };
         downloads = bindMountSuffix {

@@ -31,7 +31,7 @@ mkContainer {
           suffix = "extra.json";
         };
         ${configDir} = {
-          hostPath = "${variables.containerVolumeDir}/${name}";
+          hostPath = "${variables.containerMountDir}/${name}";
           isReadOnly = false;
         };
       };
