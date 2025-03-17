@@ -10,4 +10,6 @@ pkgs: with pkgs; [
   wezterm
   yambar
   yazi
+  black
+  python312
 ]

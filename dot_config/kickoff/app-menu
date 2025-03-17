@@ -1,3 +1,4 @@
 VSCodium = codium 
 Firefox = run-container firefox firefox-esr
 Chromium = run-container chromium chromium
+Qutebrowser = run-container qutebrowser qutebrowser
