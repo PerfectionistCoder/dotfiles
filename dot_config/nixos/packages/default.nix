@@ -11,5 +11,5 @@ pkgs: with pkgs; [
   yambar
   yazi
   black
-  python312
+  python3
 ]

@@ -6,7 +6,7 @@ c.aliases = {}
 c.colors.webpage.preferred_color_scheme = "dark"
 
 c.completion.cmd_history_max_items = -1
-c.completion.height = "30%"
+c.completion.height = "20%"
 c.completion.open_categories = ["searchengines", "bookmarks", "history"]
 c.completion.shrink = True
 c.completion.web_history.max_items = -1
@@ -40,17 +40,26 @@ c.fonts.web.size.minimum = 14
 
 c.hints.leave_on_load = True
 
+c.history_gap_interval = 86400
+
 c.input.forward_unbound_keys = "none"
 c.input.insert_mode.auto_load = True
 c.input.mode_override = "normal"
 
 c.keyhint.delay = 0
 
-c.scrolling.bar = "always"
+c.scrolling.bar = "overlay"
 
 c.search.ignore_case = "never"
 
-c.statusbar.widgets = ["keypress", "history", "progress", "url", "search_match"]
+c.statusbar.widgets = [
+    "keypress",
+    "search_match",
+    "progress",
+    "history",
+    "url",
+    "scroll"
+]
 
 c.tabs.last_close = "close"
 c.tabs.title.format = "{audio} {current_title}"

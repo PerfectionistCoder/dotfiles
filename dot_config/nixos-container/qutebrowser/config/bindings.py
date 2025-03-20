@@ -20,14 +20,12 @@ commands = {
         "<Ctrl-=>": "zoom-in",
         "<Ctrl-0>": "zoom 0",
         "<Ctrl-C>": "yank selection",
-        "<Ctrl-D>": "tab-clone",
         "<Ctrl-R>": "reload -f",
         "<Ctrl-Shift-C>": "yank url",
-        "<Ctrl-Shift-P>": "print",
-        "<Ctrl-Shift-T>": "undo",
+        "<Ctrl-Shift-J>": "tab-move -",
+        "<Ctrl-Shift-K>": "tab-move +",
         "<Ctrl-W>": "tab-close",
         "<Escape>": "clear-keychain ;; clear-messages ;; search ;; mode-enter caret ;; selection-drop ;; mode-leave",
-        "<Return>": "selection-follow",
         "ba": "cmd-set-text :bookmark-add {url:yank} {title}",
         "bd": "cmd-set-text -s :bookmark-del",
         "bl": "cmd-set-text -s :bookmark-load",
@@ -51,8 +49,12 @@ commands = {
         "N": "search-prev",
         "O": "cmd-set-text -s :open -t",
         "o": "cmd-set-text -s :open",
+        "p": "print",
+        "t": "tab-clone",
+        "u": "undo",
+        "v": "mode-enter caret",
     },
-    "insert": {},
+    "insert": {"<Return>": "fake-key <Return> ;; mode-leave"},
     "hint": {
         "<Ctrl-R>": "hint --rapid all tab-bg",
         "<Ctrl-T>": "hint all tab-fg",
@@ -73,30 +75,21 @@ commands = {
         "n": "prompt-accept no",
         "y": "prompt-accept yes",
     },
+    "caret": {
+        "b": "move-to-prev-word",
+        "e": "move-to-end-of-word",
+        "h": "move-to-prev-char",
+        "j": "move-to-next-line",
+        "k": "move-to-prev-line",
+        "l": "move-to-next-char",
+        "w": "move-to-next-word",
+        "y": "yank selection",
+    },
     "register": {},
 }
 
 for mode in commands:
     if mode != "normal":
         commands[mode]["<Escape>"] = "mode-leave"
-
-for mode in ["command", "prompt"]:
-    commands[mode].update(
-        {
-            "<Alt-B>": "rl-backward-word",
-            "<Alt-D>": "rl-kill-word",
-            "<Alt-F>": "rl-forward-word",
-            "<Ctrl-A>": "rl-beginning-of-line",
-            "<Ctrl-B>": "rl-backward-char",
-            "<Ctrl-D>": "rl-delete-char",
-            "<Ctrl-E>": "rl-end-of-line",
-            "<Ctrl-F>": "rl-forward-char",
-            "<Ctrl-H>": "rl-backward-delete-char",
-            "<Ctrl-K>": "rl-kill-line",
-            "<Ctrl-N>": "command-history-next",
-            "<Ctrl-P>": "command-history-prev",
-            "<Ctrl-W>": "rl-backward-kill-word",
-        }
-    )
 
 c.bindings.commands = commands
