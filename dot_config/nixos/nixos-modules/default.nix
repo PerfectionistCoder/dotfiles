@@ -13,6 +13,7 @@
       path = ./features;
     };
   system.stateVersion = (import /etc/nixos/configuration.nix args).system.stateVersion;
+  
   nixpkgs.overlays = import inputs.nixpkgs-overlays;
 
   boot = {

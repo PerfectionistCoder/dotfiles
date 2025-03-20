@@ -1,6 +1,6 @@
 final: prev:
 let
-  inherit (builtins) attrNames readDir;
+  inherit (builtins) attrNames readDir removeAttrs;
   inherit (final)
     entryFullNames
     entryPaths
@@ -33,7 +33,7 @@ in
           };
         } // (module.options or { });
       };
-      config = mkIf config.features.${name}.enable (module.config or module);
+      config = mkIf config.features.${name}.enable (removeAttrs module [ "options" ]);
     };
   modulesMkOption =
     {
