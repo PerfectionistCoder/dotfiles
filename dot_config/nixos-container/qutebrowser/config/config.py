@@ -17,18 +17,11 @@ c.content.blocking.adblock.lists = [
     "https://easylist.to/easylist/easyprivacy.txt",
     "https://secure.fanboy.co.nz/fanboy-annoyance.txt",
 ]
-c.content.blocking.method = "both"
-c.content.canvas_reading = False
 c.content.cookies.accept = "no-3rdparty"
 c.content.cookies.store = False
 c.content.fullscreen.overlay_timeout = 0
 c.content.geolocation = False
-c.content.headers.accept_language = "en-US,en;q=0.5"
-c.content.headers.custom = {
-    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
-}
 c.content.headers.do_not_track = False
-c.content.headers.referer = "never"
 c.content.headers.user_agent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/{webkit_version} (KHTML, like Gecko) Chrome/{upstream_browser_version} Safari/{webkit_version}"
 c.content.javascript.clipboard = "access"
 c.content.notifications.enabled = False
@@ -38,12 +31,24 @@ c.content.webrtc_ip_handling_policy = "default-public-interface-only"
 
 c.downloads.location.prompt = False
 
+c.fonts.contextmenu = config.get("fonts.statusbar")
+c.fonts.tooltip = config.get("fonts.statusbar")
 c.fonts.default_size = "16px"
 c.fonts.web.size.default = 20
 c.fonts.web.size.default_fixed = 16
 c.fonts.web.size.minimum = 14
 
+c.hints.leave_on_load = True
+
+c.input.forward_unbound_keys = "none"
+c.input.insert_mode.auto_load = True
+c.input.mode_override = "normal"
+
 c.keyhint.delay = 0
+
+c.scrolling.bar = "always"
+
+c.search.ignore_case = "never"
 
 c.statusbar.widgets = ["keypress", "history", "progress", "url", "search_match"]
 
