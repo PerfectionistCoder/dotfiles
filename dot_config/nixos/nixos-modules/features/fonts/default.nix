@@ -3,7 +3,7 @@
   fonts = {
     enableDefaultPackages = false;
     packages = with pkgs; [
-      nerd-fonts.caskaydia-mono
+      pkgs.custom.fonts.monospace
     ];
   };
 }
