@@ -27,22 +27,25 @@ riverctl map normal $move_mod K swap previous
 riverctl map normal $move_mod H send-layout-cmd rivertile "main-count -1"
 riverctl map normal $move_mod L send-layout-cmd rivertile "main-count +1"
 
-riverctl map normal $mod M zoom
+switch_mode="switch-mode"
+riverctl declare-mode $switch_mode
+riverctl map normal $mod M enter-mode $switch_mode
+riverctl map $switch_mode None Escape enter-mode normal
 
 # modes
-readonly mode_mod="$mod+Alt"
 declare -A modes=(power P)
 for mode in ${!modes[*]}; do
     key=${modes[$mode]}
     riverctl declare-mode $mode
-    riverctl map normal $mode_mod $key enter-mode $mode
+    riverctl map $switch_mode None $key enter-mode $mode
     riverctl map $mode None Escape enter-mode normal
 done
+
+riverctl map $switch None Q exit
 
 riverctl map power None P spawn poweroff
 riverctl map power None R spawn reboot
 riverctl map power None S spawn "riverctl enter-mode normal && systemctl suspend"
-riverctl map power None Q exit
 
 # universal
 readonly volume_step=0.02
