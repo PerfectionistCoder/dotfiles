@@ -47,14 +47,13 @@ in
       ++ [
         config
         {
+          ephemeral = mkDefault true;
           config =
             { modulesPath, ... }:
             {
               imports = [ "${modulesPath}/profiles/minimal.nix" ];
 
               nixpkgs.overlays = import <nixpkgs-overlays>;
-
-              console.enable = true;
             };
         }
       ]

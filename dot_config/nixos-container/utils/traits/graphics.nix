@@ -3,14 +3,13 @@ let
   inherit (lib) bindMountClone;
 in
 {
-  bindMounts = {
-    dri = bindMountClone {
+  bindMounts =
+    bindMountClone {
       path = "/dev/dri";
-    };
-    opengl = bindMountClone {
+    }
+    // bindMountClone {
       path = "/run/opengl-driver";
     };
-  };
 
   allowedDevices = [
     {

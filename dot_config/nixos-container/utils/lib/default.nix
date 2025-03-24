@@ -7,9 +7,10 @@ final: prev: {
       isReadOnly ? true,
     }:
     {
-      hostPath = "${hostPath}/${suffix}";
-      mountPoint = "${mountPath}/${suffix}";
-      inherit isReadOnly;
+      "${mountPath}/${suffix}" = {
+        hostPath = "${hostPath}/${suffix}";
+        inherit isReadOnly;
+      };
     };
   bindMountClone =
     {
@@ -17,8 +18,9 @@ final: prev: {
       isReadOnly ? true,
     }:
     {
-      hostPath = path;
-      mountPoint = path;
-      inherit isReadOnly;
+      "${path}" = {
+        hostPath = path;
+        inherit isReadOnly;
+      };
     };
 }

@@ -12,5 +12,6 @@
       };
     };
     services.getty.autologinUser = "container";
+    console.enable = true;
   };
 }

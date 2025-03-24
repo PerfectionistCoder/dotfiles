@@ -18,16 +18,25 @@ mkContainer {
   config =
     { lib, variables, ... }:
     let
+      inherit (lib) bindMountSuffix;
+
       containerDir = "${variables.containerConfigDir}/${name}";
       qutebrowserDir = "${variables.homeDir.local}/.config/qutebrowser";
     in
     {
-      bindMounts = {
-        "${qutebrowserDir}" = {
-          hostPath = "${containerDir}/config";
+      bindMounts =
+        {
+          "${qutebrowserDir}" = {
+            hostPath = "${containerDir}/config";
+            isReadOnly = false;
+          };
+        }
+        // bindMountSuffix {
+          hostPath = variables.homeDir.host;
+          mountPath = variables.homeDir.local;
+          suffix = "Downloads";
           isReadOnly = false;
         };
-      };
 
       extra.addressPrefix = "10.255.0";
       config =

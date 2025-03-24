@@ -24,17 +24,18 @@ mkContainer {
       containerDir = "${variables.containerConfigDir}/chromium";
     in
     {
-      bindMounts = {
-        policies = bindMountSuffix {
+      bindMounts =
+        {
+          ${configDir} = {
+            hostPath = "${variables.containerMountDir}/${name}";
+            isReadOnly = false;
+          };
+        }
+        // bindMountSuffix {
           hostPath = containerDir;
           mountPath = "/etc/chromium/policies/managed";
           suffix = "extra.json";
         };
-        ${configDir} = {
-          hostPath = "${variables.containerMountDir}/${name}";
-          isReadOnly = false;
-        };
-      };
 
       config =
         { pkgs, ... }:
