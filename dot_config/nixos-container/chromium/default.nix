@@ -8,7 +8,7 @@ mkContainer {
   inherit name args;
 
   traits = [
-    "font"
+    "browser-fonts"
     "graphics"
     "pulseaudio"
     "user"
@@ -40,16 +40,11 @@ mkContainer {
       config =
         { pkgs, ... }:
         {
-          environment = {
-            sessionVariables = {
-              NIXOS_OZONE_WL = "1";
-            };
-            systemPackages = [
-              (pkgs.ungoogled-chromium.override {
-                commandLineArgs = "--ozone-platform=wayland --enable-features=AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder --force-dark-mode --extension-mime-request-handling=always-prompt-for-install";
-              })
-            ];
-          };
+          environment.systemPackages = [
+            (pkgs.ungoogled-chromium.override {
+              commandLineArgs = "--ozone-platform=wayland --enable-features=AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder --force-dark-mode --extension-mime-request-handling=always-prompt-for-install";
+            })
+          ];
         };
     };
 }

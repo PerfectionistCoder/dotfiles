@@ -57,6 +57,12 @@ mkContainer {
           environment = {
             systemPackages = [ pkgs.qutebrowser ];
           };
+
+          fonts.packages = with pkgs; [
+            noto-fonts-cjk-sans
+            noto-fonts-color-emoji
+            custom.fonts.monospace
+          ];
         };
     };
 }
