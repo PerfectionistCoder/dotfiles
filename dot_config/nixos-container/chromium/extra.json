@@ -2,6 +2,7 @@
   "BookmarkBarEnabled": false,
   "BlockThirdPartyCookies": false,
   "ClearBrowsingDataOnExitList": [
+    "browsing_history",
     "download_history",
     "cached_images_and_files",
     "password_signin",
@@ -13,7 +14,6 @@
   "DefaultCookiesSetting": 4,
   "DefaultGeolocationSetting": 2,
   "DefaultNotificationsSetting": 2,
-  "DefaultSearchProviderEnabled": true,
   "DnsOverHttpsMode": "secure",
   "DnsOverHttpsTemplates": "https://base.dns.mullvad.net/dns-query",
   "ExtensionSettings": {

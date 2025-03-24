@@ -19,20 +19,18 @@ mkContainer {
   config =
     { lib, variables, ... }:
     let
-      inherit (lib) bindMountSuffix bindMountClone;
-      configDir = "${variables.homeDir.local}/.config/chromium";
-      containerDir = "${variables.containerConfigDir}/chromium";
+      inherit (lib) bindMountSuffix;
     in
     {
       bindMounts =
         {
-          ${configDir} = {
+          "${variables.homeDir.local}/.config/chromium" = {
             hostPath = "${variables.containerMountDir}/${name}";
             isReadOnly = false;
           };
         }
         // bindMountSuffix {
-          hostPath = containerDir;
+          hostPath = "${variables.containerConfigDir}/${name}";
           mountPath = "/etc/chromium/policies/managed";
           suffix = "extra.json";
         };
