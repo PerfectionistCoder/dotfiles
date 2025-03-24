@@ -8,14 +8,17 @@
           noto-fonts-color-emoji
           custom.fonts.monospace
         ];
-        fontconfig.defaultFonts = {
-          serif = [
-            "Noto Sans CJK HK"
-          ];
-          sansSerif = [
-            "Noto Sans CJK HK"
-          ];
-        };
+        fontconfig.defaultFonts =
+          let
+            list = [
+              "DejaVu Sans"
+              "Noto Sans CJK HK"
+            ];
+          in
+          {
+            serif = list;
+            sansSerif = list;
+          };
       };
     };
 }
