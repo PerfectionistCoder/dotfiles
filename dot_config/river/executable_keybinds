@@ -29,7 +29,7 @@ riverctl map normal $move_mod L send-layout-cmd rivertile "main-count +1"
 
 switch_mode="switch-mode"
 riverctl declare-mode $switch_mode
-riverctl map normal $mod M enter-mode $switch_mode
+riverctl map normal $mod Escape enter-mode $switch_mode
 riverctl map $switch_mode None Escape enter-mode normal
 
 # modes
