@@ -20,10 +20,11 @@ in
     extra-container.enable = true;
     fonts.enable = true;
     graphics.enable = true;
+    iwd.enable = true;
+    minimal.enable = true;
+    pipewire.enable = true;
     resolved.enable = true;
     river.enable = true;
-    iwd.enable = true;
-    pipewire.enable = true;
   };
 
   networking.nameservers = [
