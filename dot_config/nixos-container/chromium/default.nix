@@ -40,7 +40,7 @@ mkContainer {
         {
           environment.systemPackages = [
             (pkgs.ungoogled-chromium.override {
-              commandLineArgs = "--ozone-platform=wayland --enable-features=AcceleratedVideoDecodeLinuxGL,AcceleratedVideoEncoder --force-dark-mode --extension-mime-request-handling=always-prompt-for-install";
+              commandLineArgs = "--force-dark-mode --extension-mime-request-handling=always-prompt-for-install";
             })
           ];
         };

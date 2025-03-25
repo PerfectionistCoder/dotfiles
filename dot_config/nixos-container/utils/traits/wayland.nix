@@ -11,6 +11,7 @@ in
   };
   config = {
     environment.sessionVariables = {
+      DISPLAY = ":0";
       WAYLAND_DISPLAY = socket;
     };
   };
