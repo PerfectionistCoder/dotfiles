@@ -41,7 +41,7 @@ for mode in ${!modes[*]}; do
     riverctl map $mode None Escape enter-mode normal
 done
 
-riverctl map $switch None Q exit
+riverctl map $switch_mode None Q exit
 
 riverctl map power None P spawn poweroff
 riverctl map power None R spawn reboot
