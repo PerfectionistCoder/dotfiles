@@ -1,5 +1,5 @@
 {
-  "BookmarkBarEnabled": false,
+  "BackgroundModeEnabled": false,
   "BlockThirdPartyCookies": false,
   "ClearBrowsingDataOnExitList": [
     "browsing_history",
@@ -7,11 +7,8 @@
     "cached_images_and_files",
     "password_signin",
     "autofill",
-    "site_settings",
     "hosted_app_data"
   ],
-  "CookiesAllowedForUrls": ["https://[*.]gamer.com.tw"],
-  "DefaultCookiesSetting": 4,
   "DefaultGeolocationSetting": 2,
   "DefaultNotificationsSetting": 2,
   "DnsOverHttpsMode": "secure",
@@ -23,11 +20,7 @@
     "ailoabdmgclmfmhdagmlohpjlbpffblp": {
       "installation_mode": "allowed",
       "runtime_blocked_hosts": ["*://*"],
-      "runtime_allowed_hosts": [
-        "https://ani.gamer.com.tw",
-        "https://surfshark.com",
-        "https://*.surfshark.com"
-      ],
+      "runtime_allowed_hosts": ["https://*.surfshark.com"],
       "toolbar_pin": "force_pinned"
     },
     "ocaahdebbfolfmndjeplogmgcagdmblk": {
