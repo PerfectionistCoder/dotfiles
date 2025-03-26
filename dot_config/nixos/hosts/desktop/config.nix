@@ -18,11 +18,7 @@ in
 
   features = {
     extra-container.enable = true;
-    fonts.enable = true;
-    graphics.enable = true;
-    iwd.enable = true;
-    minimal.enable = true;
-    pipewire.enable = true;
+    minimal-bash.enable = true;
     resolved.enable = true;
     river.enable = true;
   };
@@ -30,4 +26,6 @@ in
   networking.nameservers = [
     "194.242.2.2#dns.mullvad.net"
   ];
+
+  boot.loader.timeout = 1;
 }

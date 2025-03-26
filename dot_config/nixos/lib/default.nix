@@ -6,7 +6,7 @@ let
     entryPaths
     mkIf
     mkOption
-    wrapMkOption
+    wrapModule
     removeSuffix
     filterAttrs
     ;
@@ -19,7 +19,8 @@ in
     );
   entryFullNames = path: attrNames (readDir path);
   entryPaths = path: map (name: path + "/${name}") (entryFullNames path);
-  wrapMkOption =
+
+  wrapModule =
     {
       config,
       name,
@@ -35,7 +36,7 @@ in
       };
       config = mkIf config.features.${name}.enable (removeAttrs module [ "options" ]);
     };
-  modulesMkOption =
+  mkFeature =
     {
       config,
       path,
@@ -43,7 +44,7 @@ in
     }:
     (map (
       path:
-      wrapMkOption {
+      wrapModule {
         inherit config;
         name = (baseNameOf path);
         module = (import path args);
