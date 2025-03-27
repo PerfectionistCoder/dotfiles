@@ -33,6 +33,13 @@ mkContainer {
           hostPath = "${variables.containerConfigDir}/${name}";
           mountPath = "/etc/chromium/policies/managed";
           suffix = "extra.json";
+          isReadOnly = false;
+        }
+        // bindMountSuffix {
+          hostPath = "${variables.homeDir.host}";
+          mountPath = "${variables.homeDir.local}";
+          suffix = "Downloads";
+          isReadOnly = false;
         };
 
       config =
