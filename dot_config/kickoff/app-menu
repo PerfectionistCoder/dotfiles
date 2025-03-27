@@ -1,3 +1,3 @@
 VSCodium = codium 
-Chromium = run-container chromium chromium
-Qutebrowser = run-container qutebrowser qutebrowser
+Chromium = run-container chromium
+Brave = run-container brave
