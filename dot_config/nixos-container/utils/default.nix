@@ -8,6 +8,7 @@ let
     removeSuffix
     mkMerge
     mkDefault
+    optionalAttrs
     ;
 
   concatConfig =
@@ -38,6 +39,7 @@ in
   name,
   traits ? [ ],
   config ? { },
+  entrypoint ? false,
   args,
 }:
 {
@@ -56,6 +58,15 @@ in
               nixpkgs.overlays = import <nixpkgs-overlays>;
             };
         }
+        (optionalAttrs (entrypoint != false) {
+          config =
+            { pkgs, ... }:
+            {
+              environment.systemPackages = [
+                (pkgs.writeShellScriptBin "entrypoint" entrypoint)
+              ];
+            };
+        })
       ]
     ) args
   );

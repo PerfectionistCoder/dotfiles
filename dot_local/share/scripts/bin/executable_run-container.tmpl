@@ -8,7 +8,7 @@ file_name=$1
 container_name=$(${bin}basename $file_name)
 container_dir="$HOME/{{.dirs.container_mount}}/$container_name"
 
-command=$2
+command=${2:-entrypoint}
 
 if [[ ! -d $container_dir ]]; then
   mkdir -p $container_dir
@@ -18,6 +18,4 @@ if [[ "down" == $(${bin}nixos-container status "$container_name") ]]; then
   ${bin}nixos-container start "$container_name"
 fi
 
-if [[ -n $command ]]; then
-  ${bin}machinectl shell container@"$container_name" /usr/bin/env bash --login -c "$command"
-fi
+${bin}machinectl shell container@"$container_name" /usr/bin/env bash --login -c "$command"

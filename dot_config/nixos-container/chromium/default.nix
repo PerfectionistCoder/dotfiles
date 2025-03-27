@@ -39,10 +39,12 @@ mkContainer {
         { pkgs, ... }:
         {
           environment.systemPackages = [
-            (pkgs.ungoogled-chromium.override {
-              commandLineArgs = "--force-dark-mode --extension-mime-request-handling=always-prompt-for-install";
-            })
+            pkgs.ungoogled-chromium
           ];
         };
     };
+
+  entrypoint = ''
+    chromium --force-dark-mode --extension-mime-request-handling=always-prompt-for-install
+  '';
 }
