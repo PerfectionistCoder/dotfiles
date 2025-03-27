@@ -17,27 +17,32 @@ mkContainer {
   ];
 
   config =
-    { lib, variables, ... }:
+    {
+      lib,
+      env,
+      var,
+      ...
+    }:
     let
       inherit (lib) bindMountSuffix;
     in
     {
       bindMounts =
         {
-          "${variables.homeDir.local}/.config/chromium" = {
-            hostPath = "${variables.containerMountDir}/${name}";
+          "${var.home}/.config/chromium" = {
+            hostPath = "${var.containerMountDir}/${name}";
             isReadOnly = false;
           };
         }
         // bindMountSuffix {
-          hostPath = "${variables.containerConfigDir}/${name}";
+          hostPath = "${var.containerConfigDir}/${name}";
           mountPath = "/etc/chromium/policies/managed";
           suffix = "extra.json";
           isReadOnly = false;
         }
         // bindMountSuffix {
-          hostPath = "${variables.homeDir.host}";
-          mountPath = "${variables.homeDir.local}";
+          hostPath = "${env.HOME}";
+          mountPath = "${var.home}";
           suffix = "Downloads";
           isReadOnly = false;
         };

@@ -1,4 +1,4 @@
-{ variables, ... }:
+{ var, ... }:
 {
   config = {
     users = {
@@ -6,8 +6,8 @@
       allowNoPasswordLogin = true;
       users = {
         container = {
+          inherit (var) home;
           isNormalUser = true;
-          home = variables.homeDir.local;
         };
       };
     };

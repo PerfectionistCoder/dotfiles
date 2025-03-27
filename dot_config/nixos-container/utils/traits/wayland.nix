@@ -1,17 +1,17 @@
-{ variables, ... }:
+{ env, ... }:
 let
   socket = "/tmp/wayland";
 in
 {
   bindMounts = {
     wayland = {
-      hostPath = "${variables.xdgRuntimeDir}/${variables.waylandDisplay}";
+      hostPath = "${env.XDG_RUNTIME_DIR}/${env.WAYLAND_DISPLAY}";
       mountPoint = socket;
     };
   };
   config = {
     environment.sessionVariables = {
-      DISPLAY = ":0";
+      inherit (env) DISPLAY;
       WAYLAND_DISPLAY = socket;
     };
   };

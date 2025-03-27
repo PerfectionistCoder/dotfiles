@@ -22,7 +22,7 @@ let
         (attr (
           args
           // {
-            inherit variables lib;
+            inherit lib env var;
           }
         ))
       else
@@ -33,7 +33,8 @@ let
     value = import ./traits/${name};
   }) (readDir ./traits);
 
-  variables = import ./variables.nix;
+  env = import ./env.nix;
+  var = import ./var.nix env;
 in
 {
   name,

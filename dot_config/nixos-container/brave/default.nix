@@ -16,27 +16,32 @@ mkContainer {
   ];
 
   config =
-    { lib, variables, ... }:
+    {
+      lib,
+      env,
+      var,
+      ...
+    }:
     let
       inherit (lib) bindMountSuffix;
     in
     {
       bindMounts =
         {
-          "${variables.homeDir.local}/.config/BraveSoftware/Brave-Browser" = {
-            hostPath = "${variables.containerMountDir}/${name}";
+          "${var.home}/.config/BraveSoftware/Brave-Browser" = {
+            hostPath = "${var.containerMountDir}/${name}";
             isReadOnly = false;
           };
         }
         // bindMountSuffix {
-          hostPath = "${variables.containerConfigDir}/${name}";
+          hostPath = "${var.containerConfigDir}/${name}";
           mountPath = "/etc/brave/policies/managed";
           suffix = "extra.json";
           isReadOnly = false;
         }
         // bindMountSuffix {
-          hostPath = "${variables.homeDir.host}";
-          mountPath = "${variables.homeDir.local}";
+          hostPath = "${env.HOME}";
+          mountPath = "${var.home}";
           suffix = "Downloads";
           isReadOnly = false;
         };

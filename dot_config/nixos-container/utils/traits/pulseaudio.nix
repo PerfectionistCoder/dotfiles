@@ -1,11 +1,11 @@
-{ variables, ... }:
+{ env, ... }:
 let
   socket = "/tmp/pulsesocket";
 in
 {
   bindMounts = {
     pulse = {
-      hostPath = "${variables.xdgRuntimeDir}/pulse/native";
+      hostPath = "${env.XDG_RUNTIME_DIR}/pulse/native";
       mountPoint = socket;
     };
   };
