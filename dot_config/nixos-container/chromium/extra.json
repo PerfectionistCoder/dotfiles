@@ -32,6 +32,10 @@
     {
       "name": "Chromium web extension",
       "url": "https://github.com/NeverDecaf/chromium-web-store"
+    },
+    {
+      "name": "Site data settings",
+      "url": "chrome://settings/content/siteData"
     }
   ]
 }
