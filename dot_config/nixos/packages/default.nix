@@ -7,10 +7,11 @@ pkgs: with pkgs; [
   shfmt
   starship
   vscodium
-  wezterm
   yambar
   yazi
   black
   python3
   whitesur-cursors
+  elvish
+  alacritty
 ]

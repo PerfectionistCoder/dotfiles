@@ -10,7 +10,7 @@ bindings = [
   # general
   { key = "Paste", action = "None" },
   { key = "Copy", action = "None" },
-  { key = "L", mods = "Control", action = "None" },
+  { key = "L", mods = "Control", action = "ReceiveChar" },
   { key = "Paste", mode = "Vi|Search", action = "None" },
   { key = "L", mods = "Control", mode = "~Vi|~Search", action = "None" },
   { key = "PageUp", mods = "Shift", mode = "~Alt", action = "None" },

@@ -1,13 +1,17 @@
+[mouse]
+bindings = [{ mouse = "Right", action = "ExpandSelection" }]
+
 [keyboard]
 bindings = [
   { key = "C", mods = "Control|Shift", action = "Copy" },
   { key = "V", mods = "Control|Shift", action = "Paste" },
-  { key = "L", mods = "Control", chars = "\u000c" },
   { key = "PageUp", mode = "~Alt", action = "ScrollPageUp" },
   { key = "PageDown", mode = "~Alt", action = "ScrollPageDown" },
   { key = "=", mods = "Control", action = "IncreaseFontSize" },
   { key = "-", mods = "Control", action = "DecreaseFontSize" },
   { key = "0", mods = "Control", action = "ResetFontSize" },
+  { key = "Escape", mods = "Control", action = "ClearLogNotice" },
+  { key = "Escape", mods = "Control", action = "ClearSelection" },
 
   # search
   { key = "F", mods = "Control|Shift", mode = "~Search|~Alt", action = "SearchForward" },

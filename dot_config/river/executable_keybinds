@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-readonly term="wezterm"
+readonly term="alacritty"
 readonly menu="kickoff --from-file $HOME/.config/kickoff/app-menu"
 readonly explorer="$term -e yazi"
 
