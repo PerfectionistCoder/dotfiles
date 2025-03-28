@@ -57,6 +57,6 @@ mkContainer {
     };
 
   entrypoint = ''
-    chromium --force-dark-mode --extension-mime-request-handling=always-prompt-for-install
+    chromium --ozone-platform=wayland --force-dark-mode --extension-mime-request-handling=always-prompt-for-install
   '';
 }

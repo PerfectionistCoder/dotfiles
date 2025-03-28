@@ -56,6 +56,6 @@ mkContainer {
     };
 
   entrypoint = ''
-    brave --force-dark-mode
+    brave --ozone-platform=wayland --force-dark-mode
   '';
 }
