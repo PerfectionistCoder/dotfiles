@@ -9,10 +9,10 @@ mkContainer {
 
   traits = [
     "browser-fonts"
+    "cursor"
     "pulseaudio"
     "user"
     "wayland"
-    # "cursor"
   ];
 
   config =

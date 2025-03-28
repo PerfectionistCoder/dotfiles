@@ -7,7 +7,7 @@
 {
   bindMounts = lib.bindMountSuffix {
     hostPath = env.HOME;
-    mountPoint = var.home;
-    suffix = ".icons"
+    mountPath = var.home;
+    suffix = ".local/share/icons";
   };
 }

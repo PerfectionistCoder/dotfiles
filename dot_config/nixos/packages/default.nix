@@ -12,4 +12,5 @@ pkgs: with pkgs; [
   yazi
   black
   python3
+  whitesur-cursors
 ]

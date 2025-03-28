@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-riverctl spawn "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XCURSOR_THEME XCURSOR_SIZE"
+riverctl spawn "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
 
 riverctl default-attach-mode bottom
 riverctl background-color 0x000000
