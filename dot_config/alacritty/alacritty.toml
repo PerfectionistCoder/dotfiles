@@ -1,0 +1,36 @@
+[general]
+import = ["default_keybinds.toml", "theme.toml", "keybinds.toml"]
+
+[window]
+decorations = "None"
+
+[scrolling]
+multiplier = 4
+
+[font]
+size = 13
+
+[selection]
+semantic_escape_chars = "-.,│`|:\"' ()[]{}<>\t"
+
+[cursor]
+unfocused_hollow = false
+
+[terminal]
+osc52 = "Disabled"
+
+[mouse]
+hide_when_typing = true
+bindings = [{ mouse = "Right", action = "ExpandSelection" }]
+
+[hints]
+alphabet = "1234567890"
+
+[[hints.enabled]]
+command = "xdg-open"
+hyperlinks = true
+post_processing = true
+persist = false
+mouse.enabled = true
+binding = { key = "O", mods = "Control|Shift" }
+regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
