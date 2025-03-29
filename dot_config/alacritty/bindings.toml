@@ -5,13 +5,18 @@ bindings = [{ mouse = "Right", action = "ExpandSelection" }]
 bindings = [
   { key = "C", mods = "Control|Shift", action = "Copy" },
   { key = "V", mods = "Control|Shift", action = "Paste" },
-  { key = "PageUp", mode = "~Alt", action = "ScrollPageUp" },
-  { key = "PageDown", mode = "~Alt", action = "ScrollPageDown" },
+  { key = "Up", mods = "Control", mode = "~Alt", action = "ScrollLineUp" },
+  { key = "Down", mods = "Control", mode = "~Alt", action = "ScrollLineDown" },
+  { key = "PageUp", mods = "Control", mode = "~Alt", action = "ScrollPageUp" },
+  { key = "PageDown", mods = "Control", mode = "~Alt", action = "ScrollPageDown" },
+  { key = "Home", mods = "Control", mode = "~Alt", action = "ScrollToTop" },
+  { key = "End", mods = "Control", mode = "~Alt", action = "ScrollToBottom" },
   { key = "=", mods = "Control", action = "IncreaseFontSize" },
   { key = "-", mods = "Control", action = "DecreaseFontSize" },
   { key = "0", mods = "Control", action = "ResetFontSize" },
-  { key = "Escape", mods = "Control", action = "ClearLogNotice" },
-  { key = "Escape", mods = "Control", action = "ClearSelection" },
+  { key = "Escape", action = "ClearLogNotice" },
+  { key = "Escape", action = "ClearSelection" },
+  { key = "Escape", action = "ReceiveChar" },
 
   # search
   { key = "F", mods = "Control|Shift", mode = "~Search|~Alt", action = "SearchForward" },

@@ -2,6 +2,7 @@
 import = ["default-bindings.toml", "bindings.toml"]
 
 [window]
+padding = { x = 16 }
 decorations = "None"
 
 [scrolling]
