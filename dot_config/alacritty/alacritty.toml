@@ -12,3 +12,6 @@ size = 14
 
 [cursor]
 unfocused_hollow = false
+
+[terminal]
+shell = "elvish"
