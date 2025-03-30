@@ -10,6 +10,6 @@ pkgs: with pkgs; [
   yazi
   whitesur-cursors
   elvish
-  carapace-bridge
+  carapace
   alacritty
 ]

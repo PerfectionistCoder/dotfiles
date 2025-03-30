@@ -2,5 +2,5 @@ use ./prompt
 use ./bindings
 use ./external
 
-use carapace-bridge
-carapace-bridge:create
+set-env CARAPACE_BRIDGES 'bash'
+eval (carapace _carapace elvish | slurp)

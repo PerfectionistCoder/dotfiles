@@ -10,6 +10,13 @@ set edit:lastcmd:binding = (edit:binding-table [&])
 set edit:minibuf:binding = (edit:binding-table [&])
 
 {
+  var b = {|k f| set edit:global-binding[$k] = $f }
+
+  $b C-'[' $edit:close-mode~
+  $b C-L { edit:clear }
+}
+
+{
   var b = {|k f| set edit:insert:binding[$k] = $f }
 
   $b C-'[' $edit:command:start~
@@ -34,8 +41,6 @@ set edit:minibuf:binding = (edit:binding-table [&])
   $b C-P $edit:history:start~
   $b C-N $edit:end-of-history~
 
-  $b C-L { edit:clear }
-
   $b Alt-r $edit:histlist:start~
   $b Alt-l $edit:location:start~
   $b Alt-n { $edit:navigation:start~; $edit:navigation:trigger-shown-hidden~ }
@@ -44,7 +49,6 @@ set edit:minibuf:binding = (edit:binding-table [&])
 {
   var b = {|k f| set edit:command:binding[$k] = $f }
 
-  $b C-'[' $edit:close-mode~
   $b i $edit:close-mode~
 
   $b h $edit:move-dot-left~
@@ -63,8 +67,6 @@ set edit:minibuf:binding = (edit:binding-table [&])
 
 {
   var b = {|k f| set edit:listing:binding[$k] = $f }
-
-  $b C-'[' $edit:close-mode~
 
   $b Tab $edit:listing:down~
   $b Shift-Tab $edit:listing:up~
@@ -85,12 +87,12 @@ set edit:minibuf:binding = (edit:binding-table [&])
 
   $b / $edit:navigation:trigger-filter~
   $b . $edit:navigation:trigger-shown-hidden~
+
+  $b Alt-n $nop~
 }
 
 {
   var b = {|k f| set edit:completion:binding[$k] = $f }
-
-  $b C-'[' $edit:close-mode~
 
   $b Tab $edit:listing:down-cycle~
   $b Shift-Tab $edit:listing:up-cycle~
@@ -98,8 +100,6 @@ set edit:minibuf:binding = (edit:binding-table [&])
 
 {
   var b = {|k f| set edit:history:binding[$k] = $f }
-
-  $b C-'[' $edit:close-mode~
 
   $b C-P $edit:history:up~
   $b C-N $edit:history:down-or-quit~
