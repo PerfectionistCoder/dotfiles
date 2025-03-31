@@ -1,4 +1,5 @@
 pkgs: with pkgs; [
+  alacritty
   chezmoi
   git
   kickoff
@@ -8,8 +9,4 @@ pkgs: with pkgs; [
   vscodium
   yambar
   yazi
-  whitesur-cursors
-  elvish
-  carapace
-  alacritty
 ]
