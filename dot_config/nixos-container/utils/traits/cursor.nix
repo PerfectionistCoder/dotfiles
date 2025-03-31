@@ -6,8 +6,8 @@
 }:
 {
   bindMounts = lib.bindMountSuffix {
-    hostPath = env.HOME;
-    mountPath = var.home;
-    suffix = ".local/share/icons";
+    hostPath = "${env.HOME}/.nix-profile";
+    mountPath = "${var.home}/.local";
+    suffix = "share";
   };
 }
