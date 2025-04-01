@@ -15,4 +15,4 @@ size = 14
 unfocused_hollow = false
 
 [terminal]
-shell = "elvish"
+shell = "fish"
