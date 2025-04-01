@@ -1,5 +1,12 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
-  programs.bash.promptInit = "";
-  environment.etc.inputrc.enable = false;
+  programs.bash = {
+    promptInit = "";
+    completion.enable = false;
+  };
+  users.defaultUserShell = pkgs.bashNonInteractive;
+  environment.etc.inputrc = {
+    enable = false;
+    source = null;
+  };
 }
