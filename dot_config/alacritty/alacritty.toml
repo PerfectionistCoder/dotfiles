@@ -1,12 +1,15 @@
 [general]
-import = ["default-bindings.toml", "bindings.toml"]
+import = ["theme.toml"]
+
+[env]
+SHELL = "fish"
+VISUAL = "hx"
 
 [window]
-padding = { x = 16 }
 decorations = "None"
 
 [scrolling]
-multiplier = 4
+multiplier = 0
 
 [font]
 size = 14
