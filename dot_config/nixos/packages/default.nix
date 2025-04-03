@@ -2,6 +2,7 @@ pkgs: with pkgs; [
   alacritty
   chezmoi
   fish
+  fish-lsp
   git
   helix
   kickoff
