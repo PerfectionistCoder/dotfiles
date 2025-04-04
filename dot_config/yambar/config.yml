@@ -42,7 +42,7 @@ bar:
         content:
           string: { text: "{date} {time}" }
         time-format: "%H:%M"
-        date-format: "%A %e %b"
+        date-format: "%A %-e %b"
 
   right:
     - pipewire:

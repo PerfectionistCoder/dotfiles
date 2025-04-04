@@ -4,7 +4,9 @@ riverctl spawn "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DIS
 
 riverctl default-attach-mode bottom
 riverctl background-color 0x000000
-riverctl border-width 0
+riverctl border-color-focused 0xffffff
+riverctl border-color-unfocused 0x000000
+riverctl border-width 1
 riverctl hide-cursor when-typing disabled
 riverctl set-cursor-warp on-focus-change
 riverctl set-repeat 25 400
