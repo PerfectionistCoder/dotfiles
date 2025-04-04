@@ -4,9 +4,8 @@ let
 in
 {
   bindMounts = {
-    pulse = {
+    ${socket} = {
       hostPath = "${env.XDG_RUNTIME_DIR}/pulse/native";
-      mountPoint = socket;
     };
   };
   config = {

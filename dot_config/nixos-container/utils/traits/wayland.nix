@@ -4,9 +4,8 @@ let
 in
 {
   bindMounts = {
-    wayland = {
+    ${socket} = {
       hostPath = "${env.XDG_RUNTIME_DIR}/${env.WAYLAND_DISPLAY}";
-      mountPoint = socket;
     };
   };
   config = {
