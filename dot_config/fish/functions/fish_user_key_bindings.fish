@@ -38,6 +38,9 @@ function fish_user_key_bindings
     b gh beginning-of-line
     b gl end-of-line
 
+    b u undo
+    b U redo
+
     b p fish_clipboard_paste
     b -m insert escape cancel repaint
 
@@ -55,12 +58,15 @@ function fish_user_key_bindings
     b "<" self-insert expand-abbr
     b ")" self-insert expand-abbr
 
-    b tab complete
-    b shift-tab complete-and-search
-    b ctrl-tab accept-autosuggestion
+    b ctrl-p history-prefix-search-backward
+    b ctrl-n history-prefix-search-forward
 
     b ctrl-u backward-kill-line
     b ctrl-k kill-line
+
+    b tab complete
+    b shift-tab complete-and-search
+    b ctrl-tab accept-autosuggestion
 
     functions -e b
 
