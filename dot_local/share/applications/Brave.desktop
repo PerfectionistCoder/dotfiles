@@ -2,3 +2,4 @@
 Type=Application
 Name=Brave
 Exec=start-container.fish brave brave %U
+MimeType=x-scheme-handler/unknown;x-scheme-handler/about;x-scheme-handler/https;x-scheme-handler/http;text/html;

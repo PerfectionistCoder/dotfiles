@@ -1,0 +1,7 @@
+
+[Default Applications]
+x-scheme-handler/https=Brave.desktop
+text/html=Brave.desktop
+x-scheme-handler/http=Brave.desktop
+x-scheme-handler/about=Brave.desktop
+x-scheme-handler/unknown=Brave.desktop
