@@ -1,0 +1,4 @@
+[Desktop Entry]
+Type=Application
+Name=Brave
+Exec=start-container.fish brave brave %U

@@ -1,3 +1,2 @@
-VSCodium = codium 
-Chromium = start-container chromium
-Brave = start-container brave
+Chromium = start-container.fish chromium chromium
+Brave = start-container.fish brave brave
