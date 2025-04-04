@@ -1,14 +1,14 @@
 [general]
-import = ["theme.toml"]
+import = ["theme.toml", "bindings.toml"]
 
 [env]
-SHELL = "fish"
 VISUAL = "hx"
 
 [window]
 decorations = "None"
 
 [scrolling]
+history = 100000
 multiplier = 0
 
 [font]
