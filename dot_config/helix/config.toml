@@ -6,6 +6,8 @@ middle-click-paste = false
 line-number = "relative"
 cursorline = true
 bufferline = "always"
+completion-timeout = 20
+completion-trigger-len = 1
 color-modes = true
 popup-border = "all"
 end-of-line-diagnostics = "hint"
@@ -13,16 +15,7 @@ end-of-line-diagnostics = "hint"
 [editor.statusline]
 left = ["mode", "spacer", "version-control", "spacer", "diagnostics"]
 center = ["file-name", "read-only-indicator"]
-right = [
-  "register",
-  "selections",
-  "position",
-  "spacer",
-  "position-percentage",
-  "spacer",
-  "separator",
-  "total-line-numbers",
-]
+right = ["register", "selections", "position", "file-type"]
 separator = "|"
 mode.normal = "NORMAL"
 mode.insert = "INSERT"

@@ -72,16 +72,16 @@
 
 "ui.statusline" = { fg = "subtext1", bg = "mantle" }
 "ui.statusline.inactive" = { fg = "surface2", bg = "mantle" }
-"ui.statusline.normal" = { fg = "base", bg = "rosewater", modifiers = ["bold"] }
+"ui.statusline.normal" = { fg = "base", bg = "text", modifiers = ["bold"] }
 "ui.statusline.insert" = { fg = "base", bg = "green", modifiers = ["bold"] }
 "ui.statusline.select" = { fg = "base", bg = "lavender", modifiers = ["bold"] }
 
-"ui.popup" = { fg = "text", bg = "surface0" }
+"ui.popup" = { fg = "text", bg = "base" }
 "ui.window" = { fg = "crust" }
-"ui.help" = { fg = "overlay2", bg = "surface0" }
+"ui.help" = { fg = "test", bg = "base" }
 
 "ui.bufferline" = { fg = "subtext0", bg = "mantle" }
-"ui.bufferline.active" = { fg = "mauve", bg = "base", underline = { color = "mauve", style = "line" } }
+"ui.bufferline.active" = { fg = "mauve", bg = "base", modifiers = ["bold"] }
 "ui.bufferline.background" = { bg = "crust" }
 
 "ui.text" = "text"
@@ -95,18 +95,18 @@
 "ui.virtual.inlay-hint" = { fg = "surface1", bg = "mantle" }
 "ui.virtual.jump-label" = { fg = "base", bg = "peach", modifiers = ["bold"] }
 
-"ui.selection" = { bg = "surface1" }
+"ui.selection" = { bg = "surface2" }
 
-"ui.cursor" = { fg = "base", bg = "overlay2" }
+"ui.cursor" = { fg = "base", bg = "flamingo" }
 "ui.cursor.primary" = { fg = "base", bg = "rosewater" }
 "ui.cursor.match" = { modifiers = ["bold", "reversed"] }
 
-"ui.cursorline.primary" = {}
+"ui.cursorline.primary" = { bg = "surface0" }
 
 "ui.highlight" = { bg = "surface1", modifiers = ["bold"] }
 
-"ui.menu" = { fg = "overlay2", bg = "surface0" }
-"ui.menu.selected" = { fg = "text", bg = "surface1", modifiers = ["bold"] }
+"ui.menu" = { fg = "overlay2", bg = "mantle" }
+"ui.menu.selected" = { fg = "text", modifiers = ["bold", "reversed"] }
 
 "diagnostic.error" = { underline = { color = "red", style = "curl" } }
 "diagnostic.warning" = { underline = { color = "yellow", style = "curl" } }
