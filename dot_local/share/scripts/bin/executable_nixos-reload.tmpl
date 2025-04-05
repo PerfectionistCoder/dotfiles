@@ -1,9 +1,8 @@
-#!/usr/bin/env bash
+#!/usr/bin/env fish
 
-bin=/run/current-system/sw/bin/
+test (count $argv) -eq 0; and exit 1
 
-subcommand=${1:-test}
-shift
+set -l command $argv[1]
+set -l hostname (uname -n)
 
-host_name=$(${bin}uname -n)
-sudo ${bin}nixos-rebuild $subcommand --flake $HOME/{{.dirs.nixos_config}}/#$host_name --impure $*
+sudo nixos-rebuild $command --flake $HOME"/{{.dirs.nixos_config}}/"#$hostname --impure $argv[2..]
