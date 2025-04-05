@@ -16,9 +16,9 @@ function fish_prompt
     echo ''
     echo (string join '' -- $pad (set_color cyan -o) $pwd)
 
-    set -f pointer (string join '' (set_color green -o) '> ')
+    set -f pointer (string join '' (set_color green -o) '▶ ')
     if test $last_status -ne 0
-        set pointer (string join '' (set_color red -o) '> ')
+        set pointer (string join '' (set_color red -o) '▶ ')
     end
     echo -n (string join '' --  $pad $mode ' ' $pointer (set_color normal))
 end
