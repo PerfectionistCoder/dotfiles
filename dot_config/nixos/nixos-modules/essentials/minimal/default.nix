@@ -1,15 +1,4 @@
-{ lib, ... }:
-let
-  inherit (lib) mkDefault;
-in
+{ modulesPath, ... }:
 {
-  environment = {
-    defaultPackages = mkDefault [ ];
-    stub-ld.enable = mkDefault false;
-  };
-
-  programs = {
-    less.lessopen = mkDefault null;
-    command-not-found.enable = mkDefault false;
-  };
+  imports = [ "${modulesPath}/profiles/minimal.nix" ];
 }

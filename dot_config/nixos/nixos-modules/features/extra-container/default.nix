@@ -1,5 +1,6 @@
-{ pkgs, ... }:
+{ ... }:
 {
+  boot.enableContainers = true;
   programs.extra-container.enable = true;
 
   networking.nat = {

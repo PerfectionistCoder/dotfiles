@@ -28,4 +28,9 @@ in
   ];
 
   boot.loader.timeout = 1;
+
+  documentation = {
+    enable = true;
+    man.enable = true;
+  };
 }
