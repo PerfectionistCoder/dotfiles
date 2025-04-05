@@ -3,12 +3,6 @@
 set -l name $argv[1]
 set -l args $argv[2..]
 
-set -l container_dir $HOME"/{{.dirs.container_mount}}/"$name
-
-if test ! -d $container_dir
-    mkdir -p $container_dir
-end
-
 nixos-container start $name
 
 machinectl shell container@$name /usr/bin/env bash --login -c "$args"

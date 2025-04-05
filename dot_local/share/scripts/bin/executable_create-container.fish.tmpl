@@ -1,0 +1,15 @@
+#!/usr/bin/env fish
+
+argparse r/restart -- $argv
+set -l name $argv[1]
+
+set -l container_dir $HOME"/{{.dirs.container_mount}}/"$name
+
+if test ! -d $container_dir
+    mkdir -p $container_dir
+end
+
+extra-container create $HOME"/{{.dirs.container_config}}/"$name
+if set -ql _flag_r
+    nixos-container restart $name
+end
