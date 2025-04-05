@@ -1,2 +1,2 @@
-Chromium = start-container.fish chromium chromium
-Brave = start-container.fish brave brave
+Chromium = start-container chromium chromium
+Brave = start-container brave brave

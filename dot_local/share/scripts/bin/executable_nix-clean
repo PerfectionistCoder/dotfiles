@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
+#!/usr/bin/env fish
 
-/run/current-system/sw/bin/nix-collect-garbage ${*:--d}
+nix-collect-garbage -d
 
-if [[ "$EUID" -eq 0 ]]; then
-  /run/current-system/bin/switch-to-configuration boot
-fi
+if test $EUID -eq 0
+    /run/current-system/bin/switch-to-configuration boot
+end
