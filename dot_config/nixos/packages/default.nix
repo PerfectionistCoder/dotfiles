@@ -11,7 +11,6 @@ pkgs: with pkgs; [
   nurl
   shfmt
   taplo
-  vscodium
   wl-clipboard-rs
   yambar
   yazi
