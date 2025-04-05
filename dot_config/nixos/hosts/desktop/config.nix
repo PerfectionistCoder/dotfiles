@@ -17,6 +17,7 @@ in
   services.getty.autologinUser = username;
 
   features = {
+    fish.enable = true;
     extra-container.enable = true;
     minimal-bash.enable = true;
     resolved.enable = true;
