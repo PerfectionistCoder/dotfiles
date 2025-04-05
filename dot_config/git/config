@@ -5,8 +5,12 @@ defaultBranch = main
 rebase = false
 
 [alias]
+st = status
 co = checkout
-cm = "!f() { git commit -m \"$*\"; }; f"
-cm-rename = "!f() { git commit --amend -m \"$*\"; }; f"
+cm = commit -m
+cm-rename = commit --amend
 cm-add = commit --amend --no-edit
-undo = reset HEAD~1 --mixed
+a = add .
+rs = reset
+ucm = reset HEAD~1 --mixed
+lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
