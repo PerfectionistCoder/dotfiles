@@ -51,12 +51,10 @@ mkContainer {
         { pkgs, ... }:
         {
           environment.systemPackages = [
-            pkgs.brave
+            (pkgs.brave.override {
+              commandLineArgs = "--ozone-platform=wayland --force-dark-mode";
+            })
           ];
         };
     };
-
-  entrypoint = ''
-    brave --ozone-platform=wayland --force-dark-mode
-  '';
 }

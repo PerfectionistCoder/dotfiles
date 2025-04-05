@@ -51,12 +51,10 @@ mkContainer {
         { pkgs, ... }:
         {
           environment.systemPackages = [
-            pkgs.ungoogled-chromium
+            (pkgs.ungoogled-chromium.override {
+              commandLineArgs = "--ozone-platform=wayland --force-dark-mode --extension-mime-request-handling=always-prompt-for-install";
+            })
           ];
         };
     };
-
-  entrypoint = ''
-    chromium --ozone-platform=wayland --force-dark-mode --extension-mime-request-handling=always-prompt-for-install
-  '';
 }
