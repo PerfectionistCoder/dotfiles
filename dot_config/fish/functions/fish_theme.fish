@@ -30,8 +30,8 @@ function fish_theme
     set -gx fish_color_command $blue
     set -gx fish_color_keyword $mauve
     set -gx fish_color_quote $green
-    set -gx fish_color_rediretor $sky
-    set -gx fish_color_end $overlay2
+    set -gx fish_color_redirection $sky
+    set -gx fish_color_end
     set -gx fish_color_error $red
     set -gx fish_color_param
     set -gx fish_color_valid_path $teal
