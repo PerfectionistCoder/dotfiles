@@ -12,6 +12,7 @@ cm-add = commit --amend --no-edit
 cm-rename = commit --amend
 co = checkout
 lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-rs = reset
 st = status
-ucm = reset HEAD~1 --mixed
+
+undo = reset HEAD~1 --mixed
+unstage = restore --staged
