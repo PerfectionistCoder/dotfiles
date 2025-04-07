@@ -152,7 +152,8 @@ else
 
             set -l backup_flag
             if test -n "$backup_dir"; and not rclone check $decrypt_dir $target &>/dev/null
-                set backup_flag --backup-dir (path normalize $backup_dir/(date +%-d-%b-%Y_%H.%M.%S))
+                set -l name (date +%Y-%m-%d_%H.%M.%S)
+                set backup_flag --backup-dir (path normalize $backup_dir/$name)
             end
             rclone sync $decrypt_dir $target $backup_flag
     end
