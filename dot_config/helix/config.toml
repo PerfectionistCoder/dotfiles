@@ -21,10 +21,6 @@ mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"
 
-[editor.cursor-shape]
-insert = "bar"
-select = "underline"
-
 [editor.file-picker]
 hidden = false
 

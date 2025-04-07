@@ -74,7 +74,7 @@
 "ui.statusline.inactive" = { fg = "surface2", bg = "mantle" }
 "ui.statusline.normal" = { fg = "base", bg = "text", modifiers = ["bold"] }
 "ui.statusline.insert" = { fg = "base", bg = "green", modifiers = ["bold"] }
-"ui.statusline.select" = { fg = "base", bg = "lavender", modifiers = ["bold"] }
+"ui.statusline.select" = { fg = "base", bg = "blue", modifiers = ["bold"] }
 
 "ui.popup" = { fg = "text", bg = "base" }
 "ui.window" = { fg = "crust" }
@@ -97,9 +97,13 @@
 
 "ui.selection" = { bg = "surface2" }
 
-"ui.cursor" = { fg = "base", bg = "flamingo" }
-"ui.cursor.primary" = { fg = "base", bg = "rosewater" }
-"ui.cursor.match" = { modifiers = ["bold", "reversed"] }
+"ui.cursor.normal" = { fg = "base", bg = "pink" }
+"ui.cursor.insert" = { fg = "base", bg = "teal" }
+"ui.cursor.select" = { fg = "base", bg = "sapphire" }
+"ui.cursor.match" = { fg = "base", bg = "peach", modifiers = ["bold"] }
+"ui.cursor.primary.normal" = { fg = "base", bg = "rosewater" }
+"ui.cursor.primary.insert" = { fg = "base", bg = "green" }
+"ui.cursor.primary.select" = { fg = "base", bg = "blue" }
 
 "ui.cursorline.primary" = { bg = "surface0" }
 
