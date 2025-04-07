@@ -9,6 +9,7 @@ pkgs: with pkgs; [
   nil
   nixfmt-rfc-style
   nurl
+  rclone
   shfmt
   taplo
   wl-clipboard-rs
