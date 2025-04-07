@@ -10,8 +10,8 @@ pkgs: with pkgs; [
   nixfmt-rfc-style
   nurl
   rclone
-  shfmt
   taplo
+  vanilla-dmz
   wl-clipboard-rs
   yambar
   yazi
