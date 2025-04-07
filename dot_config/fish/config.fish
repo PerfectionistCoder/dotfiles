@@ -5,3 +5,5 @@ set fish_cursor_insert line
 fish_theme
 
 set fish_greeting
+
+zoxide init fish | source

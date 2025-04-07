@@ -15,4 +15,5 @@ pkgs: with pkgs; [
   wl-clipboard-rs
   yambar
   yazi
+  zoxide
 ]
