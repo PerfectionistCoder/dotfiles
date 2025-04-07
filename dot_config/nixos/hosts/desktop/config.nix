@@ -17,9 +17,13 @@ in
   services.getty.autologinUser = username;
 
   features = {
-    fish.enable = true;
     extra-container.enable = true;
+    fish.enable = true;
+    fonts.enable = true;
+    graphics.enable = true;
     minimal-bash.enable = true;
+    minimal.enable = true;
+    pipewire.enable = true;
     resolved.enable = true;
     river.enable = true;
   };
