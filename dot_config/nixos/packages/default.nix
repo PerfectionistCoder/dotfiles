@@ -9,9 +9,9 @@ pkgs: with pkgs; [
   nil
   nixfmt-rfc-style
   nurl
+  quintom-cursor-theme
   rclone
   taplo
-  vanilla-dmz
   wl-clipboard-rs
   yambar
   yazi

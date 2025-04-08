@@ -4,10 +4,13 @@
   var,
   ...
 }:
+let
+  inherit (lib) bindMountSuffix;
+in
 {
-  bindMounts = lib.bindMountSuffix {
+  bindMounts = bindMountSuffix {
     hostPath = "${env.HOME}/.nix-profile";
     mountPath = "${var.home}/.local";
-    suffix = "share";
+    suffix = "share/icons";
   };
 }
