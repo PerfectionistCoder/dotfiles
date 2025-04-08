@@ -28,6 +28,7 @@
           pkgs = import nixpkgs {
             inherit system;
             overlays = import ./overlays;
+            config.allowUnfreePredicate = pkg: (import ./unfree lib pkg);
           };
         in
         listToAttrs (
