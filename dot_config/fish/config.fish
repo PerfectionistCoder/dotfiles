@@ -6,4 +6,11 @@ fish_theme
 
 set fish_greeting
 
+function nix-shell
+    command nix-shell $argv --command fish
+end
+function nix
+    command nix $argv --command fish
+end
+
 zoxide init fish | source
