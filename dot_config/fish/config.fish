@@ -10,7 +10,11 @@ function nix-shell
     command nix-shell $argv --command fish
 end
 function nix
-    command nix $argv --command fish
+    if test $argv[1] = develop
+        command nix $argv --command fish
+    else
+        command nix $argv
+    end
 end
 
 zoxide init fish | source
