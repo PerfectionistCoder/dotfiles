@@ -2,16 +2,11 @@ pkgs: with pkgs; [
   alacritty
   chezmoi
   fish
-  fish-lsp
   git
   helix
   kickoff
-  nil
-  nixfmt-rfc-style
-  nurl
   quintom-cursor-theme
   rclone
-  taplo
   wl-clipboard-rs
   yambar
   yazi
