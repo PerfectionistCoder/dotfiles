@@ -27,8 +27,8 @@ function fish_user_key_bindings
 
     b h backward-char-passive
     b l forward-char-passive
-    b k history-prefix-search-backward
-    b j history-prefix-search-forward
+    b k up-line
+    b j down-line
 
     b w forward-word
     b W forward-bigword
@@ -67,8 +67,6 @@ function fish_user_key_bindings
     b tab complete
     b shift-tab complete-and-search
     b ctrl-tab accept-autosuggestion
-
-    functions -e b
 
     commandline -f repaint-mode
 end

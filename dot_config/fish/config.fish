@@ -9,5 +9,13 @@ set fish_greeting
 function nix-shell
     command nix-shell $argv --command fish
 end
+function nix
+    switch $argv[1]
+        case develop
+            command nix $argv --command fish
+        case '*'
+            command nix $argv
+    end
+end
 
 zoxide init fish | source
