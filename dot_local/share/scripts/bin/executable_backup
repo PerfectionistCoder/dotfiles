@@ -8,7 +8,7 @@ end
 set tmp_dir /tmp/rclone/$fish_pid
 set config_path $HOME/.config/rclone/backup.fish
 
-argparse h/help 'r/remote=?' 'c/crypt=?' 't/target=?' 'b/backup=?' 's/skip=?' -- $argv
+argparse h/help 'r/remote=' 'c/crypt=' 't/target=' 'b/backup=' 's/skip=' -- $argv
 or return
 
 function usage
@@ -22,12 +22,12 @@ function usage
     echo
     echo "Options:"
     echo "  -h, --help                   Show this help message"
-    echo "  -rREMOTE, --remote=REMOTE    Remote storage location (e.g., 'remote:')"
-    echo "  -cCRYPT, --crypt=CRYPT       Encrypted remote location (must point to local '/')"
-    echo "  -tTARGET, --target=TARGET    Local directory to download remote"
-    echo "  -bBACKUP, --backup=BACKUP    Local directory to backup before downloading from remote"
+    echo "  -r REMOTE, --remote REMOTE   Remote storage location (e.g., 'remote:')"
+    echo "  -c CRYPT, --crypt CRYPT      Encrypted remote location (must point to local '/')"
+    echo "  -t TARGET, --target TARGET   Local directory to download remote"
+    echo "  -b BACKUP, --backup BACKUP   Local directory to backup before downloading from remote"
     echo "                               Backup will not be performed if this option is empty"
-    echo "  -sPATTERN, --skip=PATTERN    Files to exclude from encryption (default: '[!]')"
+    echo "  -s PATTERN, --skip PATTERN   Files to exclude from encryption (default: '[!]')"
     echo
     echo "Environment variables (alternative to options):"
     echo "  BACKUP_REMOTE          Same as --remote"
@@ -94,12 +94,12 @@ else
         set -l remote $argv[1]
         if string match -q '*:' $remote
             if not rclone about $remote &>/dev/null
-                echo "error: remote $remote does not exist"
+                echo "error: remote '$remote' does not exist"
                 exit 1
             end
         else
             echo "error: remote should end with a ':'"
-            echo "use $remote':' to refer to your remote"
+            echo "use '$remote:' to refer to your remote"
             exit 1
         end
     end
@@ -133,28 +133,28 @@ else
         command mkdir -p -m 700 $argv
     end
     mkdir $tmp_dir
-    switch $command
-        case push
-            echo "info: encrypting"
-            rclone copy $target $crypt_remote$tmp_dir --exclude $skip
-            rclone copy $target $tmp_dir --include $skip
-            echo "info: uploading"
-            rclone sync $tmp_dir $backup_remote
-        case pull
-            set -l decrypt_dir $tmp_dir'd'
-            mkdir $decrypt_dir
+    # switch $command
+    #     case push
+    #         echo "info: encrypting"
+    #         rclone copy $target $crypt_remote$tmp_dir --exclude $skip
+    #         rclone copy $target $tmp_dir --include $skip
+    #         echo "info: uploading"
+    #         rclone sync $tmp_dir $backup_remote
+    #     case pull
+    #         set -l decrypt_dir $tmp_dir'd'
+    #         mkdir $decrypt_dir
 
-            echo "info: downloading"
-            rclone copy $backup_remote $tmp_dir --exclude $skip
-            rclone copy $backup_remote $decrypt_dir --include $skip
-            echo "info: decrypting"
-            rclone copy $crypt_remote$tmp_dir $decrypt_dir
+    #         echo "info: downloading"
+    #         rclone copy $backup_remote $tmp_dir --exclude $skip
+    #         rclone copy $backup_remote $decrypt_dir --include $skip
+    #         echo "info: decrypting"
+    #         rclone copy $crypt_remote$tmp_dir $decrypt_dir
 
-            set -l backup_flag
-            if test -n "$backup_dir"; and not rclone check $decrypt_dir $target &>/dev/null
-                set -l name (date +%Y-%m-%d_%H.%M.%S)
-                set backup_flag --backup-dir (path normalize $backup_dir/$name)
-            end
-            rclone sync $decrypt_dir $target $backup_flag
-    end
+    #         set -l backup_flag
+    #         if test -n "$backup_dir"; and not rclone check $decrypt_dir $target &>/dev/null
+    #             set -l name (date +%Y-%m-%d_%H.%M.%S)
+    #             set backup_flag --backup-dir (path normalize $backup_dir/$name)
+    #         end
+    #         rclone sync $decrypt_dir $target $backup_flag
+    # end
 end
