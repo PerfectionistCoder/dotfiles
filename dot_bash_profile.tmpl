@@ -1,0 +1,6 @@
+export PATH="$HOME/{{.dirs.script}}/bin:$PATH"
+export XDG_DATA_DIRS="$HOME/.local/share:$XDG_DATA_DIRS"
+
+if [[ $(tty) == /dev/tty1 ]]; then
+  river
+fi

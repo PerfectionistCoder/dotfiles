@@ -1,0 +1,6 @@
+#!/usr/bin/env fish
+
+set -l name $argv[1]
+
+nixos-container start $name
+machinectl shell container@$name /usr/bin/env bash --login -c "$argv[2..]"

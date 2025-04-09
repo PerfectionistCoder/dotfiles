@@ -1,0 +1,160 @@
+#!/usr/bin/env fish
+
+if not command -q rclone
+    echo "error: 'rclone' is not found in \$PATH"
+    exit 1
+end
+
+set tmp_dir /tmp/rclone/$fish_pid
+set config_path $HOME/.config/rclone/backup.fish
+
+argparse h/help 'r/remote=?' 'c/crypt=?' 't/target=?' 'b/backup=?' 's/skip=?' -- $argv
+or return
+
+function usage
+    echo "Usage: "(status basename)" [OPTIONS] COMMAND"
+    echo
+    echo "A script for encrypted backup synchronization using rclone"
+    echo
+    echo "Commands:"
+    echo "  push    Sync local files to remote"
+    echo "  pull    Sync remote files to local"
+    echo
+    echo "Options:"
+    echo "  -h, --help                   Show this help message"
+    echo "  -rREMOTE, --remote=REMOTE    Remote storage location (e.g., 'remote:')"
+    echo "  -cCRYPT, --crypt=CRYPT       Encrypted remote location (must point to local '/')"
+    echo "  -tTARGET, --target=TARGET    Local directory to download remote"
+    echo "  -bBACKUP, --backup=BACKUP    Local directory to backup before downloading from remote"
+    echo "                               Backup will not be performed if this option is empty"
+    echo "  -sPATTERN, --skip=PATTERN    Files to exclude from encryption (default: '[!]')"
+    echo
+    echo "Environment variables (alternative to options):"
+    echo "  BACKUP_REMOTE          Same as --remote"
+    echo "  BACKUP_CRYPT           Same as --crypt"
+    echo "  BACKUP_TARGET          Same as --target"
+    echo "  BACKUP_BACKUP          Same as --backup"
+    echo "  BACKUP_SKIP            Same as --skip"
+end
+
+if set -ql _flag_h
+    usage
+    exit 0
+end
+
+if test (count $argv) -gt 1
+    usage
+    exit 1
+end
+
+set command $argv[1]
+set commands push pull
+
+if test -z "$command"
+    echo "error: command not set"
+    exit 1
+else if not contains $command $commands
+    echo "error: invalid command"
+    exit 1
+else
+    source $config_path
+
+    function option_set
+        if test -n "$argv[1]"; or test -n "$argv[2]"
+            return 0
+        end
+        return 1
+    end
+
+    function option_usage -a name option env
+        echo "error: $name not set"
+        echo "specify with option -$option or \$$env"
+        exit 1
+    end
+
+    if not option_set $_flag_r $BACKUP_REMOTE
+        option_usage remote r BACKUP_REMOTE
+    end
+
+    if not option_set $_flag_c $BACKUP_CRYPT
+        option_usage crypt c BACKUP_CRYPT
+    end
+
+    if not option_set $_flag_t $BACKUP_TARGET
+        option_usage target t BACKUP_TARGET
+    end
+
+    set -l backup_remote (echo $_flag_r | default $BACKUP_REMOTE)
+    set -l crypt_remote (echo $_flag_c | default $BACKUP_CRYPT)
+    set -l target (echo $_flag_t | default $BACKUP_TARGET)
+    set -l skip (echo $_flag_s | default $BACKUP_SKIP | default '[!]')
+    set -l backup_dir (echo $_flag_b | default $BACKUP_BACKUP)
+
+    function validate_remote
+        set -l remote $argv[1]
+        if string match -q '*:' $remote
+            if not rclone about $remote &>/dev/null
+                echo "error: remote $remote does not exist"
+                exit 1
+            end
+        else
+            echo "error: remote should end with a ':'"
+            echo "use $remote':' to refer to your remote"
+            exit 1
+        end
+    end
+
+    if string match -q '*/*' $backup_remote
+        mkdir -p $backup_remote
+    else
+        validate_remote $backup_remote
+    end
+
+    validate_remote $crypt_remote
+    set -l crypt_config (rclone config show $crypt_remote)
+    if string match -q "* type = crypt *" $crypt_config
+        echo "error: crypt's remote type should be 'crypt'"
+        exit 1
+    end
+    if string match -q "* remote = / *" $crypt_config
+        echo "error: crypt's remote should point to local root '/'"
+        exit 1
+    end
+    if string match -q "* directory_name_encryption = false *" $crypt_config
+        echo "error: crypt's remote should have direction name encryption disabled"
+        exit 1
+    end
+
+    if not test -d $target
+        mkdir -p $target
+    end
+
+    function mkdir
+        command mkdir -p -m 700 $argv
+    end
+    mkdir $tmp_dir
+    switch $command
+        case push
+            echo "info: encrypting"
+            rclone copy $target $crypt_remote$tmp_dir --exclude $skip
+            rclone copy $target $tmp_dir --include $skip
+            echo "info: uploading"
+            rclone sync $tmp_dir $backup_remote
+        case pull
+            set -l decrypt_dir $tmp_dir'd'
+            mkdir $decrypt_dir
+
+            echo "info: downloading"
+            rclone copy $backup_remote $tmp_dir --exclude $skip
+            rclone copy $backup_remote $decrypt_dir --include $skip
+            echo "info: decrypting"
+            rclone copy $crypt_remote$tmp_dir $decrypt_dir
+
+            set -l backup_flag
+            if test -n "$backup_dir"; and not rclone check $decrypt_dir $target &>/dev/null
+                set -l name (date +%Y-%m-%d_%H.%M.%S)
+                set backup_flag --backup-dir (path normalize $backup_dir/$name)
+            end
+            rclone sync $decrypt_dir $target $backup_flag
+    end
+end

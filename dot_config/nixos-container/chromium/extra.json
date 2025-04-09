@@ -1,0 +1,41 @@
+{
+  "BackgroundModeEnabled": false,
+  "BlockThirdPartyCookies": false,
+  "ClearBrowsingDataOnExitList": [
+    "browsing_history",
+    "download_history",
+    "cached_images_and_files",
+    "password_signin",
+    "autofill",
+    "hosted_app_data"
+  ],
+  "DefaultGeolocationSetting": 2,
+  "DefaultNotificationsSetting": 2,
+  "DnsOverHttpsMode": "secure",
+  "DnsOverHttpsTemplates": "https://base.dns.mullvad.net/dns-query",
+  "ExtensionSettings": {
+    "*": {
+      "installation_mode": "blocked"
+    },
+    "ailoabdmgclmfmhdagmlohpjlbpffblp": {
+      "installation_mode": "allowed",
+      "runtime_blocked_hosts": ["*://*"],
+      "runtime_allowed_hosts": ["https://*.surfshark.com"],
+      "toolbar_pin": "force_pinned"
+    },
+    "ocaahdebbfolfmndjeplogmgcagdmblk": {
+      "installation_mode": "allowed"
+    }
+  },
+  "HttpsOnlyMode": "force_enabled",
+  "ManagedBookmarks": [
+    {
+      "name": "Chromium web extension",
+      "url": "https://github.com/NeverDecaf/chromium-web-store"
+    },
+    {
+      "name": "Site data settings",
+      "url": "chrome://settings/content/siteData"
+    }
+  ]
+}

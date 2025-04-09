@@ -1,0 +1,21 @@
+[general]
+import = ["theme.toml", "bindings.toml"]
+
+[env]
+VISUAL = "hx"
+
+[window]
+decorations = "None"
+
+[scrolling]
+history = 100000
+multiplier = 0
+
+[font]
+size = 14
+
+[cursor]
+unfocused_hollow = false
+
+[terminal]
+shell = "fish"

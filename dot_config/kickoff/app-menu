@@ -1,0 +1,2 @@
+Chromium = run-container-program chromium chromium
+Brave = run-container-program brave brave

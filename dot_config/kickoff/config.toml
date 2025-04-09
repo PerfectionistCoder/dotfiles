@@ -1,0 +1,26 @@
+prompt = ">"
+
+padding = 160
+
+fonts = ["Monospace"]
+font_size = 32.0
+
+[history]
+decrease_interval = 48
+
+[colors]
+background = "#000"
+prompt = "#fff"
+text = "#ffffffa0"
+text_query = "#fff"
+text_selected = "#fff"
+
+[keybindings]
+paste = ["ctrl+v"]
+execute = ["Return"]
+delete = ["BackSpace"]
+delete_word = ["alt+BackSpace"]
+complete = ["Tab"]
+nav_up = ["Up"]
+nav_down = ["Down"]
+exit = ["Escape"]

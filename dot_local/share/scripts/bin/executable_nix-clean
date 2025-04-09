@@ -1,0 +1,7 @@
+#!/usr/bin/env fish
+
+nix-collect-garbage -d
+
+if test $EUID -eq 0
+    /run/current-system/bin/switch-to-configuration boot
+end

@@ -1,0 +1,28 @@
+{
+  "BackgroundModeEnabled": false,
+  "BraveAIChatEnabled": false,
+  "BraveRewardsDisabled": true,
+  "BraveVPNDisabled": true,
+  "BraveWalletDisabled": true,
+  "ClearBrowsingDataOnExitList": [
+    "browsing_history",
+    "download_history",
+    "cookies_and_other_site_data",
+    "cached_images_and_files",
+    "password_signin",
+    "autofill",
+    "site_settings",
+    "hosted_app_data"
+  ],
+  "DefaultGeolocationSetting": 2,
+  "DefaultNotificationsSetting": 2,
+  "DnsOverHttpsMode": "secure",
+  "DnsOverHttpsTemplates": "https://dns.mullvad.net/dns-query",
+  "ExtensionSettings": {
+    "*": {
+      "installation_mode": "blocked"
+    }
+  },
+  "HttpsOnlyMode": "force_enabled",
+  "TorDisabled": true
+}

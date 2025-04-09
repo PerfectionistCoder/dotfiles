@@ -1,0 +1,87 @@
+font-text: &font-text "Monospace:pixelsize=12:weight=bold"
+font-icon1: &font-icon1 "Monospace:pixelsize=14"
+font-icon2: &font-icon2 "Monospace:pixelsize=16"
+
+color-base: &color-base "000000ff"
+color-text: &color-text "ffffffff"
+color-active: &color-active "ffffffff"
+color-inactive: &color-inactive "ffffffa0"
+
+margin: &margin 8
+
+bar:
+  height: 20
+  location: top
+  background: *color-base
+  font: *font-text
+  foreground: *color-text
+
+  left:
+    - river:
+        anchors:
+          0: &tag { text: "{id}", margin: 10 }
+        title: { string: { text: "  {mode}", margin: *margin } }
+        content:
+          map:
+            conditions:
+              id <= 5:
+                map:
+                  default:
+                    string: { foreground: *color-inactive, <<: *tag }
+                  conditions:
+                    focused:
+                      string:
+                        foreground: *color-base
+                        deco: { background: { color: *color-active } }
+                        <<: *tag
+                    occupied:
+                      string: { <<: *tag }
+
+  center:
+    - clock:
+        content:
+          string: { text: "{date} {time}" }
+        time-format: "%H:%M"
+        date-format: "%A %-e %b"
+
+  right:
+    - pipewire:
+        content:
+          map:
+            margin: *margin
+            conditions:
+              type == "sink":
+                map:
+                  conditions:
+                    muted:
+                      - string: { text: "󰝟 ", font: *font-icon2 }
+                      - string:
+                          {
+                            text: "{cubic_volume}%",
+                            foreground: *color-inactive,
+                          }
+                    ~muted:
+                      - string: { text: "󰕾 ", font: *font-icon2 }
+                      - string: { text: "{cubic_volume}%" }
+    - network:
+        poll-interval: 3000
+        content:
+          map:
+            margin: *margin
+            conditions:
+              name == "wlan0":
+                map:
+                  default:
+                    - string: { text: "󰤮 ", font: *font-icon1 }
+                    - string: { text: "Disconnected" }
+                  conditions:
+                    quality > 0 && ssid != "":
+                      - ramp:
+                          tag: quality
+                          items:
+                            - string: { text: "󰤯 ", font: *font-icon1 }
+                            - string: { text: "󰤟 ", font: *font-icon1 }
+                            - string: { text: "󰤢 ", font: *font-icon1 }
+                            - string: { text: "󰤥 ", font: *font-icon1 }
+                            - string: { text: "󰤨 ", font: *font-icon1 }
+                      - string: { text: "{ssid}" }

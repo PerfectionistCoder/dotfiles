@@ -1,0 +1,18 @@
+[init]
+defaultBranch = main
+
+[pull]
+rebase = false
+
+[alias]
+a = add
+aa = add .
+cm = commit -m
+cm-add = commit --amend --no-edit
+cm-rename = commit --amend
+co = checkout
+lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+st = status
+
+undo = reset HEAD~1 --mixed
+unstage = restore --staged
