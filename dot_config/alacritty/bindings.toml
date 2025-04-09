@@ -1,17 +1,15 @@
 [keyboard]
 bindings = [
   { key = "Space", mods = "Shift|Control", action = "ReceiveChar" },
-  { key = "C", mods = "Shift|Control", action = "ReceiveChar" },
-  { key = "V", mods = "Shift|Control", action = "ReceiveChar" },
   { key = "B", mods = "Shift|Control", action = "ReceiveChar" },
   { key = "L", mods = "Control", action = "ReceiveChar" },
-  { key = "ArrowUp", action = "ReceiveChar" },
-  { key = "ArrowDown", action = "ReceiveChar" },
   { key = "PageUp", mods = "Shift", mode = "~Alt", action = "ReceiveChar" },
   { key = "PageDown", mods = "Shift", mode = "~Alt", action = "ReceiveChar" },
   { key = "Home", mods = "Shift", mode = "~Alt", action = "ReceiveChar" },
   { key = "End", mods = "Shift", mode = "~Alt", action = "ReceiveChar" },
 
+  { key = "ArrowUp", mode = "~Alt", action = "ScrollLineUp" },
+  { key = "ArrowDown", mode = "~Alt", action = "ScrollLineDown" },
   { key = "PageUp", mode = "~Alt", action = "ScrollPageUp" },
   { key = "PageDown", mode = "~Alt", action = "ScrollPageDown" },
   { key = "Home", mode = "~Alt", action = "ScrollToTop" },
