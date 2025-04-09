@@ -1,0 +1,12 @@
+#!/usr/bin/env fish
+
+set -l config_dir "{{.dirs.nixos_config}}"
+set -l command $argv[1]
+
+switch $command
+    case install
+        nix profile install "$config_dir#"
+        nix profile install "$config_dir#"(string replace nixos- '' $hostname)
+    case upgrade
+        nix profile upgrade --all
+end
