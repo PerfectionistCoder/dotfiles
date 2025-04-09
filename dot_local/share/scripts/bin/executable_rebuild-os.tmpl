@@ -1,24 +1,5 @@
 #!/usr/bin/env fish
 
-function usage
-    echo "Usage: "(status basename)" COMMAND [OPTIONS]"
-    echo
-    echo "Rebuild NixOS configuration for the current host."
-    echo
-    echo "Commands:"
-    echo "  switch      Switch to the new configuration"
-    echo "  boot        Make configuration available for next boot"
-    echo "  test        Test configuration but don't activate it"
-    echo "  build       Build configuration but don't make it available"
-    echo
-    echo "Any additional options are passed directly to nixos-rebuild."
-end
-
-if test (count $argv) -eq 0
-    usage
-    exit 1
-end
-
 set -l command $argv[1]
 set -l name (string replace nixos- '' $hostname)
 

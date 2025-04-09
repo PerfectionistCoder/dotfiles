@@ -1,34 +1,19 @@
 #!/usr/bin/env fish
 
-argparse r/restart -- $argv
+argparse r/restart s/start -- $argv
 or return
 
-function usage
-    echo "Usage: "(status basename)" [options] <container_name>"
-    echo
-    echo "Creates a NixOS container configuration"
-    echo
-    echo "Arguments:"
-    echo "  <container_name>    The name of the NixOS container to create."
-    echo
-    echo "Options:"
-    echo "  -r, --restart       Restart the container after creating the configuration."
-    echo
-end
-
-if test (count $argv) -eq 0
-    usage
-    exit 1
-end
-
 set -l name $argv[1]
-set -l container_dir "$HOME/{{.dirs.container_mount}}/$name"
+if extra-container create "$HOME/{{.dirs.container_config}}/$name"
+    set -l container_dir "$HOME/{{.dirs.container_mount}}/$name"
+    if test ! -d $container_dir
+        mkdir -p $container_dir
+    end
 
-if test ! -d $container_dir
-    mkdir -p $container_dir
-end
-
-extra-container create "$HOME/{{.dirs.container_config}}/$name"
-if set -ql _flag_r
-    nixos-container restart $name
+    if set -ql _flag_s
+        nixos-container start $name
+    end
+    if set -ql _flag_r
+        nixos-container restart $name
+    end
 end
