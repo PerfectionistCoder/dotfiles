@@ -6,6 +6,8 @@ fish_theme
 
 set fish_greeting
 
+zoxide init fish | source
+
 function nix-shell
     command nix-shell $argv --command fish
 end
@@ -18,4 +20,10 @@ function nix
     end
 end
 
-zoxide init fish | source
+function on_pwd_change -v PWD
+    if test -f $PWD/flake.nix; and test -f $PWD/flake.lock
+        nix develop
+    else if test -f $PWD/shell.nix
+        nix-shell
+    end
+end
