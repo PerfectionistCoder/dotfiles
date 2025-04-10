@@ -92,12 +92,12 @@
 "ui.virtual" = "overlay0"
 "ui.virtual.ruler" = { bg = "surface0" }
 "ui.virtual.indent-guide" = "surface0"
-"ui.virtual.inlay-hint" = { fg = "surface1", bg = "mantle" }
-"ui.virtual.jump-label" = { fg = "base", bg = "peach", modifiers = ["bold"] }
+"ui.virtual.inlay-hint" = { fg = "overlay1", modifiers = ["italic"] }
+"ui.virtual.jump-label" = { fg = "peach", modifiers = ["bold", "italic"] }
 
 "ui.selection" = { bg = "surface2" }
 
-"ui.cursor.normal" = { fg = "base", bg = "pink" }
+"ui.cursor.normal" = { fg = "base", bg = "flamingo" }
 "ui.cursor.insert" = { fg = "base", bg = "teal" }
 "ui.cursor.select" = { fg = "base", bg = "sapphire" }
 "ui.cursor.match" = { fg = "base", bg = "peach", modifiers = ["bold"] }
@@ -125,7 +125,7 @@ hint = "teal"
 
 [palette]
 rosewater = "#f5e0dc"
-flamingo = "#f2cdcd"
+flamingo = "#f0c7c7"
 pink = "#f5c2e7"
 mauve = "#cba6f7"
 red = "#f38ba8"
