@@ -9,7 +9,7 @@ a = add
 aa = add .
 cm = commit -m
 cm-add = commit --amend --no-edit
-cm-rename = commit --amend
+cm-rename = commit --amend -m
 co = checkout
 lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 st = status
