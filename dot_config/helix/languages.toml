@@ -3,35 +3,19 @@ fish-lsp = { command = "fish-lsp", args = [
   "start",
 ], environment = { fish_lsp_show_client_popups = "false" } }
 
+[language-server.rust-analyzer.config]
+check.command = "clippy"
+
 [[language]]
 name = "fish"
-scope = "source.fish"
-injection-regex = "fish"
-file-types = ["fish"]
-shebangs = ["fish"]
-comment-token = "#"
 language-servers = ["fish-lsp"]
-indent = { tab-width = 4, unit = "    " }
 auto-format = true
-formatter = { command = "fish_indent" }
 
 [[language]]
 name = "nix"
-scope = "source.nix"
-injection-regex = "nix"
-file-types = ["nix"]
-comment-token = "#"
-language-servers = ["nil"]
-indent = { tab-width = 2, unit = "  " }
 formatter = { command = "nixfmt" }
 auto-format = true
 
 [[language]]
 name = "toml"
-scope = "source.toml"
-injection-regex = "toml"
-file-types = ["toml"]
-comment-token = "#"
-language-servers = ["taplo"]
-indent = { tab-width = 2, unit = "  " }
 auto-format = true

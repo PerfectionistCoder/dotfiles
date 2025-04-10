@@ -21,16 +21,12 @@ mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"
 
+[editor.lsp]
+display-progress-messages = true
+display-inlay-hints = true
+
 [editor.file-picker]
 hidden = false
-
-[editor.auto-pairs]
-'(' = ')'
-'{' = '}'
-'[' = ']'
-'"' = '"'
-'`' = '`'
-'<' = '>'
 
 [editor.gutters]
 layout = ["spacer", "diagnostics", "spacer", "line-numbers", "spacer", "diff"]
